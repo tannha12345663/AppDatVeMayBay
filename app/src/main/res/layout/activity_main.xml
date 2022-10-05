@@ -4,19 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/moon"
+    android:background="@drawable/img06c"
     tools:context=".MainActivity">
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/viewpager"
+
         android:layout_width="match_parent"
         android:layout_height="220dp">
 
-        <Button
-            android:id="@+id/button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Button" />
     </androidx.viewpager.widget.ViewPager>
 
     <me.relex.circleindicator.CircleIndicator
@@ -25,14 +21,10 @@
         android:layout_height="30dp"
         android:layout_marginTop="16dp"
         android:layout_gravity="center_horizontal"
+
         >
     </me.relex.circleindicator.CircleIndicator>
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:text="TextView" />
+
 
 </LinearLayout>

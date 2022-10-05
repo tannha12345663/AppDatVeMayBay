@@ -12,7 +12,13 @@
         android:layout_width="match_parent"
         android:layout_height="220dp">
 
+        <Button
+            android:id="@+id/button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Button" />
     </androidx.viewpager.widget.ViewPager>
+
     <me.relex.circleindicator.CircleIndicator
         android:id="@+id/circle_indicator"
         android:layout_width="wrap_content"
@@ -21,5 +27,12 @@
         android:layout_gravity="center_horizontal"
         >
     </me.relex.circleindicator.CircleIndicator>
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="TextView" />
 
 </LinearLayout>

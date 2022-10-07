@@ -1,11 +1,18 @@
 package com.example.appdatvemaybay;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.viewpager.widget.ViewPager;
 
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,10 +27,20 @@ public class MainActivity extends AppCompatActivity {
     private PhotoAdapter photoAdapter;
     private List<Photo> mlistPhoto;
     private Timer mTimer; // auto click chuyển
+
+    DrawerLayout mDrawerLayout;
+    Toolbar toolbar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        //Set drawer layout
+        mDrawerLayout = findViewById(R.id.drawer_layout);
+        toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+
+
         //Nhã Trương
         viewPager= findViewById(R.id.viewpager);
         circleIndicator=findViewById(R.id.circle_indicator);
@@ -83,5 +100,22 @@ public class MainActivity extends AppCompatActivity {
             mTimer.cancel();
             mTimer=null;
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main,menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
+        int id = item.getItemId();
+        if (id==R.id.menu_toolbar){
+            mDrawerLayout.openDrawer(GravityCompat.END);
+        }
+
+        return true;
     }
 }

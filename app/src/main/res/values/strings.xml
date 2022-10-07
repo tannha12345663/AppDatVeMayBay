@@ -1,4 +1,11 @@
 <resources>
     <string name="app_name">Air Plane</string>
 
+    <string name="nav_home">Trang chủ</string>
+    <string name="nav_notify">Thông báo</string>
+    <string name="nav_quest">Câu hỏi thường gặp</string>
+    <string name="nav_setting">Cài đặt</string>
+
+    <string name="navigation_drawer_open">Open navigation</string>
+    <string name="navigation_drawer_close">Close navigation</string>
 </resources>

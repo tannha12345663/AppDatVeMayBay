@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -6,19 +7,28 @@
     android:orientation="vertical"
     android:padding="20dp"
     >
-
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/retangle_border"
-        >
+        android:background="@drawable/retangle_border">
+
+        <TextView
+            android:id="@+id/tv_topic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Chủ đề phổ biến"
+            android:textSize="25dp"
+            android:textStyle="bold"
+            android:textColor="#554036"
+            android:layout_marginBottom="15dp"/>
 
         <View
             android:layout_width="40dp"
             android:layout_height="60dp"
             android:background="@drawable/map_quest"
             android:layout_marginLeft="8dp"
-            android:layout_alignParentLeft="true"/>
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/tv_topic"/>
 
         <TextView
             android:id="@+id/datchomuave"
@@ -27,9 +37,9 @@
             android:layout_margin="5dp"
             android:gravity="center"
             android:layout_gravity="center"
-
+            android:layout_below="@+id/tv_topic"
             android:text="Đặt chỗ mua vé"
-            android:textSize="25dp"
+            android:textSize="20dp"
             android:textStyle="bold"
             android:fontFamily="sans-serif-medium"/>
 
@@ -42,7 +52,8 @@
             android:layout_marginTop="17dp"
             android:layout_marginEnd="17dp"
             android:layout_marginBottom="17dp"
-            android:background="@drawable/arrow_quest" />
+            android:background="@drawable/arrow_quest"
+            android:layout_below="@+id/tv_topic"/>
         <View
             android:id="@+id/view"
             android:layout_width="match_parent"
@@ -68,7 +79,7 @@
             android:gravity="center"
             android:layout_gravity="center"
             android:text="Đặt vé trực tuyến"
-            android:textSize="25dp"
+            android:textSize="20dp"
             android:textStyle="bold"
             android:fontFamily="sans-serif-medium"
             android:layout_below="@+id/view"/>
@@ -86,6 +97,5 @@
             android:layout_below="@+id/view"/>
 
             </RelativeLayout>
-
 
         </LinearLayout>

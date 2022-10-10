@@ -5,10 +5,7 @@
         android:radius="9dp" />
     <gradient
         android:angle="45"
-        android:centerX="float"
-        android:centerY="float"
         android:endColor="#F4DDD1"
-        android:gradientRadius="integer"
         android:startColor="#F3AC88"
         android:type="linear" />
     <padding

@@ -55,7 +55,7 @@
         <View
             android:layout_width="40dp"
             android:layout_height="60dp"
-            android:background="@drawable/map_quest"
+            android:background="@drawable/airplane_ticket"
             android:layout_marginLeft="8dp"
             android:layout_alignParentLeft="true"
             android:layout_below="@id/view"/>

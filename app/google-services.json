@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "134495693476",
+    "project_id": "appairplane-2cb72",
+    "storage_bucket": "appairplane-2cb72.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:134495693476:android:291c1281c4758cd0fa9431",
+        "android_client_info": {
+          "package_name": "com.example.appdatvemaybay"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "134495693476-2g2gt4moqpuvjdtmmvdrlskj51b56vl6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.appdatvemaybay",
+            "certificate_hash": "7542032c2f71c45e9026411b17e03fc2b3c4f47e"
+          }
+        },
+        {
+          "client_id": "134495693476-am66g37gavqup6d51tidru8mvv32u9cl.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.appdatvemaybay",
+            "certificate_hash": "f25d63b9b25f462d087401902bee77740dc43b23"
+          }
+        },
+        {
+          "client_id": "134495693476-i5iq7capp2j85onpob7i5n4pi2k7pekq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDCFFxiWA7zYfb6cA6BezOHnstNOzCgX5E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "134495693476-i5iq7capp2j85onpob7i5n4pi2k7pekq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

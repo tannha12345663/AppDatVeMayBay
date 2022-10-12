@@ -78,6 +78,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 
         //Nhã Trương
+
+      =======
         innitUI();
         showUserInformation();
     }
@@ -94,6 +96,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         int id = item.getItemId();
         if (id==R.id.menu_toolbar){
             mDrawerLayout.openDrawer(GravityCompat.END);
+
         }
 
         return true;

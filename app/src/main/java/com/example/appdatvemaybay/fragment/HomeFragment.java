@@ -57,6 +57,7 @@ public class HomeFragment extends Fragment {
         list.add(new Photo(R.drawable.img05));
         return list;
     }
+    //Bộ đếm tự động chuyển slide image
     private void autoSlideImaged(){
         if (mlistPhoto==null || mlistPhoto.isEmpty()|| viewPager==null){
             return;

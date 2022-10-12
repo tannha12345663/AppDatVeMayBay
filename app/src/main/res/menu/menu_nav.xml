@@ -21,6 +21,18 @@
             android:title="@string/nav_setting"
             android:icon="@drawable/ic_baseline_settings_24"></item>
     </group>
-
+    <item android:title="Tài khoản">
+        <menu>
+            <item android:id="@+id/nav_acc_profile"
+                android:title="Thông tin tài khoản"
+                android:icon="@drawable/ic_baseline_person_24"
+                ></item>
+            <item android:id="@+id/nav_acc_profile"
+                android:title="Thông tin tài khoản"
+                android:icon="@drawable/ic_baseline_person_24"
+                ></item>
+            <item></item>
+        </menu>
+    </item>
 
 </menu>

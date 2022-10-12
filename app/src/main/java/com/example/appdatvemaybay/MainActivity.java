@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public static final int FRAGMENT_NOTIFY=2;
     public static final int FRAGMENT_QUEST=3;
     public static final int FRAGMENT_SETTING=4;
-    public static final int FRAGMENT_LOGIN=5;
+    public static final int FRAGMENT_YOURACCOUNT=5;
     private int mCurrentFrament = FRAGMENT_HOME;
     NavigationView navigationView;
     @Override
@@ -79,7 +79,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         //Nhã Trương
 
-      =======
+
         innitUI();
         showUserInformation();
     }
@@ -140,16 +140,25 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     }
     public void innitUI(){
+        user=FirebaseAuth.getInstance().getCurrentUser();
         View header_view = navigationView.getHeaderView(0);
         circleImageView_menu_header = header_view.findViewById(R.id.imgAcc);
         circleImageView_menu_header.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                intent = new Intent(MainActivity.this,SigninActivity.class);
-                mDrawerLayout.closeDrawer(GravityCompat.END);
-                startActivity(intent);
+                if (user == null){
+                    intent=new Intent(MainActivity.this,SigninActivity.class);
+                    startActivity(intent);
+                    mDrawerLayout.closeDrawer(GravityCompat.END);
+                }
+                else {
+                    replaceFragment(new HomeFragment());
+                    mDrawerLayout.closeDrawer(GravityCompat.END);
+                }
+
             }
         });
+
         tenAcc= header_view.findViewById(R.id.tenAcc);
         logout=header_view.findViewById(R.id.logout);
         logout.setOnClickListener(new View.OnClickListener() {
@@ -174,6 +183,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 nextActivity();
             }
         });
+
     }
     //Show user information
     private void showUserInformation(){
@@ -202,12 +212,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             intent = new Intent(MainActivity.this,SigninActivity.class);
             startActivity(intent);
         }
-
         else {
             //Chuyển sang trang thông tin tài khoản
-            //intent = new Intent(this,MainActivity.class);
-            startActivity(intent);
+//            intent = new Intent(this,MainActivity.class);
+//            startActivity(intent);
+            mDrawerLayout.openDrawer(GravityCompat.END);
         }
-        finish();
     }
 }

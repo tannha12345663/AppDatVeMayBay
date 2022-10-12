@@ -7,6 +7,7 @@
     android:background="#E8471E"
     android:orientation="vertical">
 
+
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/imgAcc"
         android:layout_width="40dp"
@@ -16,7 +17,6 @@
         android:src="@drawable/ic_baseline_account_circle_24"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"></de.hdodenhof.circleimageview.CircleImageView>
-
 
     <TextView
         android:id="@+id/tenAcc"

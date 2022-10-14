@@ -1,6 +1,7 @@
 package com.example.appdatvemaybay;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
@@ -68,10 +69,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+
         //Navigation View
         navigationView = findViewById(R.id.navigation_view);
-        navigationView.setNavigationItemSelectedListener(this);
-
+        navigationView.setNavigationItemSelectedListener(MainActivity.this);
         //Start app
         replaceFragment(new HomeFragment());
         navigationView.getMenu().findItem(R.id.nav_home).setChecked(true);
@@ -96,7 +97,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         int id = item.getItemId();
         if (id==R.id.menu_toolbar){
             mDrawerLayout.openDrawer(GravityCompat.END);
-
         }
 
         return true;
@@ -152,7 +152,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     mDrawerLayout.closeDrawer(GravityCompat.END);
                 }
                 else {
-                    replaceFragment(new HomeFragment());
+                    replaceFragment(new YourAccountFragment());
                     mDrawerLayout.closeDrawer(GravityCompat.END);
                 }
 
@@ -219,4 +219,5 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             mDrawerLayout.openDrawer(GravityCompat.END);
         }
     }
+
 }

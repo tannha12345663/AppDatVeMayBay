@@ -3,6 +3,7 @@ package com.example.appdatvemaybay.fragment;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
@@ -11,16 +12,16 @@ import com.example.appdatvemaybay.fragment.FragmentAccount.HistoryAirFragment;
 import com.example.appdatvemaybay.fragment.FragmentAccount.HistoryFragment;
 import com.example.appdatvemaybay.fragment.FragmentAccount.InfoAccFragment;
 
-public class ViewPagerAccAdapter extends FragmentStatePagerAdapter {
+public class ViewPagerAccAdapter extends FragmentStateAdapter {
 
-    public ViewPagerAccAdapter(@NonNull FragmentManager fm, int behavior) {
 
-        super(fm, behavior);
+    public ViewPagerAccAdapter(@NonNull Fragment fragment) {
+        super(fragment);
     }
 
     @NonNull
     @Override
-    public Fragment getItem(int position) {
+    public Fragment createFragment(int position) {
         switch (position){
             case 1:
                 return new HistoryFragment();
@@ -29,26 +30,10 @@ public class ViewPagerAccAdapter extends FragmentStatePagerAdapter {
             default:
                 return new InfoAccFragment();
         }
-
     }
 
     @Override
-    public int getCount() {
+    public int getItemCount() {
         return 3;
-    }
-
-    @Nullable
-    @Override
-    public CharSequence getPageTitle(int position) {
-        String title = "";
-        switch (position){
-            case 0:
-                title ="Thông tin tài khoản";
-            case 1:
-                title ="Lịch sử giao dịch";
-            case 2:
-                title ="Lịch sử chuyến bay";
-        }
-        return title;
     }
 }

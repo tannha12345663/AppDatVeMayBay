@@ -36,4 +36,6 @@ public class ViewPagerAccAdapter extends FragmentStateAdapter {
     public int getItemCount() {
         return 3;
     }
+
+
 }

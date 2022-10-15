@@ -1,7 +1,12 @@
 package com.example.appdatvemaybay;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
@@ -12,16 +17,21 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 import com.bumptech.glide.Glide;
+import com.example.appdatvemaybay.fragment.FragmentAccount.InfoAccFragment;
 import com.example.appdatvemaybay.fragment.HomeFragment;
 import com.example.appdatvemaybay.fragment.NotifyFragment;
 import com.example.appdatvemaybay.fragment.QuestFragment;
@@ -30,6 +40,7 @@ import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Timer;
 
@@ -37,6 +48,9 @@ import de.hdodenhof.circleimageview.CircleImageView;
 import me.relex.circleindicator.CircleIndicator;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
+    //Profile
+    public static final int MY_REQUEST_CODE = 10;
+    //
     private ViewPager viewPager;
     private CircleIndicator circleIndicator;
     private PhotoAdapter photoAdapter;
@@ -48,10 +62,35 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     TextView tenAcc, ten_Acc;
     //Firebase USER
     FirebaseUser user;
+    //InfoAccFragment
+    InfoAccFragment infoAccFragment = new InfoAccFragment();
     // Phan khac
     Intent intent;
     DrawerLayout mDrawerLayout;
     Toolbar toolbar;
+
+    //Activity
+    final private ActivityResultLauncher<Intent> activityResultLauncher = registerForActivityResult
+            (new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
+        @Override
+        public void onActivityResult(ActivityResult result) {
+            if (result.getResultCode()==RESULT_OK){
+                Intent intent =result.getData();
+                if (intent == null){
+                    return;
+                }
+                Uri uri = intent.getData();
+                infoAccFragment.setUri(uri);
+                try {
+                    Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(),uri);
+                    infoAccFragment.setBitmapImageView(bitmap);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+
+        }
+    });
     //Navigation View ánh xạ tới các menu nav
     public static final int FRAGMENT_HOME=1;
     public static final int FRAGMENT_NOTIFY=2;
@@ -186,7 +225,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     }
     //Show user information
-    private void showUserInformation(){
+    public void showUserInformation(){
         user=FirebaseAuth.getInstance().getCurrentUser();
         if (user==null){
             return;
@@ -220,4 +259,27 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
     }
 
+
+    //Phần xử lý cấp quyền truy cập file
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == MY_REQUEST_CODE){
+            if (grantResults.length >0 && grantResults[0]==PackageManager.PERMISSION_GRANTED){
+                //Cho phép mở nơi chứa ảnh
+                openGallery();
+            } else {
+                Toast.makeText(this, "Không thể mở ảnh . Vui lòng cấp quyền !", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+    //Cách mở file
+    public void openGallery() {
+        Intent intent = new Intent();
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+
+        activityResultLauncher.launch(Intent.createChooser(intent,"Select Picture"));
+
+    }
 }

@@ -8,12 +8,14 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager2.widget.ViewPager2;
 
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.appdatvemaybay.fragment.FragmentAccount.InfoAccFragment;
 import com.example.appdatvemaybay.fragment.HomeFragment;
 import com.example.appdatvemaybay.fragment.NotifyFragment;
 import com.example.appdatvemaybay.fragment.QuestFragment;
@@ -60,4 +62,5 @@ public class YourAccountFragment extends Fragment{
         }).attach();
         return mview;
     }
+
 }

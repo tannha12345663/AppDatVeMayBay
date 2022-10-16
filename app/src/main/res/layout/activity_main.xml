@@ -34,7 +34,7 @@
 
                 </androidx.appcompat.widget.Toolbar>
 
-                <ImageView
+                <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/img_acc"
                     android:layout_width="35dp"
                     android:layout_height="27dp"

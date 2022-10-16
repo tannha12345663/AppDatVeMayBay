@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private Timer mTimer; // auto click chuyển
     //Phan Header Navigation
     ImageView logout;
-    CircleImageView circleImageView_menu_header;
+    CircleImageView circleImageView_menu_header,img_acc;
     TextView tenAcc, ten_Acc;
     //Firebase USER
     FirebaseUser user;
@@ -70,27 +70,27 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     Toolbar toolbar;
 
     //Activity
-    final private ActivityResultLauncher<Intent> activityResultLauncher = registerForActivityResult
-            (new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
-        @Override
-        public void onActivityResult(ActivityResult result) {
-            if (result.getResultCode()==RESULT_OK){
-                Intent intent =result.getData();
-                if (intent == null){
-                    return;
-                }
-                Uri uri = intent.getData();
-                infoAccFragment.setUri(uri);
-                try {
-                    Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(),uri);
-                    infoAccFragment.setBitmapImageView(bitmap);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-
-        }
-    });
+//    final private ActivityResultLauncher<Intent> activityResultLauncher = registerForActivityResult
+//            (new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
+//        @Override
+//        public void onActivityResult(ActivityResult result) {
+//            if (result.getResultCode()==RESULT_OK){
+//                Intent intent =result.getData();
+//                if (intent == null){
+//                    return;
+//                }
+//                Uri uri = intent.getData();
+//                infoAccFragment.setUri(uri);
+//                try {
+//                    Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(),uri);
+//                    infoAccFragment.setBitmapImageView(bitmap);
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//
+//        }
+//    });
     //Navigation View ánh xạ tới các menu nav
     public static final int FRAGMENT_HOME=1;
     public static final int FRAGMENT_NOTIFY=2;
@@ -115,11 +115,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         //Start app
         replaceFragment(new HomeFragment());
         navigationView.getMenu().findItem(R.id.nav_home).setChecked(true);
-
-
         //Nhã Trương
-
-
         innitUI();
         showUserInformation();
     }
@@ -197,7 +193,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             }
         });
-
         tenAcc= header_view.findViewById(R.id.tenAcc);
         logout=header_view.findViewById(R.id.logout);
         logout.setOnClickListener(new View.OnClickListener() {
@@ -222,6 +217,19 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 nextActivity();
             }
         });
+        img_acc = findViewById(R.id.img_acc);
+        img_acc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (user == null){
+                    intent=new Intent(MainActivity.this,SigninActivity.class);
+                    startActivity(intent);
+                }
+                else {
+                    replaceFragment(new YourAccountFragment());
+                }
+            }
+        });
 
     }
     //Show user information
@@ -239,6 +247,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             ten_Acc.setText(name);
             //Set ảnh nếu lỗi sẽ default hình có sẵn
             Glide.with(this).load(photoUrl).error(R.drawable.ic_baseline_account_circle_24).into(circleImageView_menu_header);
+            Glide.with(this).load(photoUrl).error(R.drawable.ic_baseline_account_circle_24).into(img_acc);
 
         }
     }
@@ -261,25 +270,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 
     //Phần xử lý cấp quyền truy cập file
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (requestCode == MY_REQUEST_CODE){
-            if (grantResults.length >0 && grantResults[0]==PackageManager.PERMISSION_GRANTED){
-                //Cho phép mở nơi chứa ảnh
-                openGallery();
-            } else {
-                Toast.makeText(this, "Không thể mở ảnh . Vui lòng cấp quyền !", Toast.LENGTH_SHORT).show();
-            }
-        }
-    }
-    //Cách mở file
-    public void openGallery() {
-        Intent intent = new Intent();
-        intent.setType("image/*");
-        intent.setAction(Intent.ACTION_GET_CONTENT);
+//    @Override
+//    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+//        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+//        if (requestCode == MY_REQUEST_CODE){
+//            if (grantResults.length >0 && grantResults[0]==PackageManager.PERMISSION_GRANTED){
+//                //Cho phép mở nơi chứa ảnh
+//                openGallery();
+//            } else {
+//                Toast.makeText(this, "Không thể mở ảnh . Vui lòng cấp quyền !", Toast.LENGTH_SHORT).show();
+//            }
+//        }
+//    }
 
-        activityResultLauncher.launch(Intent.createChooser(intent,"Select Picture"));
-
-    }
 }

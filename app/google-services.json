@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "134495693476",
+    "firebase_url": "https://appairplane-2cb72-default-rtdb.asia-southeast1.firebasedatabase.app",
     "project_id": "appairplane-2cb72",
     "storage_bucket": "appairplane-2cb72.appspot.com"
   },
@@ -22,7 +23,7 @@
           }
         },
         {
-          "client_id": "134495693476-am66g37gavqup6d51tidru8mvv32u9cl.apps.googleusercontent.com",
+          "client_id": "134495693476-skq7ib6d835fiagm5a6357ml18irdur4.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.example.appdatvemaybay",

@@ -59,7 +59,7 @@ public class OtpActivity extends AppCompatActivity {
         //Lấy thông tin Email và sđt từ form đăng ký
         final String getEmail = getIntent().getStringExtra("email");
         final String getMobile = getIntent().getStringExtra("mobile");
-        final String getVerify =getIntent().getStringExtra("verification_id");
+        ;
         //Thiết lập settext cho Email và Mobile
         otpEmail.setText(getEmail);
         otpMobile.setText(getMobile);
@@ -68,6 +68,8 @@ public class OtpActivity extends AppCompatActivity {
         otpET2.addTextChangedListener(textWatcher);
         otpET3.addTextChangedListener(textWatcher);
         otpET4.addTextChangedListener(textWatcher);
+        otpET5.addTextChangedListener(textWatcher);
+        otpET6.addTextChangedListener(textWatcher);
 
         //Mặc định mở bàn phím ở otpET1
         showKeyboard(otpET1);
@@ -78,7 +80,7 @@ public class OtpActivity extends AppCompatActivity {
                 final String generateOtp = otpET1.getText().toString().trim()+otpET2.getText().toString().trim()
                         + otpET3.getText().toString().trim() + otpET4.getText().toString().trim()
                         +otpET5.getText().toString().trim()+otpET6.getText().toString().trim();
-
+                final String getVerify =getIntent().getStringExtra("verification_id");
                 if (generateOtp.length() == 6){
                     //Xác thực mã OTP
                     PhoneAuthCredential credential = PhoneAuthProvider.getCredential(getVerify, generateOtp);

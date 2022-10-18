@@ -39,6 +39,11 @@ import com.example.appdatvemaybay.fragment.SettingFragment;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.io.IOException;
 import java.util.List;
@@ -239,15 +244,27 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             return;
         }
         else {
-            String name = user.getDisplayName();
+            String uid = user.getUid();
             String email = user.getEmail();
             Uri photoUrl = user.getPhotoUrl();
-
-            tenAcc.setText(name);
-            ten_Acc.setText(name);
             //Set ảnh nếu lỗi sẽ default hình có sẵn
             Glide.with(this).load(photoUrl).error(R.drawable.ic_baseline_account_circle_24).into(circleImageView_menu_header);
             Glide.with(this).load(photoUrl).error(R.drawable.ic_baseline_account_circle_24).into(img_acc);
+
+            FirebaseDatabase database = FirebaseDatabase.getInstance();
+            DatabaseReference myData = database.getReference("ListUser");
+            myData.child(uid).child("name").addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    String names = snapshot.getValue(String.class);
+                    ten_Acc.setText(names);
+                    tenAcc.setText(names);
+                }
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
 
         }
     }

@@ -1,8 +1,10 @@
 package com.example.appdatvemaybay;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,6 +16,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.appdatvemaybay.Account_User.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseException;
@@ -24,6 +27,9 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthOptions;
 import com.google.firebase.auth.PhoneAuthProvider;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.concurrent.TimeUnit;
 
@@ -34,9 +40,9 @@ public class SignUpActivity extends AppCompatActivity {
     //FireBase ACC
     String strPhoneNumber, verificationId;
     FirebaseAuth mAuth;
+    FirebaseUser user;
     Intent intent;
     private String CountrySDT = "+84";
-    private String Maverify="";
     private PhoneAuthProvider.ForceResendingToken mForceResendingToken;
     //Xử lý diaglog
     ProgressDialog progressDialog;
@@ -60,11 +66,12 @@ public class SignUpActivity extends AppCompatActivity {
         edEmailDK=findViewById(R.id.etEmail_dk);
         edPassDK=findViewById(R.id.etPass_dk);
         edPhoneDK=findViewById(R.id.etPhone_dk);
-
+        edFullName=findViewById(R.id.edtFullName);
         btnDangKy=findViewById(R.id.btnDangKy);
         progressDialog = new ProgressDialog(SignUpActivity.this);
     }
     private void initListener(){
+
         //Ấn nút đăng ký
         btnDangKy.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -87,6 +94,7 @@ public class SignUpActivity extends AppCompatActivity {
     private void onClickDangKy() {
         String email = edEmailDK.getText().toString().trim();
         String password= edPassDK.getText().toString().trim();
+        String Fullname= edFullName.getText().toString().trim();
         mAuth=FirebaseAuth.getInstance(); // Khởi tạo firebase Account API
         progressDialog.setMessage("Đang xử lý vui lòng đợi giây lát");
         progressDialog.show();
@@ -94,19 +102,34 @@ public class SignUpActivity extends AppCompatActivity {
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                            progressDialog.dismiss();
+                        progressDialog.dismiss();
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
                             final String getMobile = edPhoneDK.getText().toString().trim();
                             final String getEmail = edEmailDK.getText().toString().trim();
-                            //Send OTP
-                            SendOTP();
                             //Opening OTP Verification Activity along with mobile and email
-                            intent = new Intent(SignUpActivity.this,OtpActivity.class);
-                            intent.putExtra("verification_id",Maverify);
+
+
+
+                            //Đẩy thông tin người dùng lên ReadlTimeDB
+                            user = FirebaseAuth.getInstance().getCurrentUser();
+                            String strUID = user.getUid();
+
+                            User userLocal = new User(strUID,getEmail,Fullname,getMobile);
+                            FirebaseDatabase database = FirebaseDatabase.getInstance();
+                            DatabaseReference myData = database.getReference("ListUser");
+
+                            //Định danh user
+                            myData.child(strUID).setValue(userLocal, new DatabaseReference.CompletionListener() {
+                                @Override
+                                public void onComplete(@Nullable DatabaseError error, @NonNull DatabaseReference ref) {
+                                    Toast.makeText(SignUpActivity.this, "Lưu DB thành công", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                           //Chuyển trang
+                            intent = new Intent(SignUpActivity.this,MainActivity.class);
                             intent.putExtra("mobile",getMobile);
                             intent.putExtra("email",getEmail);
-
                             startActivity(intent);
                             //Đóng các Activity
                             finishAffinity();
@@ -119,35 +142,4 @@ public class SignUpActivity extends AppCompatActivity {
                 });
     }
 
-    private void SendOTP() {
-        PhoneAuthOptions options =
-                PhoneAuthOptions.newBuilder(mAuth)
-                        .setPhoneNumber(CountrySDT+""+edPhoneDK.getText().toString().trim())       // Phone number to verify
-                        .setTimeout(60L, TimeUnit.SECONDS) // Timeout and unit
-                        .setActivity(SignUpActivity.this)                 // Activity (for callback binding)
-                        .setCallbacks(new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
-                            @Override
-                            public void onVerificationCompleted(@NonNull PhoneAuthCredential phoneAuthCredential) {
-                                Toast.makeText(SignUpActivity.this, "OTP đã được xác thực thành công", Toast.LENGTH_SHORT).show();
-                            }
-
-                            @Override
-                            public void onVerificationFailed(@NonNull FirebaseException e) {
-
-                                Toast.makeText(SignUpActivity.this, "Mã OTP không đúng vui lòng kiểm tra lại", Toast.LENGTH_SHORT).show();
-
-                            }
-
-                            @Override
-                            public void onCodeSent(@NonNull String s, @NonNull PhoneAuthProvider.ForceResendingToken forceResendingToken) {
-                                super.onCodeSent(s, forceResendingToken);
-
-                                Maverify=s;
-                            }
-                        })          // OnVerificationStateChangedCallbacks
-                        .build();
-        PhoneAuthProvider.verifyPhoneNumber(options);
-
-
-    }
 }

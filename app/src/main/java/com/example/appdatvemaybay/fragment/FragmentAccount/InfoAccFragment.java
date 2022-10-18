@@ -1,15 +1,9 @@
 package com.example.appdatvemaybay.fragment.FragmentAccount;
 
-import static com.example.appdatvemaybay.MainActivity.MY_REQUEST_CODE;
-
-import android.Manifest;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.graphics.Bitmap;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 
 import androidx.activity.result.ActivityResult;
@@ -20,7 +14,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,6 +22,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.example.appdatvemaybay.Account_User.GetUserFirebase;
+import com.example.appdatvemaybay.Account_User.User;
 import com.example.appdatvemaybay.MainActivity;
 import com.example.appdatvemaybay.R;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -37,10 +32,17 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -57,6 +59,7 @@ public class InfoAccFragment extends Fragment {
     FirebaseStorage storage;
     FirebaseAuth auth;
     FirebaseDatabase database;
+    GetUserFirebase getUserFirebase;
     //khai báo URI
     Uri mUri;
     //Khai báo màn hình thông báo người dùng
@@ -113,10 +116,32 @@ public class InfoAccFragment extends Fragment {
         if (user == null) {
             return;
         }
-        edtFullname.setText(user.getDisplayName());
         edtEmail.setText(user.getEmail());
-        edtPhone.setText(user.getPhoneNumber());
         Glide.with(this).load(user.getPhotoUrl()).error(R.drawable.ic_baseline_account_circle_24).into(img_avatar);
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myData = database.getReference("ListUser");
+        myData.child(user.getUid()).child("phone").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                String phones = snapshot.getValue(String.class);
+                edtPhone.setText(phones);
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+        myData.child(user.getUid()).child("name").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                String names = snapshot.getValue(String.class);
+                edtFullname.setText(names);
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
 
 
     }
@@ -124,22 +149,18 @@ public class InfoAccFragment extends Fragment {
 
     private void initUI() {
         img_avatar = mView.findViewById(R.id.img_avatar_profile);
-        edtFullname = mView.findViewById(R.id.edit_full_name);
+        edtFullname = mView.findViewById(R.id.editName);
         edtEmail = mView.findViewById(R.id.edit_email);
         edtPhone = mView.findViewById(R.id.edit_phone);
         btnUpdateProfile = mView.findViewById(R.id.btn_update_profile);
 
 
-        btnUpdateProfile.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                onClickUpdateProfile();
-            }
-        });
+
     }
 
 
     private void initListenr() {
+        user = FirebaseAuth.getInstance().getCurrentUser();
         img_avatar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -150,9 +171,20 @@ public class InfoAccFragment extends Fragment {
 
             }
         });
+        btnUpdateProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String strUID = user.getUid();
+                String strEmail = user.getEmail();
+                String strPhone = edtPhone.getText().toString().trim();
+                String strName = edtFullname.getText().toString().trim();
+                User user= new User(strUID,strEmail,strName,strPhone);
+                onClickUpdateProfile(user,strUID);
+            }
+        });
     }
 
-    private void onClickUpdateProfile() {
+    private void onClickUpdateProfile(User user_local,String strUID) {
 
         user = FirebaseAuth.getInstance().getCurrentUser();
         if (user == null) {
@@ -160,8 +192,9 @@ public class InfoAccFragment extends Fragment {
         }
         progressDialog.setMessage("Xin vui lòng đợi giây lát");
         progressDialog.show();
+
         String strFullname = edtFullname.getText().toString().trim();
-        String strPhone = edtPhone.getText().toString().trim();
+
 
         UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
                 .setDisplayName(strFullname)
@@ -179,6 +212,20 @@ public class InfoAccFragment extends Fragment {
                         }
                     }
                 });
-        };
+        //Đẩy thông tin người dùng lên ReadlTimeDB
+
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myData = database.getReference("ListUser");
+
+        //Định danh user
+        myData.child(strUID).setValue(user_local, new DatabaseReference.CompletionListener() {
+            @Override
+            public void onComplete(@Nullable DatabaseError error, @NonNull DatabaseReference ref) {
+                Toast.makeText(mainActivity, "Cập nhật USER thành công ", Toast.LENGTH_SHORT).show();
+            }
+        });
+    };
+
+
 }
 

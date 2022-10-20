@@ -45,12 +45,10 @@
 
 
     </LinearLayout>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
+        android:layout_height="252dp"
 
         >
 
@@ -58,37 +56,43 @@
             android:id="@+id/igGiamNL"
             android:layout_width="36dp"
             android:layout_height="34dp"
+            android:layout_marginStart="80dp"
+            android:layout_marginEnd="8dp"
             app:layout_constraintBottom_toBottomOf="@+id/igThemNL"
+            app:layout_constraintEnd_toStartOf="@+id/SLNL"
+            app:layout_constraintStart_toEndOf="@+id/textView8"
             app:layout_constraintTop_toTopOf="@+id/igThemNL"
             app:layout_constraintVertical_bias="1.0"
-            app:srcCompat="@drawable/ic_baseline_remove_circle_outline_24"
-            tools:layout_editor_absoluteX="263dp" />
+            app:srcCompat="@drawable/ic_baseline_remove_circle_outline_24" />
 
         <TextView
             android:id="@+id/SLTE"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="16dp"
             android:text="0"
             android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@+id/igThemTE"
-            app:layout_constraintEnd_toStartOf="@+id/igThemNL"
-            app:layout_constraintTop_toTopOf="@+id/igThemTE"
-            app:layout_constraintVertical_bias="0.142" />
+            app:layout_constraintEnd_toStartOf="@+id/igThemTE"
+            app:layout_constraintStart_toEndOf="@+id/igGiamTE"
+            app:layout_constraintTop_toTopOf="@+id/igThemTE" />
 
         <TextView
             android:id="@+id/SLEB"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="2dp"
+            android:layout_marginEnd="2dp"
             android:text="0"
             android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@+id/igThemEB"
+            app:layout_constraintEnd_toEndOf="@+id/SLTE"
+            app:layout_constraintStart_toStartOf="@+id/SLTE"
             app:layout_constraintTop_toTopOf="@+id/igThemEB"
-            app:layout_constraintVertical_bias="0.0"
-            tools:layout_editor_absoluteX="308dp" />
+            app:layout_constraintVertical_bias="0.0" />
 
         <ImageView
             android:id="@+id/igThemTE"
@@ -98,7 +102,7 @@
             app:layout_constraintBottom_toBottomOf="@+id/textView10"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/textView10"
-            app:layout_constraintVertical_bias="1.0"
+            app:layout_constraintVertical_bias="0.0"
             app:srcCompat="@drawable/ic_baseline_add_circle_outline_24" />
 
         <ImageView
@@ -106,9 +110,9 @@
             android:layout_width="36dp"
             android:layout_height="34dp"
             app:layout_constraintBottom_toBottomOf="@+id/textView11"
+            app:layout_constraintEnd_toEndOf="@+id/igThemTE"
             app:layout_constraintTop_toTopOf="@+id/textView11"
-            app:srcCompat="@drawable/ic_baseline_add_circle_outline_24"
-            tools:layout_editor_absoluteX="327dp" />
+            app:srcCompat="@drawable/ic_baseline_add_circle_outline_24" />
 
         <ImageView
             android:id="@+id/imageView3"
@@ -161,14 +165,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="2dp"
-            android:layout_marginEnd="8dp"
+            android:layout_marginEnd="16dp"
             android:text="1"
             android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@+id/igThemNL"
             app:layout_constraintEnd_toStartOf="@+id/igThemNL"
             app:layout_constraintTop_toTopOf="@+id/igThemNL"
-            app:layout_constraintVertical_bias="0.142" />
+            app:layout_constraintVertical_bias="0.0" />
 
         <ImageView
             android:id="@+id/igThemNL"
@@ -185,20 +189,22 @@
             android:layout_width="36dp"
             android:layout_height="34dp"
             app:layout_constraintBottom_toBottomOf="@+id/igThemTE"
+            app:layout_constraintEnd_toEndOf="@+id/igGiamNL"
+            app:layout_constraintStart_toStartOf="@+id/igGiamNL"
             app:layout_constraintTop_toTopOf="@+id/igThemTE"
             app:layout_constraintVertical_bias="0.0"
-            app:srcCompat="@drawable/ic_baseline_remove_circle_outline_24"
-            tools:layout_editor_absoluteX="263dp" />
+            app:srcCompat="@drawable/ic_baseline_remove_circle_outline_24" />
 
         <ImageView
             android:id="@+id/igGiamEB"
             android:layout_width="36dp"
             android:layout_height="34dp"
             app:layout_constraintBottom_toBottomOf="@+id/igThemEB"
+            app:layout_constraintEnd_toEndOf="@+id/igGiamNL"
+            app:layout_constraintStart_toStartOf="@+id/igGiamNL"
             app:layout_constraintTop_toTopOf="@+id/igThemEB"
-            app:layout_constraintVertical_bias="0.0"
-            app:srcCompat="@drawable/ic_baseline_remove_circle_outline_24"
-            tools:layout_editor_absoluteX="263dp" />
+            app:layout_constraintVertical_bias="1.0"
+            app:srcCompat="@drawable/ic_baseline_remove_circle_outline_24" />
 
         <ImageView
             android:id="@+id/imageView6"
@@ -209,7 +215,7 @@
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView3"
-            app:srcCompat="@drawable/ic_baseline_man_24" />
+            app:srcCompat="@drawable/ic_baseline_snowshoeing_24" />
 
         <ImageView
             android:id="@+id/imageView7"
@@ -220,7 +226,21 @@
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="@+id/imageView6"
             app:layout_constraintTop_toBottomOf="@+id/imageView6"
-            app:srcCompat="@drawable/ic_baseline_man_24" />
+            app:srcCompat="@drawable/ic_baseline_child_friendly_24" />
+
+        <Button
+            android:id="@+id/btnContinue"
+            android:layout_width="141dp"
+            android:layout_height="49dp"
+            android:layout_marginBottom="8dp"
+            android:text="Đi tiếp"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:backgroundTint="@color/Red"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </LinearLayout>

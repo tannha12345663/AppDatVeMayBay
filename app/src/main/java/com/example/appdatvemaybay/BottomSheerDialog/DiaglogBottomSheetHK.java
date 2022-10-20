@@ -1,33 +1,53 @@
 package com.example.appdatvemaybay.BottomSheerDialog;
 
+import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
+import com.example.appdatvemaybay.Account_User.SLhanhKhach;
 import com.example.appdatvemaybay.R;
+import com.example.appdatvemaybay.fragment.HomeFragment;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
-public class DiaglogBottomSheetHK extends BottomSheetDialog {
+public class DiaglogBottomSheetHK extends BottomSheetDialogFragment {
+    private SLhanhKhach sLhanhKhach;
+    Context context;
+
     ImageView igThemNL, igGiamNL, igThemTE, igGiamTE, igThemEB, igGiamEB;
     TextView SLNL, SLTE, SLEB;
     ImageButton btnClose;
     View view;
+    Button btnContinue;
     int slnl = 1,slte = 0,sleb =0;
-    public DiaglogBottomSheetHK(@NonNull Context context) {
-        super(context);
+
+    public OnInputListener mOnInputListener;
+    public DiaglogBottomSheetHK( Context context) {
+        this.context = context;
     }
-    public void findView(){
-        view = getLayoutInflater().inflate(R.layout.bottom_sheet_hanhkhach,null);
+
+    @NonNull
+    @Override
+    public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
+        BottomSheetDialog bottomSheetDialog= (BottomSheetDialog) super.onCreateDialog(savedInstanceState);
+        view = LayoutInflater.from(getContext()).inflate(R.layout.bottom_sheet_hanhkhach,null);
+        bottomSheetDialog.setContentView(view);
         innitUI();
         innitListenr();
         btnClose.setOnClickListener(v -> {
             this.dismiss();
         });
-        setContentView(view);
+        return bottomSheetDialog;
     }
 
     private void innitListenr() {
@@ -35,7 +55,7 @@ public class DiaglogBottomSheetHK extends BottomSheetDialog {
             @Override
             public void onClick(View v) {
                 slnl = slnl+1;
-                SLNL.setText(slnl);
+                SLNL.setText(""+slnl);
             }
         });
         igGiamNL.setOnClickListener(new View.OnClickListener() {
@@ -46,7 +66,7 @@ public class DiaglogBottomSheetHK extends BottomSheetDialog {
                 }
                 else {
                     slnl = slnl-1;
-                    SLNL.setText(slnl);
+                    SLNL.setText(""+slnl);
                 }
             }
         });
@@ -54,7 +74,7 @@ public class DiaglogBottomSheetHK extends BottomSheetDialog {
             @Override
             public void onClick(View v) {
                 slte = slte +1;
-                SLTE.setText(slte);
+                SLTE.setText(""+slte);
             }
         });
         igGiamTE.setOnClickListener(new View.OnClickListener() {
@@ -65,7 +85,7 @@ public class DiaglogBottomSheetHK extends BottomSheetDialog {
                 }
                 else {
                     slte = slte-1;
-                    SLTE.setText(slte);
+                    SLTE.setText(""+slte);
                 }
             }
         });
@@ -73,7 +93,7 @@ public class DiaglogBottomSheetHK extends BottomSheetDialog {
             @Override
             public void onClick(View v) {
                 sleb = sleb + 1;
-                SLEB .setText(sleb);
+                SLEB .setText(""+sleb);
             }
         });
         igGiamEB.setOnClickListener(new View.OnClickListener() {
@@ -84,10 +104,20 @@ public class DiaglogBottomSheetHK extends BottomSheetDialog {
                 }
                 else {
                     sleb = sleb -1;
-                    SLEB.setText(sleb);
+                    SLEB.setText(""+sleb);
                 }
             }
         });
+        btnContinue.setOnClickListener(v -> {
+            String nl = SLNL.getText().toString().trim();
+            String te = SLTE.getText().toString().trim();
+            String eb = SLEB.getText().toString().trim();
+            String tt = nl+ " , "+ te +" , "+eb ;
+//            HomeFragment homeFragment = new HomeFragment();
+//            homeFragment.setInputtoTextView(tt);
+            this.dismiss();
+        });
+
 
     }
 
@@ -104,5 +134,9 @@ public class DiaglogBottomSheetHK extends BottomSheetDialog {
         SLEB = view.findViewById(R.id.SLEB);
         //button
         btnClose=view.findViewById(R.id.closeBtn);
+        btnContinue=view.findViewById(R.id.btnContinue);
+    }
+    public interface OnInputListener {
+        void sendInput(String input);
     }
 }

@@ -9,12 +9,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
+import com.example.appdatvemaybay.Account_User.SLhanhKhach;
 import com.example.appdatvemaybay.BottomSheerDialog.DiaglogBottomSheetHK;
 import com.example.appdatvemaybay.MainActivity;
 import com.example.appdatvemaybay.Photo;
@@ -44,6 +46,13 @@ public class HomeFragment extends Fragment {
     int mYear, mMonth, mDay, mYear1, mMonth1, mDay1;
     TextInputEditText etChonNgayDi, etChonNgayVe;
     Button btnTimChuyenBay;
+    public TextInputEditText etNhapSoLuongHK;
+    String minput;
+
+    public void sendInput(String input){
+        minput = input;
+        setInputtoTextView(input);
+    }
     View mview;
     @Nullable
     @Override
@@ -107,17 +116,33 @@ public class HomeFragment extends Fragment {
         btnTimChuyenBay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DiaglogBottomSheetHK dialog = new DiaglogBottomSheetHK(mview.getContext());
-                dialog.findView();
-                dialog.show();
+
             }
         });
+        etNhapSoLuongHK.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                clickOpenBottomSheetFragment();
+
+            }
+        });
+
     }
 
+    private void clickOpenBottomSheetFragment() {
+        DiaglogBottomSheetHK diaglogBottomSheetHK = new DiaglogBottomSheetHK(mview.getContext());
+        diaglogBottomSheetHK.show(getActivity().getSupportFragmentManager(), diaglogBottomSheetHK.getTag());
+
+    }
+
+    public void   setInputtoTextView(String s){
+        etNhapSoLuongHK.setText(s);
+    }
     private void innitUI() {
         etChonNgayDi = mview.findViewById(R.id.etChonNgayDi);
         etChonNgayVe = mview.findViewById(R.id.etChonNgayVe);
         btnTimChuyenBay = mview.findViewById(R.id.btnTimChuyenBay);
+        etNhapSoLuongHK = mview.findViewById(R.id.etNhapSoLuongHK);
     }
 
 

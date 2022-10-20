@@ -26,5 +26,159 @@
         app:layout_constraintStart_toStartOf="@+id/viewpager"
         app:layout_constraintTop_toTopOf="@+id/viewpager"></me.relex.circleindicator.CircleIndicator>
 
+    <RadioGroup
+        android:id="@+id/rgPercentage"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/circle_indicator">
 
+        <RadioButton
+            android:id="@+id/rbKhuhoi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:checked="true"
+            android:textStyle="bold"
+            android:text="Khứ hồi" />
+
+        <RadioButton
+            android:id="@+id/rbMotChieu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:textStyle="bold"
+            android:text="Một chiều" />
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Chọn ngày"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/rgPercentage"
+        app:layout_constraintEnd_toEndOf="@+id/txinputlayout4"
+        app:layout_constraintStart_toEndOf="@+id/txinputlayout1"
+        app:layout_constraintTop_toBottomOf="@+id/circle_indicator" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/txinputlayout1"
+        style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+        android:layout_width="220dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toStartOf="@+id/rgPercentage"
+        app:layout_constraintTop_toBottomOf="@+id/rgPercentage">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etDiemKhoiHanh"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:drawableLeft="@drawable/ic_baseline_flight_takeoff_24"
+            android:hint="Điểm khởi hành"
+            android:focusable="false"
+            android:text="TP Hồ Chí Minh (SGN)"
+            android:textColor="@color/black" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/txinputLayout03"
+        android:layout_width="220dp"
+        style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toStartOf="@+id/txinputlayout1"
+        app:layout_constraintTop_toBottomOf="@+id/txinputlayout1">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etDiemen"
+            android:background="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:drawableLeft="@drawable/ic_baseline_flight_land_24"
+            android:hint="Điểm đến"
+            android:focusable="false"
+            android:text="Hà Nội (HAN)"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/txinputlayout4"
+        style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="1dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintBottom_toBottomOf="@+id/txinputlayout1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/txinputlayout1"
+        app:layout_constraintTop_toTopOf="@+id/txinputlayout1">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etChonNgayDi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:focusable="false"
+            android:hint="Chọn ngày"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout5"
+        style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintBottom_toBottomOf="@+id/txinputLayout03"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/txinputLayout03"
+        app:layout_constraintTop_toTopOf="@+id/txinputLayout03">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etChonNgayVe"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:focusable="false"
+            android:hint="Chọn ngày" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout6"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="@+id/textInputLayout5"
+        app:layout_constraintStart_toStartOf="@+id/txinputLayout03"
+        app:layout_constraintTop_toBottomOf="@+id/txinputLayout03">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etNhapSoLuongHK"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:drawableLeft="@drawable/ic_baseline_person_24"
+            android:hint="Hành khách"
+            android:focusable="false"
+            android:text="1 Người lớn"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/btnTimChuyenBay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="Tìm chuyến bay"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout6" />
 </androidx.constraintlayout.widget.ConstraintLayout>

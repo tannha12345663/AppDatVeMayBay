@@ -1,22 +1,30 @@
 package com.example.appdatvemaybay.fragment;
 
+import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.DatePicker;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
+import com.example.appdatvemaybay.BottomSheerDialog.DiaglogBottomSheetHK;
+import com.example.appdatvemaybay.MainActivity;
 import com.example.appdatvemaybay.Photo;
 import com.example.appdatvemaybay.PhotoAdapter;
 import com.example.appdatvemaybay.R;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -30,12 +38,18 @@ public class HomeFragment extends Fragment {
     private PhotoAdapter photoAdapter;
     private List<Photo> mlistPhoto;
     private Timer mTimer; // auto click chuyển
-
+    //Thanh chức năng đặt vé máy bay
+    Calendar calendar;
+    DatePickerDialog datePickerDialog;
+    int mYear, mMonth, mDay, mYear1, mMonth1, mDay1;
+    TextInputEditText etChonNgayDi, etChonNgayVe;
+    Button btnTimChuyenBay;
     View mview;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mview= inflater.inflate(R.layout.fragment_home,container,false);
+        innitUI();
         viewPager= mview.findViewById(R.id.viewpager);
         circleIndicator=mview.findViewById(R.id.circle_indicator);
         mlistPhoto = getListPhoto();
@@ -44,7 +58,66 @@ public class HomeFragment extends Fragment {
         circleIndicator.setViewPager(viewPager);
         photoAdapter.registerDataSetObserver(circleIndicator.getDataSetObserver());
         autoSlideImaged();
+        innitListen();
         return mview;
+    }
+
+    private void innitListen() {
+        etChonNgayDi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                    calendar = Calendar.getInstance ();
+                    mYear = calendar.get ( Calendar.YEAR );
+                    mMonth = calendar.get ( Calendar.MONTH );
+                    mDay = calendar.get ( Calendar.DAY_OF_MONTH );
+
+                    //show dialog
+                    datePickerDialog = new DatePickerDialog ( getActivity(), new DatePickerDialog.OnDateSetListener () {
+                        @Override
+                        public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+
+                            etChonNgayDi.setText ( dayOfMonth + "/" + String.format("%02d",month+1) + "/" + year );
+                            mYear1 = year;
+                            mMonth1 = month +1;
+                            mDay1 = dayOfMonth;
+                            calendar.set(mYear1,mMonth1,mDay1);
+                        }
+                    }, mYear, mMonth, mDay );
+                    datePickerDialog.getDatePicker().setMinDate(calendar.getTimeInMillis());
+                    datePickerDialog.show ();
+            }
+        });
+        etChonNgayVe.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                calendar.set(mYear1,mMonth1,mDay1);
+                //show dialog
+                datePickerDialog = new DatePickerDialog ( getActivity(), new DatePickerDialog.OnDateSetListener () {
+                    @Override
+                    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+
+                        etChonNgayVe.setText ( dayOfMonth + "/" + String.format("%02d",month+1) + "/" + year );
+                    }
+                }, mYear1, mMonth1, mDay1 );
+                datePickerDialog.getDatePicker().setMinDate(calendar.getTimeInMillis());
+                datePickerDialog.show ();
+
+            }
+        });
+        btnTimChuyenBay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DiaglogBottomSheetHK dialog = new DiaglogBottomSheetHK(mview.getContext());
+                dialog.findView();
+                dialog.show();
+            }
+        });
+    }
+
+    private void innitUI() {
+        etChonNgayDi = mview.findViewById(R.id.etChonNgayDi);
+        etChonNgayVe = mview.findViewById(R.id.etChonNgayVe);
+        btnTimChuyenBay = mview.findViewById(R.id.btnTimChuyenBay);
     }
 
 

@@ -1,27 +1,39 @@
 package com.example.appdatvemaybay.fragment;
 
 import android.app.DatePickerDialog;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.os.ResultReceiver;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.TextView;
+import android.widget.VideoView;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
+import com.bumptech.glide.load.ResourceEncoder;
 import com.example.appdatvemaybay.Account_User.SLhanhKhach;
 import com.example.appdatvemaybay.BottomSheerDialog.DiaglogBottomSheetHK;
+import com.example.appdatvemaybay.DiemDenActivity;
+import com.example.appdatvemaybay.DiemKhoiHanhActivity;
 import com.example.appdatvemaybay.MainActivity;
 import com.example.appdatvemaybay.Photo;
 import com.example.appdatvemaybay.PhotoAdapter;
 import com.example.appdatvemaybay.R;
+import com.google.android.gms.common.api.Result;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
@@ -44,15 +56,24 @@ public class HomeFragment extends Fragment {
     Calendar calendar;
     DatePickerDialog datePickerDialog;
     int mYear, mMonth, mDay, mYear1, mMonth1, mDay1;
-    TextInputEditText etChonNgayDi, etChonNgayVe;
+    TextInputEditText etChonNgayDi, etChonNgayVe,etChonDiemKH,etChonDiemDen;
     Button btnTimChuyenBay;
     public TextInputEditText etNhapSoLuongHK;
-    String minput;
+    //Khai báo Interface để truyền dữ liệu sang Fragment Bottom Sheet HK
+    int SLNL, SLTE, SLEB;
 
-    public void sendInput(String input){
-        minput = input;
-        setInputtoTextView(input);
-    }
+    //Dùng Intent loại 3
+    ActivityResultLauncher<Intent> mlauncher = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            new ActivityResultCallback<ActivityResult>() {
+                @Override
+                public void onActivityResult(ActivityResult result) {
+                    if (result !=null){
+                        etChonDiemKH.setText(result.getData().getStringExtra("tp")+ " ("+result.getData().getStringExtra("sb")+")");
+                    }
+                }
+            }
+    );
     View mview;
     @Nullable
     @Override
@@ -126,7 +147,30 @@ public class HomeFragment extends Fragment {
 
             }
         });
+        etChonDiemKH.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent= new Intent(getActivity(),DiemKhoiHanhActivity.class);
+                mlauncher.launch(intent);
+            }
+        });
+        etChonDiemDen.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent= new Intent(getActivity(), DiemDenActivity.class);
+                startActivity(intent);
+            }
+        });
+    }
 
+
+
+
+    public void RecieveFromFragmentBottmSheet(String SLNL1, String SLTE1, String SLEB1){
+        etNhapSoLuongHK.setText(SLNL1 +" Người lớn, "+SLTE1+" trẻ em, "+ SLEB1 + " em bé.");
+        SLNL = Integer.parseInt(SLNL1);
+        SLTE = Integer.parseInt(SLTE1);
+        SLEB =Integer.parseInt(SLEB1);
     }
 
     private void clickOpenBottomSheetFragment() {
@@ -135,14 +179,14 @@ public class HomeFragment extends Fragment {
 
     }
 
-    public void   setInputtoTextView(String s){
-        etNhapSoLuongHK.setText(s);
-    }
     private void innitUI() {
         etChonNgayDi = mview.findViewById(R.id.etChonNgayDi);
         etChonNgayVe = mview.findViewById(R.id.etChonNgayVe);
         btnTimChuyenBay = mview.findViewById(R.id.btnTimChuyenBay);
         etNhapSoLuongHK = mview.findViewById(R.id.etNhapSoLuongHK);
+        etChonDiemKH = mview.findViewById(R.id.etDiemKhoiHanh);
+        etChonDiemDen = mview.findViewById(R.id.etDiemen);
+
     }
 
 

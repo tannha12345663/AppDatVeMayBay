@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    >
+
+
+    <TextView
+        android:id="@+id/txTenTP"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hồ Chí Minh, Việt Nam"
+        android:textSize="16dp"
+        android:textStyle="bold"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="16dp"></TextView>
+
+    <TextView
+        android:id="@+id/txSanBay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txTenTP"
+        android:layout_alignStart="@+id/txTenTP"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="6dp"
+        android:text="SGN - Sân bay Tân Sơn Nhất "
+        android:layout_marginBottom="8dp"
+        />
+</RelativeLayout>

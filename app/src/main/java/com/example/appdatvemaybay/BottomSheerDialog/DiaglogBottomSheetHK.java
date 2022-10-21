@@ -36,6 +36,18 @@ public class DiaglogBottomSheetHK extends BottomSheetDialogFragment {
         this.context = context;
     }
 
+    private ISendDataListener mISendDataListener;
+    public interface ISendDataListener{
+        void sendData(String SLNL,String SLTE, String SLEB);
+    }
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        //Ép kiểu
+        mISendDataListener = (ISendDataListener) getActivity();
+    }
+
     @NonNull
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
@@ -109,16 +121,19 @@ public class DiaglogBottomSheetHK extends BottomSheetDialogFragment {
             }
         });
         btnContinue.setOnClickListener(v -> {
-            String nl = SLNL.getText().toString().trim();
-            String te = SLTE.getText().toString().trim();
-            String eb = SLEB.getText().toString().trim();
-            String tt = nl+ " , "+ te +" , "+eb ;
-//            HomeFragment homeFragment = new HomeFragment();
-//            homeFragment.setInputtoTextView(tt);
+
+            sendDatatoFramentHome();
             this.dismiss();
         });
 
+    }
 
+
+    private void sendDatatoFramentHome() {
+        String nl = SLNL.getText().toString().trim();
+        String te = SLTE.getText().toString().trim();
+        String eb = SLEB.getText().toString().trim();
+        mISendDataListener.sendData(nl,te,eb);
     }
 
     private void innitUI() {

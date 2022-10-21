@@ -31,6 +31,7 @@ import android.widget.Toast;
 
 
 import com.bumptech.glide.Glide;
+import com.example.appdatvemaybay.BottomSheerDialog.DiaglogBottomSheetHK;
 import com.example.appdatvemaybay.fragment.FragmentAccount.InfoAccFragment;
 import com.example.appdatvemaybay.fragment.HomeFragment;
 import com.example.appdatvemaybay.fragment.NotifyFragment;
@@ -52,7 +53,7 @@ import java.util.Timer;
 import de.hdodenhof.circleimageview.CircleImageView;
 import me.relex.circleindicator.CircleIndicator;
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, DiaglogBottomSheetHK.ISendDataListener {
     //Profile
     public static final int MY_REQUEST_CODE = 10;
     //
@@ -73,29 +74,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     Intent intent;
     DrawerLayout mDrawerLayout;
     Toolbar toolbar;
+    //Truyền dữ liệu giữa 2 fragment
 
-    //Activity
-//    final private ActivityResultLauncher<Intent> activityResultLauncher = registerForActivityResult
-//            (new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
-//        @Override
-//        public void onActivityResult(ActivityResult result) {
-//            if (result.getResultCode()==RESULT_OK){
-//                Intent intent =result.getData();
-//                if (intent == null){
-//                    return;
-//                }
-//                Uri uri = intent.getData();
-//                infoAccFragment.setUri(uri);
-//                try {
-//                    Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(),uri);
-//                    infoAccFragment.setBitmapImageView(bitmap);
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                }
-//            }
-//
-//        }
-//    });
     //Navigation View ánh xạ tới các menu nav
     public static final int FRAGMENT_HOME=1;
     public static final int FRAGMENT_NOTIFY=2;
@@ -123,6 +103,19 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         //Nhã Trương
         innitUI();
         showUserInformation();
+        RecieveDataActivity();
+    }
+
+    private void RecieveDataActivity() {
+        Intent intent = new Intent();
+        String tp = intent.getStringExtra("DiemKH");
+        String sb = intent.getStringExtra("SanBay");
+        Bundle bundle = new Bundle();
+        bundle.putString("tp",tp);
+        bundle.putString("sb",sb);
+        HomeFragment homeFragment= new HomeFragment();
+        homeFragment.setArguments(bundle);
+
     }
 
     @Override
@@ -284,6 +277,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             mDrawerLayout.openDrawer(GravityCompat.END);
         }
     }
+    //Truyền dữ liệu từ Bottom Sheet sang Home Fragment
+    @Override
+    public void sendData(String SLNL, String SLTE, String SLEB) {
+        HomeFragment homeFragment = (HomeFragment) getSupportFragmentManager().findFragmentById(R.id.content_frame);
+        homeFragment.RecieveFromFragmentBottmSheet(SLNL,SLTE,SLEB);
+    }
+
 
 
     //Phần xử lý cấp quyền truy cập file

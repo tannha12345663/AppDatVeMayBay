@@ -57,11 +57,9 @@ public class OtpActivity extends AppCompatActivity {
         final TextView otpEmail = findViewById(R.id.otpEmail);
         final TextView otpMobile = findViewById(R.id.otpMobile);
         //Lấy thông tin Email và sđt từ form đăng ký
-        final String getEmail = getIntent().getStringExtra("email");
         final String getMobile = getIntent().getStringExtra("mobile");
         ;
         //Thiết lập settext cho Email và Mobile
-        otpEmail.setText(getEmail);
         otpMobile.setText(getMobile);
 
         otpET1.addTextChangedListener(textWatcher);

@@ -243,7 +243,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             //Set ảnh nếu lỗi sẽ default hình có sẵn
             Glide.with(this).load(photoUrl).error(R.drawable.ic_baseline_account_circle_24).into(circleImageView_menu_header);
             Glide.with(this).load(photoUrl).error(R.drawable.ic_baseline_account_circle_24).into(img_acc);
-
+            //Phần xử lý get data từ Fire base về
             FirebaseDatabase database = FirebaseDatabase.getInstance();
             DatabaseReference myData = database.getReference("ListUser");
             myData.child(uid).child("name").addValueEventListener(new ValueEventListener() {

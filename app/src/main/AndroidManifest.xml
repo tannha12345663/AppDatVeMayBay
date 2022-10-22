@@ -26,6 +26,9 @@
             android:name=".BottomHanhKhach"
             android:exported="false" />
         <activity
+            android:name=".SignPhone"
+            android:exported="false" />
+        <activity
             android:name=".OtpActivity"
             android:exported="false" />
         <activity

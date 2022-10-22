@@ -1,19 +1,18 @@
 package com.example.appdatvemaybay.fragment;
 
 import android.app.DatePickerDialog;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
-import android.os.ResultReceiver;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.DatePicker;
-import android.widget.TextView;
-import android.widget.VideoView;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.Switch;
 
 import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
@@ -24,18 +23,13 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
-import com.bumptech.glide.load.ResourceEncoder;
-import com.example.appdatvemaybay.Account_User.SLhanhKhach;
 import com.example.appdatvemaybay.BottomSheerDialog.DiaglogBottomSheetHK;
 import com.example.appdatvemaybay.DiemDenActivity;
 import com.example.appdatvemaybay.DiemKhoiHanhActivity;
-import com.example.appdatvemaybay.MainActivity;
 import com.example.appdatvemaybay.Photo;
 import com.example.appdatvemaybay.PhotoAdapter;
 import com.example.appdatvemaybay.R;
-import com.google.android.gms.common.api.Result;
 import com.google.android.material.textfield.TextInputEditText;
-import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -43,7 +37,6 @@ import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import de.hdodenhof.circleimageview.CircleImageView;
 import me.relex.circleindicator.CircleIndicator;
 
 public class HomeFragment extends Fragment {
@@ -58,22 +51,38 @@ public class HomeFragment extends Fragment {
     int mYear, mMonth, mDay, mYear1, mMonth1, mDay1;
     TextInputEditText etChonNgayDi, etChonNgayVe,etChonDiemKH,etChonDiemDen;
     Button btnTimChuyenBay;
+    RadioGroup khuhoi_motchieu;
     public TextInputEditText etNhapSoLuongHK;
     //Khai báo Interface để truyền dữ liệu sang Fragment Bottom Sheet HK
     int SLNL, SLTE, SLEB;
-
-    //Dùng Intent loại 3
-    ActivityResultLauncher<Intent> mlauncher = registerForActivityResult(
-            new ActivityResultContracts.StartActivityForResult(),
+    private static final int REQUEST_CODE_EXAMPLE = 0x9345;
+    ActivityResultLauncher<Intent> mlauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
             new ActivityResultCallback<ActivityResult>() {
                 @Override
                 public void onActivityResult(ActivityResult result) {
-                    if (result !=null){
-                        etChonDiemKH.setText(result.getData().getStringExtra("tp")+ " ("+result.getData().getStringExtra("sb")+")");
+                    if (result.getResultCode() == DiemKhoiHanhActivity.RESULT_OK) {
+                        if (result.getData().getIntExtra("flag", 0) == 1) {
+                            etChonDiemKH.setText(result.getData().getStringExtra("DiemKH") + " (" + result.getData().getStringExtra("SanBay") + ")");
+
+                        }
+                        else etChonDiemDen.setText(result.getData().getStringExtra("DiemKH") + " (" + result.getData().getStringExtra("SanBay") + ")");
                     }
                 }
-            }
-    );
+            });
+    //Dùng Intent loại 3
+//    ActivityResultLauncher<Intent> mlauncher = registerForActivityResult(
+//            new ActivityResultContracts.StartActivityForResult(),
+//            new ActivityResultCallback<ActivityResult>() {
+//                @Override
+//                public void onActivityResult(ActivityResult result) {
+//                    if (result.getResultCode()==) {
+//                        String diemkh = result.getData().getStringExtra("DiemKH")+" ,"+result.getData().getStringExtra("SanBay");
+//                        etChonDiemKH.setText(diemkh);
+//
+//                    }else return;
+//                }
+//            }
+//    );
     View mview;
     @Nullable
     @Override
@@ -93,47 +102,90 @@ public class HomeFragment extends Fragment {
     }
 
     private void innitListen() {
-        etChonNgayDi.setOnClickListener(new View.OnClickListener() {
+        khuhoi_motchieu.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
-            public void onClick(View v) {
-                    calendar = Calendar.getInstance ();
-                    mYear = calendar.get ( Calendar.YEAR );
-                    mMonth = calendar.get ( Calendar.MONTH );
-                    mDay = calendar.get ( Calendar.DAY_OF_MONTH );
-
-                    //show dialog
-                    datePickerDialog = new DatePickerDialog ( getActivity(), new DatePickerDialog.OnDateSetListener () {
+            public void onCheckedChanged(RadioGroup group, int checkedId ) {
+                if (checkedId == R.id.rbKhuhoi){
+                    etChonNgayDi.setOnClickListener(new View.OnClickListener() {
                         @Override
-                        public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                        public void onClick(View v) {
+                            calendar = Calendar.getInstance ();
+                            mYear = calendar.get ( Calendar.YEAR );
+                            mMonth = calendar.get ( Calendar.MONTH );
+                            mDay = calendar.get ( Calendar.DAY_OF_MONTH );
 
-                            etChonNgayDi.setText ( dayOfMonth + "/" + String.format("%02d",month+1) + "/" + year );
-                            mYear1 = year;
-                            mMonth1 = month +1;
-                            mDay1 = dayOfMonth;
-                            calendar.set(mYear1,mMonth1,mDay1);
+                            //show dialog
+                            datePickerDialog = new DatePickerDialog ( getActivity(), new DatePickerDialog.OnDateSetListener () {
+                                @Override
+                                public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+
+                                    etChonNgayDi.setText ( dayOfMonth + "/" + String.format("%02d",month+1) + "/" + year );
+                                    mYear1 = year;
+                                    mMonth1 = month +1;
+                                    mDay1 = dayOfMonth;
+                                    calendar.set(mYear1,mMonth1,mDay1);
+                                }
+                            }, mYear, mMonth, mDay );
+                            datePickerDialog.getDatePicker().setMinDate(calendar.getTimeInMillis());
+                            datePickerDialog.show ();
                         }
-                    }, mYear, mMonth, mDay );
-                    datePickerDialog.getDatePicker().setMinDate(calendar.getTimeInMillis());
-                    datePickerDialog.show ();
+                    });
+
+                    etChonNgayVe.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+
+                            calendar.set(mYear1,mMonth1,mDay1);
+                            //show dialog
+                            datePickerDialog = new DatePickerDialog ( getActivity(), new DatePickerDialog.OnDateSetListener () {
+                                @Override
+                                public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+
+                                    etChonNgayVe.setText ( dayOfMonth + "/" + String.format("%02d",month+1) + "/" + year );
+                                }
+                            }, mYear1, mMonth1, mDay1 );
+                            datePickerDialog.getDatePicker().setMinDate(calendar.getTimeInMillis());
+                            datePickerDialog.show ();
+
+                        }
+                    });
+
+                } else if (checkedId == R.id.rbMotChieu){
+                    etChonNgayVe.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+
+                        }
+                    });
+                    etChonNgayVe.setText("");
+                    etChonNgayDi.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            calendar = Calendar.getInstance ();
+                            mYear = calendar.get ( Calendar.YEAR );
+                            mMonth = calendar.get ( Calendar.MONTH );
+                            mDay = calendar.get ( Calendar.DAY_OF_MONTH );
+
+                            //show dialog
+                            datePickerDialog = new DatePickerDialog ( getActivity(), new DatePickerDialog.OnDateSetListener () {
+                                @Override
+                                public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+
+                                    etChonNgayDi.setText ( dayOfMonth + "/" + String.format("%02d",month+1) + "/" + year );
+                                    mYear1 = year;
+                                    mMonth1 = month +1;
+                                    mDay1 = dayOfMonth;
+                                    calendar.set(mYear1,mMonth1,mDay1);
+                                }
+                            }, mYear, mMonth, mDay );
+                            datePickerDialog.getDatePicker().setMinDate(calendar.getTimeInMillis());
+                            datePickerDialog.show ();
+                        }
+                    });
+                }
             }
         });
-        etChonNgayVe.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                calendar.set(mYear1,mMonth1,mDay1);
-                //show dialog
-                datePickerDialog = new DatePickerDialog ( getActivity(), new DatePickerDialog.OnDateSetListener () {
-                    @Override
-                    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
 
-                        etChonNgayVe.setText ( dayOfMonth + "/" + String.format("%02d",month+1) + "/" + year );
-                    }
-                }, mYear1, mMonth1, mDay1 );
-                datePickerDialog.getDatePicker().setMinDate(calendar.getTimeInMillis());
-                datePickerDialog.show ();
-
-            }
-        });
         btnTimChuyenBay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -152,17 +204,17 @@ public class HomeFragment extends Fragment {
             public void onClick(View v) {
                 Intent intent= new Intent(getActivity(),DiemKhoiHanhActivity.class);
                 mlauncher.launch(intent);
+
             }
         });
         etChonDiemDen.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent= new Intent(getActivity(), DiemDenActivity.class);
-                startActivity(intent);
+                mlauncher.launch(intent);
             }
         });
     }
-
 
 
 
@@ -186,7 +238,7 @@ public class HomeFragment extends Fragment {
         etNhapSoLuongHK = mview.findViewById(R.id.etNhapSoLuongHK);
         etChonDiemKH = mview.findViewById(R.id.etDiemKhoiHanh);
         etChonDiemDen = mview.findViewById(R.id.etDiemen);
-
+        khuhoi_motchieu = mview.findViewById(R.id.rgPercentage);
     }
 
 

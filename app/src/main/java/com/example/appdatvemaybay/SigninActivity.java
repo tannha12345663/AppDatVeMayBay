@@ -21,7 +21,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class SigninActivity extends AppCompatActivity {
-    TextView tvDangKy,tv_skip;
+    TextView tvDangKy,tv_skip,tvLoginPhone;
     Button btnDangNhap;
     Intent intent;
     EditText etEmail,etPass;
@@ -65,7 +65,14 @@ public class SigninActivity extends AppCompatActivity {
 
             }
         });
-
+        tvLoginPhone=findViewById(R.id.tvLoginSDT);
+        tvLoginPhone.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(SigninActivity.this,SignPhone.class);
+                startActivity(intent);
+            }
+        });
         progressDialog = new ProgressDialog(SigninActivity.this);
     }
 

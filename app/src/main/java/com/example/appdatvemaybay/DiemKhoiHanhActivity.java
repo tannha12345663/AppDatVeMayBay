@@ -57,12 +57,13 @@ public class DiemKhoiHanhActivity extends AppCompatActivity implements CountryVN
 
     @Override
     public void onItemListener(CountryVN countryVN) {
-        //etTenTP.setText(countryVN.getNameTP()+" \t" + countryVN.getSanBay());
         String tp = countryVN.getNameTP();
         String sb = countryVN.getSanBay();
         Intent intent = new Intent(DiemKhoiHanhActivity.this, MainActivity.class);
         intent.putExtra("DiemKH",tp);
         intent.putExtra("SanBay",sb);
-        startActivity(intent);
+        intent.putExtra("flag",1);
+        setResult(RESULT_OK,intent);
+        this.onBackPressed();
     }
 }

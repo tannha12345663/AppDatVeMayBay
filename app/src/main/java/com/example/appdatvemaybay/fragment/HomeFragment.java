@@ -121,7 +121,7 @@ public class HomeFragment extends Fragment {
 
                                     etChonNgayDi.setText ( dayOfMonth + "/" + String.format("%02d",month+1) + "/" + year );
                                     mYear1 = year;
-                                    mMonth1 = month +1;
+                                    mMonth1 = month;
                                     mDay1 = dayOfMonth;
                                     calendar.set(mYear1,mMonth1,mDay1);
                                 }
@@ -135,7 +135,6 @@ public class HomeFragment extends Fragment {
                         @Override
                         public void onClick(View v) {
 
-                            calendar.set(mYear1,mMonth1,mDay1);
                             //show dialog
                             datePickerDialog = new DatePickerDialog ( getActivity(), new DatePickerDialog.OnDateSetListener () {
                                 @Override
@@ -173,9 +172,9 @@ public class HomeFragment extends Fragment {
 
                                     etChonNgayDi.setText ( dayOfMonth + "/" + String.format("%02d",month+1) + "/" + year );
                                     mYear1 = year;
-                                    mMonth1 = month +1;
+                                    mMonth1 = month ;
                                     mDay1 = dayOfMonth;
-                                    calendar.set(mYear1,mMonth1,mDay1);
+                                    calendar.set(mYear1,mMonth1-1,mDay1);
                                 }
                             }, mYear, mMonth, mDay );
                             datePickerDialog.getDatePicker().setMinDate(calendar.getTimeInMillis());

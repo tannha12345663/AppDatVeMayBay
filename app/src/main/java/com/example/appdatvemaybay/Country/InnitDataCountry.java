@@ -18,7 +18,7 @@ public class InnitDataCountry extends Application {
     public static List<CountryVN> ininitCountry(){
         data.add(new CountryVN("Hồ Chí Minh","SGN"));
         data.add(new CountryVN("Hà Nội","HAN"));
-        data.add(new CountryVN("Buôn Ma Thuật - Đăk Lăk","BMV"));
+        data.add(new CountryVN("Buôn Ma Thuột - Đăk Lăk","BMV"));
         data.add(new CountryVN("Cần Thơ","VCA"));
         data.add(new CountryVN("Cà Mau","CAH"));
         data.add(new CountryVN("Quảng Nam","VCL"));

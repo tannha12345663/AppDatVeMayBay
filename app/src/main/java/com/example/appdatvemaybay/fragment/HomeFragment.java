@@ -24,6 +24,7 @@ import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
 import com.example.appdatvemaybay.BottomSheerDialog.DiaglogBottomSheetHK;
+import com.example.appdatvemaybay.ChuyenDiCuaBanActivity;
 import com.example.appdatvemaybay.DiemDenActivity;
 import com.example.appdatvemaybay.DiemKhoiHanhActivity;
 import com.example.appdatvemaybay.Photo;
@@ -50,6 +51,7 @@ public class HomeFragment extends Fragment {
     DatePickerDialog datePickerDialog;
     int mYear, mMonth, mDay, mYear1, mMonth1, mDay1;
     TextInputEditText etChonNgayDi, etChonNgayVe,etChonDiemKH,etChonDiemDen;
+    String SanbayDi,SanBayVe;
     Button btnTimChuyenBay;
     RadioGroup khuhoi_motchieu;
     public TextInputEditText etNhapSoLuongHK;
@@ -62,27 +64,18 @@ public class HomeFragment extends Fragment {
                 public void onActivityResult(ActivityResult result) {
                     if (result.getResultCode() == DiemKhoiHanhActivity.RESULT_OK) {
                         if (result.getData().getIntExtra("flag", 0) == 1) {
-                            etChonDiemKH.setText(result.getData().getStringExtra("DiemKH") + " (" + result.getData().getStringExtra("SanBay") + ")");
+                            etChonDiemKH.setText(result.getData().getStringExtra("DiemKH") + " (" + result.getData().getStringExtra("SanBaydi") + ")");
+                            SanbayDi = result.getData().getStringExtra("SanBaydi");
 
                         }
-                        else etChonDiemDen.setText(result.getData().getStringExtra("DiemKH") + " (" + result.getData().getStringExtra("SanBay") + ")");
+                        else if (result.getData().getIntExtra("flag", 0) == 0){
+                            etChonDiemDen.setText(result.getData().getStringExtra("DiemVe") + " (" + result.getData().getStringExtra("SanBayVe") + ")");
+                            SanBayVe=result.getData().getStringExtra("SanBayVe");
+                        }
+
                     }
                 }
             });
-    //Dùng Intent loại 3
-//    ActivityResultLauncher<Intent> mlauncher = registerForActivityResult(
-//            new ActivityResultContracts.StartActivityForResult(),
-//            new ActivityResultCallback<ActivityResult>() {
-//                @Override
-//                public void onActivityResult(ActivityResult result) {
-//                    if (result.getResultCode()==) {
-//                        String diemkh = result.getData().getStringExtra("DiemKH")+" ,"+result.getData().getStringExtra("SanBay");
-//                        etChonDiemKH.setText(diemkh);
-//
-//                    }else return;
-//                }
-//            }
-//    );
     View mview;
     @Nullable
     @Override
@@ -102,6 +95,11 @@ public class HomeFragment extends Fragment {
     }
 
     private void innitListen() {
+        calendar = Calendar.getInstance ();
+        mYear = calendar.get ( Calendar.YEAR );
+        mMonth = calendar.get ( Calendar.MONTH );
+        mDay = calendar.get ( Calendar.DAY_OF_MONTH );
+
         khuhoi_motchieu.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId ) {
@@ -109,10 +107,6 @@ public class HomeFragment extends Fragment {
                     etChonNgayDi.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            calendar = Calendar.getInstance ();
-                            mYear = calendar.get ( Calendar.YEAR );
-                            mMonth = calendar.get ( Calendar.MONTH );
-                            mDay = calendar.get ( Calendar.DAY_OF_MONTH );
 
                             //show dialog
                             datePickerDialog = new DatePickerDialog ( getActivity(), new DatePickerDialog.OnDateSetListener () {
@@ -156,14 +150,9 @@ public class HomeFragment extends Fragment {
 
                         }
                     });
-                    etChonNgayVe.setText("");
                     etChonNgayDi.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            calendar = Calendar.getInstance ();
-                            mYear = calendar.get ( Calendar.YEAR );
-                            mMonth = calendar.get ( Calendar.MONTH );
-                            mDay = calendar.get ( Calendar.DAY_OF_MONTH );
 
                             //show dialog
                             datePickerDialog = new DatePickerDialog ( getActivity(), new DatePickerDialog.OnDateSetListener () {
@@ -211,6 +200,23 @@ public class HomeFragment extends Fragment {
             public void onClick(View v) {
                 Intent intent= new Intent(getActivity(), DiemDenActivity.class);
                 mlauncher.launch(intent);
+            }
+        });
+        btnTimChuyenBay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String Soluongnguoi = etNhapSoLuongHK.getText().toString().trim();
+                String DiemKH = etChonDiemKH.getText().toString().trim();
+                String DiemDen = etChonDiemDen.getText().toString().trim();
+                Intent intent = new Intent(getActivity(), ChuyenDiCuaBanActivity.class);
+                intent.putExtra("SoLuongNguoi",Soluongnguoi);
+                intent.putExtra("DiemKH",DiemKH);
+                intent.putExtra("DiemVe",DiemDen);
+                intent.putExtra("NgayDi",etChonNgayDi.getText().toString().trim());
+                intent.putExtra("NgayVe",etChonNgayVe.getText().toString().trim());
+                intent.putExtra("MaTPdi",SanbayDi);
+                intent.putExtra("MaTPve",SanBayVe);
+                startActivity(intent);
             }
         });
     }

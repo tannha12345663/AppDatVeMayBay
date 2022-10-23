@@ -81,9 +81,8 @@
             android:layout_height="wrap_content"
             android:background="@color/white"
             android:drawableLeft="@drawable/ic_baseline_flight_takeoff_24"
-            android:hint="Điểm khởi hành"
             android:focusable="false"
-            android:text="TP Hồ Chí Minh (SGN)"
+            android:hint="Điểm khởi hành"
             android:textColor="@color/black" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -98,14 +97,13 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etDiemen"
-            android:background="@color/white"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/black"
+            android:background="@color/white"
             android:drawableLeft="@drawable/ic_baseline_flight_land_24"
-            android:hint="Điểm đến"
             android:focusable="false"
-            android:text="Hà Nội (HAN)"/>
+            android:hint="Điểm đến"
+            android:textColor="@color/black" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -167,8 +165,7 @@
             android:background="@color/white"
             android:drawableLeft="@drawable/ic_baseline_person_24"
             android:focusable="false"
-            android:hint="Hành khách"
-            android:text="1 Người lớn" />
+            android:hint="Hành khách" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button

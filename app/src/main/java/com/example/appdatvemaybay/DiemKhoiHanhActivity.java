@@ -61,7 +61,7 @@ public class DiemKhoiHanhActivity extends AppCompatActivity implements CountryVN
         String sb = countryVN.getSanBay();
         Intent intent = new Intent(DiemKhoiHanhActivity.this, MainActivity.class);
         intent.putExtra("DiemKH",tp);
-        intent.putExtra("SanBay",sb);
+        intent.putExtra("SanBaydi",sb);
         intent.putExtra("flag",1);
         setResult(RESULT_OK,intent);
         this.onBackPressed();

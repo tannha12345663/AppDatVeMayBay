@@ -17,6 +17,9 @@
         android:theme="@style/Theme.AppDatVeMayBay"
         tools:targetApi="31">
         <activity
+            android:name=".ChuyenDiCuaBanActivity"
+            android:exported="false" />
+        <activity
             android:name=".DiemDenActivity"
             android:exported="false" />
         <activity

@@ -41,7 +41,7 @@ public class DiemDenActivity extends AppCompatActivity implements CountryVNAdapt
         });
     }
     private  void innitUI(){
-        imgBackHome=findViewById(R.id.imgBackHome2);
+        imgBackHome=findViewById(R.id.imgBackHome4);
         etTenTPDiemDen = findViewById(R.id.etTenTPDiemDen);
         etTenTPDiemDen=findViewById(R.id.etTenTPDiemDen);
         rcCountryKH = findViewById(R.id.rcCountryKHDD);
@@ -58,8 +58,8 @@ public class DiemDenActivity extends AppCompatActivity implements CountryVNAdapt
         String tp = countryVN.getNameTP();
         String sb = countryVN.getSanBay();
         Intent intent = new Intent(DiemDenActivity.this, MainActivity.class);
-        intent.putExtra("DiemKH",tp);
-        intent.putExtra("SanBay",sb);
+        intent.putExtra("DiemVe",tp);
+        intent.putExtra("SanBayVe",sb);
         intent.putExtra("flag",0);
         setResult(RESULT_OK,intent);
         this.onBackPressed();

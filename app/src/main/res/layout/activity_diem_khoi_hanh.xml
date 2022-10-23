@@ -64,14 +64,15 @@
             android:id="@+id/etTenTP"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:focusable="false"
             android:drawableLeft="@drawable/ic_baseline_search_24"
-            android:hint="Nhập tên Thành Phố" />
+            android:hint="Vui lòng chọn điểm khởi hành" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rcCountryKH"
         android:layout_width="0dp"
-        android:layout_height="529dp"
+        android:layout_height="500dp"
         android:layout_marginStart="1dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="1dp"

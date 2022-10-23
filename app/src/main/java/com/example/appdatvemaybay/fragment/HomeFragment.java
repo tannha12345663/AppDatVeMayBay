@@ -113,7 +113,7 @@ public class HomeFragment extends Fragment {
                                 @Override
                                 public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
 
-                                    etChonNgayDi.setText ( dayOfMonth + "/" + String.format("%02d",month+1) + "/" + year );
+                                    etChonNgayDi.setText ( dayOfMonth + "-" + String.format("%02d",month+1) + "-" + year );
                                     mYear1 = year;
                                     mMonth1 = month;
                                     mDay1 = dayOfMonth;
@@ -134,7 +134,7 @@ public class HomeFragment extends Fragment {
                                 @Override
                                 public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
 
-                                    etChonNgayVe.setText ( dayOfMonth + "/" + String.format("%02d",month+1) + "/" + year );
+                                    etChonNgayVe.setText ( dayOfMonth + "-" + String.format("%02d",month+1) + "-" + year );
                                 }
                             }, mYear1, mMonth1, mDay1 );
                             datePickerDialog.getDatePicker().setMinDate(calendar.getTimeInMillis());
@@ -159,7 +159,7 @@ public class HomeFragment extends Fragment {
                                 @Override
                                 public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
 
-                                    etChonNgayDi.setText ( dayOfMonth + "/" + String.format("%02d",month+1) + "/" + year );
+                                    etChonNgayDi.setText ( dayOfMonth + "-" + String.format("%02d",month+1) + "-" + year );
                                     mYear1 = year;
                                     mMonth1 = month ;
                                     mDay1 = dayOfMonth;

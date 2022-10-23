@@ -1,6 +1,7 @@
 package com.example.appdatvemaybay;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -18,6 +19,7 @@ import com.example.appdatvemaybay.Country.CountryVNAdapter;
 import com.example.appdatvemaybay.Country.InnitDataCountry;
 import com.example.appdatvemaybay.Country.Ticket;
 import com.example.appdatvemaybay.Country.TicketAdapter;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -78,20 +80,36 @@ public class ChuyenDiCuaBanActivity extends AppCompatActivity implements TicketA
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("Ticket");
-        myRef.child("ThanhPho").child("HCM").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot dataSnapshot : snapshot.getChildren()){
 
-                    String MaVe = (String) dataSnapshot.child("MaNV").getValue();
-                    String Hang = (String) dataSnapshot.child("Hang").getValue();
-                    String GioDen = (String) dataSnapshot.child("GioDen").getValue();
-                    String GioDi = (String) dataSnapshot.child("GioBay").getValue();
-                    String GiaVe = (String) dataSnapshot.child("GiaVe").getValue();
-                    Ticket ticket = new Ticket(GiaVe,GioDi,GioDen,Hang,MaVe);
+        myRef.child("ThanhPho").child("HCM").addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                String MaVe = (String) snapshot.child("MaNV").getValue();
+                String Hang = (String) snapshot.child("Hang").getValue();
+                String GioDen = (String) snapshot.child("GioDen").getValue();
+                String GioDi = (String) snapshot.child("GioBay").getValue();
+                String GiaVe = (String) snapshot.child("GiaVe").getValue();
+                Ticket ticket = new Ticket(GiaVe,GioDi,GioDen,Hang,MaVe);
+                if (ticket!=null){
                     mTicketList.add(ticket);
+                    mTicketAdapter.notifyDataSetChanged();
                 }
-                mTicketAdapter.notifyDataSetChanged();
+
+            }
+
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
             }
 
             @Override

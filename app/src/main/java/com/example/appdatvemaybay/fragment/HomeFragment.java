@@ -174,12 +174,6 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        btnTimChuyenBay.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
         etNhapSoLuongHK.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

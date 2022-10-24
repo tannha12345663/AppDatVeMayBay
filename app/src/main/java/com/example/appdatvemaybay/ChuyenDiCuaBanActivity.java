@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -38,6 +39,7 @@ public class ChuyenDiCuaBanActivity extends AppCompatActivity implements TicketA
     List<Ticket> mTicketList = new ArrayList<>();
     TicketAdapter mTicketAdapter;
     RecyclerView recyclerView;
+    ProgressDialog progressDialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -76,12 +78,17 @@ public class ChuyenDiCuaBanActivity extends AppCompatActivity implements TicketA
     }
 
     private void getListTicket(){
+        progressDialog = new ProgressDialog(ChuyenDiCuaBanActivity.this);
+        progressDialog.setMessage("Đang tải danh sách vé \n Vui lòng đợi giây lát");
+        progressDialog.show();
         Intent intent = getIntent();
-
+        String MaTPdi = intent.getStringExtra("MaTPdi");
+        String sbden = intent.getStringExtra("MaTPve");
+        String NgayDi= intent.getStringExtra("NgayDi");
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("Ticket");
-
-        myRef.child("ThanhPho").child("HCM").addChildEventListener(new ChildEventListener() {
+        
+        myRef.child("ThanhPho").child(MaTPdi).child(NgayDi).child(sbden).addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
                 String MaVe = (String) snapshot.child("MaNV").getValue();
@@ -91,6 +98,7 @@ public class ChuyenDiCuaBanActivity extends AppCompatActivity implements TicketA
                 String GiaVe = (String) snapshot.child("GiaVe").getValue();
                 Ticket ticket = new Ticket(GiaVe,GioDi,GioDen,Hang,MaVe);
                 if (ticket!=null){
+                    progressDialog.dismiss();
                     mTicketList.add(ticket);
                     mTicketAdapter.notifyDataSetChanged();
                 }
@@ -121,6 +129,6 @@ public class ChuyenDiCuaBanActivity extends AppCompatActivity implements TicketA
 
     @Override
     public void onItemListener(Ticket ticket) {
-
+        Toast.makeText(this, ""+ticket.getMaVe(), Toast.LENGTH_SHORT).show();
     }
 }

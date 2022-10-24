@@ -20,6 +20,9 @@
             android:name=".ChuyenDiCuaBanActivity"
             android:exported="false" />
         <activity
+            android:name=".ChuyenVecuaBanActivity"
+            android:exported="false" />
+        <activity
             android:name=".DiemDenActivity"
             android:exported="false" />
         <activity

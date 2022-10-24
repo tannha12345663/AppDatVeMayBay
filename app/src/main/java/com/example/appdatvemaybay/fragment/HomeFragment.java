@@ -27,6 +27,7 @@ import com.example.appdatvemaybay.BottomSheerDialog.DiaglogBottomSheetHK;
 import com.example.appdatvemaybay.ChuyenDiCuaBanActivity;
 import com.example.appdatvemaybay.DiemDenActivity;
 import com.example.appdatvemaybay.DiemKhoiHanhActivity;
+import com.example.appdatvemaybay.MainActivity;
 import com.example.appdatvemaybay.Photo;
 import com.example.appdatvemaybay.PhotoAdapter;
 import com.example.appdatvemaybay.R;
@@ -210,6 +211,7 @@ public class HomeFragment extends Fragment {
                 intent.putExtra("NgayVe",etChonNgayVe.getText().toString().trim());
                 intent.putExtra("MaTPdi",SanbayDi);
                 intent.putExtra("MaTPve",SanBayVe);
+                //onPause();
                 startActivity(intent);
             }
         });

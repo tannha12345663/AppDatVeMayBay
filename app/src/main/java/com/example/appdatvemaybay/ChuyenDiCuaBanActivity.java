@@ -15,9 +15,6 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.appdatvemaybay.Country.CountryVN;
-import com.example.appdatvemaybay.Country.CountryVNAdapter;
-import com.example.appdatvemaybay.Country.InnitDataCountry;
 import com.example.appdatvemaybay.Country.Ticket;
 import com.example.appdatvemaybay.Country.TicketAdapter;
 import com.google.firebase.database.ChildEventListener;
@@ -25,17 +22,14 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class ChuyenDiCuaBanActivity extends AppCompatActivity implements TicketAdapter.Listener {
     ImageButton imgBack03;
     TextView tvLichTrinhdi;
-    String DiemKH,DiemDen,MaTPdi,MaTPve;
+    String DiemKH,DiemDen,MaTPdi,MaTPve,NgayDi,Soluongnguoi,NgayVe;
     List<Ticket> mTicketList = new ArrayList<>();
     TicketAdapter mTicketAdapter;
     RecyclerView recyclerView;
@@ -66,7 +60,10 @@ public class ChuyenDiCuaBanActivity extends AppCompatActivity implements TicketA
          MaTPve = intent.getStringExtra("MaTPve");
          DiemKH = intent.getStringExtra("DiemKH");
          DiemDen = intent.getStringExtra("DiemDen");
-        tvLichTrinhdi.setText(MaTPdi+" Đến " + MaTPve);
+         NgayDi= intent.getStringExtra("NgayDi");
+         NgayVe=intent.getStringExtra("NgayVe");
+         Soluongnguoi = intent.getStringExtra("SoLuongNguoi");
+         tvLichTrinhdi.setText(MaTPdi+" Đến " + MaTPve);
         recyclerView = findViewById(R.id.rcChuyenDi);
         LinearLayoutManager linearLayoutManager= new LinearLayoutManager(this,RecyclerView.VERTICAL,false);
         recyclerView.setLayoutManager(linearLayoutManager);
@@ -81,14 +78,11 @@ public class ChuyenDiCuaBanActivity extends AppCompatActivity implements TicketA
         progressDialog = new ProgressDialog(ChuyenDiCuaBanActivity.this);
         progressDialog.setMessage("Đang tải danh sách vé \n Vui lòng đợi giây lát");
         progressDialog.show();
-        Intent intent = getIntent();
-        String MaTPdi = intent.getStringExtra("MaTPdi");
-        String sbden = intent.getStringExtra("MaTPve");
-        String NgayDi= intent.getStringExtra("NgayDi");
+
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("Ticket");
         
-        myRef.child("ThanhPho").child(MaTPdi).child(NgayDi).child(sbden).addChildEventListener(new ChildEventListener() {
+        myRef.child("ThanhPho").child(MaTPdi).child(NgayDi).child(MaTPve).addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
                 String MaVe = (String) snapshot.child("MaVe").getValue();
@@ -130,5 +124,15 @@ public class ChuyenDiCuaBanActivity extends AppCompatActivity implements TicketA
     @Override
     public void onItemListener(Ticket ticket) {
         Toast.makeText(this, ""+ticket.getMaVe(), Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(ChuyenDiCuaBanActivity.this,ChuyenVecuaBanActivity.class);
+        intent.putExtra("SoLuongNguoi",Soluongnguoi);
+        intent.putExtra("DiemKH",DiemKH);
+        intent.putExtra("DiemVe",DiemDen);
+        intent.putExtra("NgayDi",NgayDi);
+        intent.putExtra("NgayVe",NgayVe);
+        intent.putExtra("MaTPdi",MaTPdi);
+        intent.putExtra("MaTPve",MaTPve);
+        onPause();
+        startActivity(intent);
     }
 }

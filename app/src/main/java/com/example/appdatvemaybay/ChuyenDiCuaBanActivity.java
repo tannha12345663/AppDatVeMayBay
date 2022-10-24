@@ -91,7 +91,7 @@ public class ChuyenDiCuaBanActivity extends AppCompatActivity implements TicketA
         myRef.child("ThanhPho").child(MaTPdi).child(NgayDi).child(sbden).addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-                String MaVe = (String) snapshot.child("MaNV").getValue();
+                String MaVe = (String) snapshot.child("MaVe").getValue();
                 String Hang = (String) snapshot.child("Hang").getValue();
                 String GioDen = (String) snapshot.child("GioDen").getValue();
                 String GioDi = (String) snapshot.child("GioBay").getValue();

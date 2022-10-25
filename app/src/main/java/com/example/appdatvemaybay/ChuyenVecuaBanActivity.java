@@ -15,8 +15,11 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.appdatvemaybay.Account_User.BienTam;
 import com.example.appdatvemaybay.Country.Ticket;
 import com.example.appdatvemaybay.Country.TicketAdapter;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -30,11 +33,13 @@ public class ChuyenVecuaBanActivity extends AppCompatActivity implements TicketA
     ImageButton imgBack04;
     TextView tvLichTrinhve;
     String DiemKH,DiemDen,MaTPdi,MaTPve,NgayDi,Soluongnguoi,NgayVe;
+    BienTam bienTam;
     List<Ticket> mTicketList = new ArrayList<>();
     TicketAdapter mTicketAdapter;
     RecyclerView recyclerView;
     ProgressDialog progressDialog;
-
+    FirebaseUser user;
+    int SLTong;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,16 +61,19 @@ public class ChuyenVecuaBanActivity extends AppCompatActivity implements TicketA
 
 
     private void innitUI() {
+        user= FirebaseAuth.getInstance().getCurrentUser();
         imgBack04=findViewById(R.id.imgBack4);
         tvLichTrinhve=findViewById(R.id.tvLichTrinhdive);
         Intent intent= getIntent();
-        MaTPdi = intent.getStringExtra("MaTPdi");
-        MaTPve = intent.getStringExtra("MaTPve");
-        DiemKH = intent.getStringExtra("DiemKH");
-        DiemDen = intent.getStringExtra("DiemDen");
-        NgayDi=intent.getStringExtra("NgayDi");
-        NgayVe=intent.getStringExtra("NgayVe");
-        Soluongnguoi=intent.getStringExtra("SoLuongNguoi");
+        bienTam = (BienTam) intent.getSerializableExtra("BienTam");
+        MaTPdi = bienTam.getMaTPdi();
+        MaTPve = bienTam.getMaTPve();
+        DiemKH = bienTam.getDiemKH();
+        DiemDen = bienTam.getDiemDen();
+        NgayDi= bienTam.getNgayDi();
+        NgayVe= bienTam.getNgayVe();
+        Soluongnguoi = bienTam.getSoluongnguoi();
+        SLTong = intent.getIntExtra("TongSL",0);
         tvLichTrinhve.setText(MaTPve+" Đến " + MaTPdi);
         recyclerView = findViewById(R.id.rxChuyenVe);
         LinearLayoutManager linearLayoutManager= new LinearLayoutManager(this,RecyclerView.VERTICAL,false);
@@ -127,5 +135,14 @@ public class ChuyenVecuaBanActivity extends AppCompatActivity implements TicketA
     @Override
     public void onItemListener(Ticket ticket) {
         Toast.makeText(this, ""+ticket.getMaVe(), Toast.LENGTH_SHORT).show();
+        if (user !=null){
+            //Push vé
+            FirebaseDatabase database = FirebaseDatabase.getInstance();
+            DatabaseReference myRef = database.getReference("ListUser");
+            myRef.child(user.getUid()).child("GioHang").child("ChuyenVe").child(MaTPve).child(NgayVe).child(MaTPdi).child(ticket.getMaVe()).setValue(SLTong);
+            Intent intent = new Intent(ChuyenVecuaBanActivity.this,ThongtinKH.class);
+            startActivity(intent);
+        }
+
     }
 }

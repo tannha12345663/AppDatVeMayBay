@@ -18,7 +18,7 @@
 
 
         <ImageButton
-            android:id="@+id/imgBackHome5"
+            android:id="@+id/imgBackHome7"
             android:layout_width="?attr/actionBarSize"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/selectableItemBackgroundBorderless"
@@ -79,10 +79,14 @@
     app:layout_constraintStart_toStartOf="@+id/textView16"
     app:layout_constraintTop_toBottomOf="@+id/textView16">
 
-    <com.google.android.material.textfield.TextInputEditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Số điện thoại" />
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edtPhone"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableEnd="@drawable/ic_baseline_phone_24"
+            android:hint="Số điện thoại"
+            android:inputType="phone" />
 </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -96,8 +100,10 @@
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout2">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edtName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:drawableEnd="@drawable/ic_baseline_person_24"
             android:hint="Họ tên hành khách" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -112,8 +118,11 @@
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout3">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edtEmail"
+            android:inputType="textEmailAddress"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:drawableEnd="@drawable/ic_baseline_email_24"
             android:hint="Địa chỉ email" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -128,20 +137,42 @@
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout4">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edtCMND"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="CMND/CCCD/ Hộ chiếu" />
+            android:drawableEnd="@drawable/ic_baseline_featured_video_24"
+            android:hint="CMND/CCCD/ Hộ chiếu"
+            android:inputType="number" />
+    </com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout8"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        app:layout_constraintEnd_toEndOf="@+id/textInputLayout7"
+        app:layout_constraintStart_toStartOf="@+id/textInputLayout7"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout7">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edtBirthday"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableEnd="@drawable/ic_baseline_calendar_month_24"
+            android:hint="Ví dụ: 26/10/2015"
+            android:inputType="datetime" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
         android:id="@+id/btnConfirm"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="44dp"
         android:text="Xác nhận thông tin"
         app:layout_constraintEnd_toEndOf="@+id/textInputLayout7"
+        app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="@+id/textInputLayout7"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayout7" />
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout8" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

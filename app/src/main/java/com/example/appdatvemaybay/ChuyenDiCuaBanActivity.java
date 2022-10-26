@@ -88,7 +88,7 @@ public class ChuyenDiCuaBanActivity extends AppCompatActivity implements TicketA
         recyclerView.setLayoutManager(linearLayoutManager);
         DividerItemDecoration dividerItemDecoration=new DividerItemDecoration(this,DividerItemDecoration.VERTICAL);
         recyclerView.addItemDecoration(dividerItemDecoration);
-        mTicketAdapter = new TicketAdapter(mTicketList,ChuyenDiCuaBanActivity.this);
+        mTicketAdapter = new TicketAdapter(mTicketList,ChuyenDiCuaBanActivity.this,0);
         recyclerView.setAdapter(mTicketAdapter);
 
     }
@@ -109,7 +109,8 @@ public class ChuyenDiCuaBanActivity extends AppCompatActivity implements TicketA
                 String GioDen = (String) snapshot.child("GioDen").getValue();
                 String GioDi = (String) snapshot.child("GioBay").getValue();
                 GiaVe = (String) snapshot.child("GiaVe").getValue();
-                Ticket ticket = new Ticket(GiaVe,GioDi,GioDen,Hang,MaVe,NgayDi);
+                String SLtong= String.valueOf(SLTong);
+                Ticket ticket = new Ticket(GiaVe,GioDi,GioDen,Hang,MaVe,NgayDi,SLtong,DiemKH,DiemDen,MaTPdi,MaTPve);
                 if (ticket!=null){
                     progressDialog.dismiss();
                     mTicketList.add(ticket);

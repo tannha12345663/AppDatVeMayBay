@@ -1,14 +1,15 @@
 package com.example.appdatvemaybay.Country;
 
 public class Ticket {
-    String MaVe,GioBay,GioDen,GiaVe,Hang;
+    String MaVe,GioBay,GioDen,GiaVe,Hang,NgayDi;
 
-    public Ticket(String giaVe, String gioBay, String gioDen, String hang,String maVe) {
+    public Ticket(String giaVe, String gioBay, String gioDen, String hang,String maVe,String ngayDi) {
         MaVe = maVe;
         GioBay = gioBay;
         GioDen = gioDen;
         GiaVe = giaVe;
         Hang=hang;
+        NgayDi=ngayDi;
     }
 
     public String getMaVe() {
@@ -51,4 +52,11 @@ public class Ticket {
         Hang = hang;
     }
 
+    public String getNgayDi() {
+        return NgayDi;
+    }
+
+    public void setNgayDi(String ngayDi) {
+        NgayDi = ngayDi;
+    }
 }

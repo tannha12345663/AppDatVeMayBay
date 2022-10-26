@@ -32,13 +32,16 @@ import java.util.List;
 public class ChuyenDiCuaBanActivity extends AppCompatActivity implements TicketAdapter.Listener {
     ImageButton imgBack03;
     TextView tvLichTrinhdi;
-    String DiemKH,DiemDen,MaTPdi,MaTPve,NgayDi,Soluongnguoi,NgayVe,MaVe;
+    String DiemKH,DiemDen,MaTPdi,MaTPve,NgayDi,Soluongnguoi,NgayVe,MaVe,GiaVe;
     BienTam bienTam;
     List<Ticket> mTicketList = new ArrayList<>();
     TicketAdapter mTicketAdapter;
     RecyclerView recyclerView;
     ProgressDialog progressDialog;
     FirebaseUser user;
+    //Lưu thông tin vé vào mã vé firebase
+    FirebaseDatabase database;
+    DatabaseReference myRef;
     int SLTong;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -105,8 +108,8 @@ public class ChuyenDiCuaBanActivity extends AppCompatActivity implements TicketA
                 String Hang = (String) snapshot.child("Hang").getValue();
                 String GioDen = (String) snapshot.child("GioDen").getValue();
                 String GioDi = (String) snapshot.child("GioBay").getValue();
-                String GiaVe = (String) snapshot.child("GiaVe").getValue();
-                Ticket ticket = new Ticket(GiaVe,GioDi,GioDen,Hang,MaVe);
+                GiaVe = (String) snapshot.child("GiaVe").getValue();
+                Ticket ticket = new Ticket(GiaVe,GioDi,GioDen,Hang,MaVe,NgayDi);
                 if (ticket!=null){
                     progressDialog.dismiss();
                     mTicketList.add(ticket);
@@ -142,11 +145,18 @@ public class ChuyenDiCuaBanActivity extends AppCompatActivity implements TicketA
 
         if (user !=null){
             //Push vé
-            FirebaseDatabase database = FirebaseDatabase.getInstance();
-            DatabaseReference myRef = database.getReference("ListUser");
-            myRef.child(user.getUid()).child("GioHang").child("ChuyenDi").child(MaTPdi).child(NgayDi).child(MaTPve).child(ticket.getMaVe()).setValue(SLTong);
+            database = FirebaseDatabase.getInstance();
+            myRef = database.getReference("MaVe");
+            myRef.child(ticket.getMaVe()).child(user.getUid()).setValue(SLTong);
         }
+        else {
+            database = FirebaseDatabase.getInstance();
+            myRef = database.getReference("MaVe");
+            myRef.child(ticket.getMaVe()).setValue(ticket);
 
+        }
+        myRef=database.getReference("DSorder");
+        myRef.child(ticket.getMaVe()).setValue(ticket);
         Toast.makeText(this, ""+ticket.getMaVe(), Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(ChuyenDiCuaBanActivity.this,ChuyenVecuaBanActivity.class);
         if (bienTam.getNgayVe()==null){

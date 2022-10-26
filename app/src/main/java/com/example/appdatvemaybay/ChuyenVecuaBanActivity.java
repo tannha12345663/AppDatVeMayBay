@@ -33,11 +33,14 @@ public class ChuyenVecuaBanActivity extends AppCompatActivity implements TicketA
     ImageButton imgBack04;
     TextView tvLichTrinhve;
     String DiemKH,DiemDen,MaTPdi,MaTPve,NgayDi,Soluongnguoi,NgayVe;
-    BienTam bienTam;
+    BienTam bienTam,bienTamVe;
     List<Ticket> mTicketList = new ArrayList<>();
     TicketAdapter mTicketAdapter;
     RecyclerView recyclerView;
     ProgressDialog progressDialog;
+    //Xử lý dữ liệu lên firebase
+    FirebaseDatabase database;
+    DatabaseReference myRef;
     FirebaseUser user;
     int SLTong;
     @Override
@@ -97,10 +100,10 @@ public class ChuyenVecuaBanActivity extends AppCompatActivity implements TicketA
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
                 String MaVe = (String) snapshot.child("MaVe").getValue();
                 String Hang = (String) snapshot.child("Hang").getValue();
-                String GioDen = (String) snapshot.child("GioDen").getValue();
+                String GioDen = (String) snapshot.child("GioVe").getValue();
                 String GioDi = (String) snapshot.child("GioBay").getValue();
                 String GiaVe = (String) snapshot.child("GiaVe").getValue();
-                Ticket ticket = new Ticket(GiaVe, GioDi, GioDen, Hang, MaVe);
+                Ticket ticket = new Ticket(GiaVe, GioDi, GioDen, Hang, MaVe,NgayDi);
                 if (ticket != null) {
                     progressDialog.dismiss();
                     mTicketList.add(ticket);
@@ -137,12 +140,20 @@ public class ChuyenVecuaBanActivity extends AppCompatActivity implements TicketA
         Toast.makeText(this, ""+ticket.getMaVe(), Toast.LENGTH_SHORT).show();
         if (user !=null){
             //Push vé
-            FirebaseDatabase database = FirebaseDatabase.getInstance();
-            DatabaseReference myRef = database.getReference("ListUser");
-            myRef.child(user.getUid()).child("GioHang").child("ChuyenVe").child(MaTPve).child(NgayVe).child(MaTPdi).child(ticket.getMaVe()).setValue(SLTong);
-            Intent intent = new Intent(ChuyenVecuaBanActivity.this,ThongtinKH.class);
-            startActivity(intent);
+            database = FirebaseDatabase.getInstance();
+            myRef = database.getReference("MaVe");
+            myRef.child(ticket.getMaVe()).child(user.getUid()).setValue(SLTong);
+
         }
+        else {
+            database = FirebaseDatabase.getInstance();
+            myRef = database.getReference("MaVe");
+            myRef.child(ticket.getMaVe()).setValue(ticket);
+        }
+        myRef=database.getReference("DSorder");
+        myRef.child(ticket.getMaVe()).setValue(ticket);
+        Intent intent = new Intent(ChuyenVecuaBanActivity.this,ThongtinKH.class);
+        startActivity(intent);
 
     }
 }

@@ -133,26 +133,15 @@
             android:hint="CMND/CCCD/ Hộ chiếu" />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <TextView
-        android:id="@+id/textView17"
+    <Button
+        android:id="@+id/btnConfirm"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="Tóm tắt hành trình"
-        android:textSize="20sp"
+        android:layout_marginTop="16dp"
+        android:text="Xác nhận thông tin"
         app:layout_constraintEnd_toEndOf="@+id/textInputLayout7"
-        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="@+id/textInputLayout7"
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout7" />
-
-    <TextView
-        android:id="@+id/textView18"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
-        android:text="Chuyến đi"
-        app:layout_constraintStart_toStartOf="@+id/textInputLayout7"
-        app:layout_constraintTop_toBottomOf="@+id/textView17" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

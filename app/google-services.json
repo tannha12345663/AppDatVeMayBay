@@ -15,19 +15,11 @@
       },
       "oauth_client": [
         {
-          "client_id": "134495693476-2g2gt4moqpuvjdtmmvdrlskj51b56vl6.apps.googleusercontent.com",
+          "client_id": "134495693476-8f47d7b4r9ac3ren00rr8ss21lgq32n9.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.example.appdatvemaybay",
             "certificate_hash": "7542032c2f71c45e9026411b17e03fc2b3c4f47e"
-          }
-        },
-        {
-          "client_id": "134495693476-skq7ib6d835fiagm5a6357ml18irdur4.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.example.appdatvemaybay",
-            "certificate_hash": "f25d63b9b25f462d087401902bee77740dc43b23"
           }
         },
         {

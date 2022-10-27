@@ -1,13 +1,15 @@
 package com.example.appdatvemaybay.Country;
 
-import android.os.Parcelable;
-
 import java.io.Serializable;
 
 public class Ticket implements Serializable {
-    String MaVe,GioBay,GioDen,GiaVe,Hang,NgayDi,SoLuong,DiemKH,DiemDen,MaTPdi,MaTPve;
+    String MaVe,GioBay,GioDen,Hang,NgayDi,SoLuong,DiemKH,DiemDen,MaTPdi,MaTPve;
+    String GiaVe;
 
-    public Ticket(String giaVe, String gioBay, String gioDen, String hang,String maVe,String ngayDi,String soLuong, String diemKH,String diemDen,String maTPdi,String maTPve) {
+    public Ticket() {
+    }
+
+    public Ticket(String giaVe, String gioBay, String gioDen, String hang, String maVe, String ngayDi, String soLuong, String diemKH, String diemDen, String maTPdi, String maTPve) {
         MaVe = maVe;
         GioBay = gioBay;
         GioDen = gioDen;

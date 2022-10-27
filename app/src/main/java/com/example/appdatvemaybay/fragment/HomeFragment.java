@@ -201,6 +201,7 @@ public class HomeFragment extends Fragment {
                             intent = new Intent(getActivity(), ChuyenDiCuaBanActivity.class);
                             BienTam bienTam = new BienTam(DiemKH,DiemDen,SanbayDi,SanBayVe,etChonNgayDi.getText().toString().trim(),Soluongnguoi,NgayVe);
                             intent.putExtra("BienTam", bienTam);
+                            intent.putExtra("TongSL",SLTong);
                             //onPause();
                             startActivity(intent);
                         }

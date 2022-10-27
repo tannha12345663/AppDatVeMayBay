@@ -11,7 +11,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.appdatvemaybay.R;
 
+import java.text.NumberFormat;
 import java.util.List;
+import java.util.Locale;
 
 public class TicketAdapter extends RecyclerView.Adapter<TicketAdapter.TicketVH>{
     List<Ticket> mTicketlist;
@@ -33,8 +35,11 @@ public class TicketAdapter extends RecyclerView.Adapter<TicketAdapter.TicketVH>{
 
     @Override
     public void onBindViewHolder(@NonNull TicketVH holder, int position) {
+        Locale localeVN = new Locale("vi", "VN");
+        NumberFormat currencyVN = NumberFormat.getCurrencyInstance(localeVN);
         Ticket ticket = mTicketlist.get(position);
-        holder.tvGiaVe.setText(ticket.getGiaVe());
+        Integer giave= Integer.parseInt(ticket.getGiaVe());
+        holder.tvGiaVe.setText(currencyVN.format(giave));
         holder.tvGioBay.setText(ticket.getGioBay());
         holder.tvGioDen.setText(ticket.getGioDen());
         holder.tvHang.setText(ticket.getHang());

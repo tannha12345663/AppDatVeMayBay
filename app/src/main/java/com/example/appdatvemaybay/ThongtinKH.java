@@ -110,8 +110,21 @@ public class ThongtinKH extends AppCompatActivity {
         btnConfirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ThongtinKH.this,TomtatHT.class);
-                startActivity(intent);
+                int flag;
+                Intent intent=getIntent();
+                flag=intent.getIntExtra("flag",0);
+                if (flag==1){
+                    Intent intent1 = new Intent();
+                    intent1=new Intent(ThongtinKH.this,TomtatHT.class);
+                    intent1.putExtra("flag",1);
+                    startActivity(intent1);
+                }
+                else {
+                    Intent intent2 = new Intent();
+                    intent2=new Intent(ThongtinKH.this,TomtatHT.class);
+                    startActivity(intent2);
+                }
+
 
             }
         });

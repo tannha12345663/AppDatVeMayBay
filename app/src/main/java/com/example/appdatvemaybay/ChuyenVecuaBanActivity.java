@@ -26,13 +26,15 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class ChuyenVecuaBanActivity extends AppCompatActivity implements TicketAdapter.Listener{
     ImageButton imgBack04;
     TextView tvLichTrinhve;
-    String DiemKH,DiemDen,MaTPdi,MaTPve,NgayDi,Soluongnguoi,NgayVe;
+    String DiemKH,DiemDen,MaTPdi,MaTPve,NgayDi,Soluongnguoi,NgayVe,MaVe,GiaVe;
     BienTam bienTam,bienTamVe;
     List<Ticket> mTicketList = new ArrayList<>();
     TicketAdapter mTicketAdapter;
@@ -98,13 +100,13 @@ public class ChuyenVecuaBanActivity extends AppCompatActivity implements TicketA
         myRef.child("ThanhPho").child(MaTPve).child(NgayVe).child(MaTPdi).addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-                String MaVe = (String) snapshot.child("MaVe").getValue();
+                MaVe = (String) snapshot.child("MaVe").getValue();
                 String Hang = (String) snapshot.child("Hang").getValue();
                 String GioDen = (String) snapshot.child("GioVe").getValue();
                 String GioDi = (String) snapshot.child("GioBay").getValue();
-                String GiaVe = (String) snapshot.child("GiaVe").getValue();
+                GiaVe = (String) snapshot.child("GiaVe").getValue();
                 String SLtong= String.valueOf(SLTong);
-                Ticket ticket = new Ticket(GiaVe, GioDi, GioDen, Hang, MaVe,NgayDi,SLtong,DiemKH,DiemDen,MaTPdi,MaTPve);
+                Ticket ticket = new Ticket(GiaVe, GioDi, GioDen, Hang, MaVe,NgayDi,SLtong,DiemDen,DiemKH,MaTPve,MaTPdi);
                 if (ticket != null) {
                     progressDialog.dismiss();
                     mTicketList.add(ticket);
@@ -154,6 +156,7 @@ public class ChuyenVecuaBanActivity extends AppCompatActivity implements TicketA
         myRef=database.getReference("DSorder");
         myRef.child(ticket.getMaVe()).setValue(ticket);
         Intent intent = new Intent(ChuyenVecuaBanActivity.this,ThongtinKH.class);
+        intent.putExtra("MaveKH",MaVe);
         startActivity(intent);
 
     }

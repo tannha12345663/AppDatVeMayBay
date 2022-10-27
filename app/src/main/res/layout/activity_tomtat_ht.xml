@@ -59,7 +59,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rcTomTat"
         android:layout_width="0dp"
-        android:layout_height="300dp"
+        android:layout_height="280dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
@@ -92,7 +92,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="Hồ Chí Minh - Hà Nội : 1.549.000đ"
-        android:textSize="16sp"
+        android:textSize="14sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/textView19"
         app:layout_constraintTop_toBottomOf="@+id/textView19" />
 
@@ -100,12 +101,15 @@
         android:id="@+id/tvSoLuong"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="8dp"
         android:text="Số lượng : x3"
-        android:textSize="16sp"
+        android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="@+id/tvChuyenDi"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/tvChuyenDi"
-        app:layout_constraintTop_toTopOf="@+id/tvChuyenDi" />
+        app:layout_constraintTop_toTopOf="@+id/tvChuyenDi"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/textView22"
@@ -122,7 +126,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="Hà Nội - Hồ Chí Minh : 750.000đ"
-        android:textSize="16sp"
+        android:textSize="14sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/textView22"
         app:layout_constraintTop_toBottomOf="@+id/textView22" />
 
@@ -130,21 +135,23 @@
         android:id="@+id/tvSoLuong01"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
         android:text="Số lượng: x3"
-        android:textSize="16sp"
+        android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="@+id/tvChuyenVe"
-        app:layout_constraintEnd_toEndOf="@+id/tvSoLuong"
-        app:layout_constraintStart_toStartOf="@+id/tvSoLuong"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/tvChuyenVe"
         app:layout_constraintTop_toTopOf="@+id/tvChuyenVe"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/tvGiaTong"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="20dp"
         android:text="Giá cuối cùng : 2.299.000đ"
-        android:textSize="20sp"
+        android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -163,5 +170,5 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvGiaTong"
-        app:layout_constraintVertical_bias="0.304" />
+        app:layout_constraintVertical_bias="0.36" />
 </androidx.constraintlayout.widget.ConstraintLayout>

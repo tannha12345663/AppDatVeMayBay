@@ -26,8 +26,10 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class ChuyenDiCuaBanActivity extends AppCompatActivity implements TicketAdapter.Listener {
     ImageButton imgBack03;
@@ -35,6 +37,7 @@ public class ChuyenDiCuaBanActivity extends AppCompatActivity implements TicketA
     String DiemKH,DiemDen,MaTPdi,MaTPve,NgayDi,Soluongnguoi,NgayVe,MaVe,GiaVe;
     BienTam bienTam;
     List<Ticket> mTicketList = new ArrayList<>();
+    Ticket ticket;
     TicketAdapter mTicketAdapter;
     RecyclerView recyclerView;
     ProgressDialog progressDialog;
@@ -81,7 +84,7 @@ public class ChuyenDiCuaBanActivity extends AppCompatActivity implements TicketA
          DiemDen = bienTam.getDiemDen();
          NgayDi= bienTam.getNgayDi();
          NgayVe= bienTam.getNgayVe();
-         Soluongnguoi = bienTam.getSoluongnguoi();
+         Soluongnguoi = String.valueOf(SLTong);
          tvLichTrinhdi.setText(MaTPdi+" Đến " + MaTPve);
         recyclerView = findViewById(R.id.rcChuyenDi);
         LinearLayoutManager linearLayoutManager= new LinearLayoutManager(this,RecyclerView.VERTICAL,false);
@@ -109,8 +112,7 @@ public class ChuyenDiCuaBanActivity extends AppCompatActivity implements TicketA
                 String GioDen = (String) snapshot.child("GioDen").getValue();
                 String GioDi = (String) snapshot.child("GioBay").getValue();
                 GiaVe = (String) snapshot.child("GiaVe").getValue();
-                String SLtong= String.valueOf(SLTong);
-                Ticket ticket = new Ticket(GiaVe,GioDi,GioDen,Hang,MaVe,NgayDi,SLtong,DiemKH,DiemDen,MaTPdi,MaTPve);
+                ticket = new Ticket(GiaVe,GioDi,GioDen,Hang,MaVe,NgayDi,Soluongnguoi,DiemKH,DiemDen,MaTPdi,MaTPve);
                 if (ticket!=null){
                     progressDialog.dismiss();
                     mTicketList.add(ticket);
@@ -144,26 +146,20 @@ public class ChuyenDiCuaBanActivity extends AppCompatActivity implements TicketA
     @Override
     public void onItemListener(Ticket ticket) {
 
-        if (user !=null){
-            //Push vé
-            database = FirebaseDatabase.getInstance();
-            myRef = database.getReference("MaVe");
-            myRef.child(ticket.getMaVe()).child(user.getUid()).setValue(SLTong);
-        }
-        else {
-            database = FirebaseDatabase.getInstance();
-            myRef = database.getReference("MaVe");
-            myRef.child(ticket.getMaVe()).setValue(ticket);
 
-        }
+        database = FirebaseDatabase.getInstance();
         myRef=database.getReference("DSorder");
+
         myRef.child(ticket.getMaVe()).setValue(ticket);
         Toast.makeText(this, ""+ticket.getMaVe(), Toast.LENGTH_SHORT).show();
-        Intent intent = new Intent(ChuyenDiCuaBanActivity.this,ChuyenVecuaBanActivity.class);
         if (bienTam.getNgayVe()==null){
             Toast.makeText(this, "Bạn không có đi ngày về", Toast.LENGTH_SHORT).show();
+            Intent intent= new Intent(ChuyenDiCuaBanActivity.this,ThongtinKH.class);
+            intent.putExtra("flag",1);
+            startActivity(intent);
         }
         else {
+            Intent intent=new Intent(ChuyenDiCuaBanActivity.this,ChuyenVecuaBanActivity.class);
             intent.putExtra("BienTam",bienTam);
             intent.putExtra("TongSL",SLTong);
             startActivity(intent);

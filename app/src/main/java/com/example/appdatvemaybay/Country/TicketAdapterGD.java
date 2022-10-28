@@ -1,5 +1,6 @@
 package com.example.appdatvemaybay.Country;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -7,7 +8,6 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.appdatvemaybay.R;
@@ -16,14 +16,12 @@ import java.text.NumberFormat;
 import java.util.List;
 import java.util.Locale;
 
-public class TicketAdapter extends RecyclerView.Adapter<TicketAdapter.TicketVH>{
+public class TicketAdapterGD extends RecyclerView.Adapter<TicketAdapterGD.TicketVH>{
     List<Ticket> mTicketlist;
-    TicketAdapter.Listener listener;
     int Flag;
 
-    public TicketAdapter(List<Ticket> mTicketlist, FragmentActivity listener, int flag) {
+    public TicketAdapterGD(List<Ticket> mTicketlist, Context context, int flag) {
         this.mTicketlist = mTicketlist;
-        this.listener = (Listener) listener;
         this.Flag=flag;
     }
 
@@ -45,12 +43,6 @@ public class TicketAdapter extends RecyclerView.Adapter<TicketAdapter.TicketVH>{
         holder.tvGioDen.setText(ticket.getGioDen());
         holder.tvHang.setText(ticket.getHang());
         holder.tvStartEnd.setText(ticket.getMaTPdi()+" - "+ticket.getMaTPve());
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                listener.onItemListener(ticket);
-            }
-        });
         if (Flag == 0){
             holder.btnChon.setVisibility(View.VISIBLE);
         }
@@ -79,7 +71,5 @@ public class TicketAdapter extends RecyclerView.Adapter<TicketAdapter.TicketVH>{
             btnChon=itemView.findViewById(R.id.btnChon);
         }
     }
-    public interface Listener{
-        void onItemListener(Ticket ticket);
-    }
+
 }

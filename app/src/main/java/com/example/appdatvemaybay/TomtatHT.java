@@ -17,6 +17,8 @@ import android.widget.Toast;
 
 import com.example.appdatvemaybay.Country.Ticket;
 import com.example.appdatvemaybay.Country.TicketAdapter;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -41,6 +43,8 @@ public class TomtatHT extends AppCompatActivity implements TicketAdapter.Listene
     Ticket ticketdi,ticketve;
     String MaveKH,MaveDi;
     Intent intent;
+    //Firebase
+    FirebaseUser user;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,11 +82,24 @@ public class TomtatHT extends AppCompatActivity implements TicketAdapter.Listene
                 FirebaseDatabase database = FirebaseDatabase.getInstance();
                 DatabaseReference myRef = database.getReference("DSorder");
                 myRef.removeValue();
+                luugiaodich();
                 Toast.makeText(TomtatHT.this, "Chúc mừng bạn đã thanh toán thành công", Toast.LENGTH_SHORT).show();
                 intent = new Intent(TomtatHT.this,MainActivity.class);
                 startActivity(intent);
+
             }
         });
+    }
+
+    private void luugiaodich() {
+        user= FirebaseAuth.getInstance().getCurrentUser();
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("GiaoDich");
+        mTicketList.size();
+        for (Ticket ticket : mTicketList) {
+            myRef.child(user.getUid()).child(ticket.getMaVe()).setValue(ticket);
+        }
+
     }
 
     private void getListTicket() {

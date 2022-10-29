@@ -150,15 +150,25 @@ public class HomeFragment extends Fragment {
                     btnTimChuyenBay.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            String Soluongnguoi = etNhapSoLuongHK.getText().toString().trim();
-                            String DiemKH = etChonDiemKH.getText().toString().trim();
-                            String DiemDen = etChonDiemDen.getText().toString().trim();
-                            intent = new Intent(getActivity(), ChuyenDiCuaBanActivity.class);
-                            BienTam bienTam = new BienTam(DiemKH,DiemDen,SanbayDi,SanBayVe,etChonNgayDi.getText().toString().trim(),Soluongnguoi,etChonNgayVe.getText().toString().trim());
-                            intent.putExtra("BienTam", bienTam);
-                            intent.putExtra("TongSL",SLTong);
-                            //onPause();
-                            startActivity(intent);
+                            if (etChonDiemKH.getText().toString().isEmpty() || etChonDiemDen.getText().toString().isEmpty() || etChonNgayDi.getText().toString().isEmpty()||etChonNgayVe.getText().toString().isEmpty()|| etNhapSoLuongHK.getText().toString().isEmpty()){
+                                etChonDiemKH.setError("Vui lòng chọn điểm khởi hành");
+                                etChonDiemDen.setError("Vui lòng chọn điểm đến");
+                                etNhapSoLuongHK.setError("Vui lòng nhập số lượng người");
+                                etChonNgayDi.setError("Vui lòng nhập ngày về");
+                                etChonNgayVe.setError("Vui lòng chọn ngày về");
+                            }
+                            else {
+                                String Soluongnguoi = etNhapSoLuongHK.getText().toString().trim();
+                                String DiemKH = etChonDiemKH.getText().toString().trim();
+                                String DiemDen = etChonDiemDen.getText().toString().trim();
+                                intent = new Intent(getActivity(), ChuyenDiCuaBanActivity.class);
+                                BienTam bienTam = new BienTam(DiemKH,DiemDen,SanbayDi,SanBayVe,etChonNgayDi.getText().toString().trim(),Soluongnguoi,etChonNgayVe.getText().toString().trim());
+                                intent.putExtra("BienTam", bienTam);
+                                intent.putExtra("TongSL",SLTong);
+                                //onPause();
+                                startActivity(intent);
+                            }
+
                         }
                     });
 
@@ -194,16 +204,25 @@ public class HomeFragment extends Fragment {
                     btnTimChuyenBay.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            String Soluongnguoi = etNhapSoLuongHK.getText().toString().trim();
-                            String DiemKH = etChonDiemKH.getText().toString().trim();
-                            String DiemDen = etChonDiemDen.getText().toString().trim();
-                            String NgayVe = null;
-                            intent = new Intent(getActivity(), ChuyenDiCuaBanActivity.class);
-                            BienTam bienTam = new BienTam(DiemKH,DiemDen,SanbayDi,SanBayVe,etChonNgayDi.getText().toString().trim(),Soluongnguoi,NgayVe);
-                            intent.putExtra("BienTam", bienTam);
-                            intent.putExtra("TongSL",SLTong);
-                            //onPause();
-                            startActivity(intent);
+                            if (etChonDiemKH.getText().toString().isEmpty() || etChonDiemDen.getText().toString().isEmpty() || etChonNgayDi.getText().toString().isEmpty()|| etNhapSoLuongHK.getText().toString().isEmpty()){
+                                etChonDiemKH.setError("Vui lòng chọn điểm khởi hành");
+                                etChonDiemDen.setError("Vui lòng chọn điểm đến");
+                                etNhapSoLuongHK.setError("Vui lòng nhập số lượng người");
+                                etChonNgayDi.setError("Vui lòng nhập ngày về");
+                            }
+                            else {
+                                String Soluongnguoi = etNhapSoLuongHK.getText().toString().trim();
+                                String DiemKH = etChonDiemKH.getText().toString().trim();
+                                String DiemDen = etChonDiemDen.getText().toString().trim();
+                                String NgayVe = null;
+                                intent = new Intent(getActivity(), ChuyenDiCuaBanActivity.class);
+                                BienTam bienTam = new BienTam(DiemKH,DiemDen,SanbayDi,SanBayVe,etChonNgayDi.getText().toString().trim(),Soluongnguoi,NgayVe);
+                                intent.putExtra("BienTam", bienTam);
+                                intent.putExtra("TongSL",SLTong);
+                                //onPause();
+                                startActivity(intent);
+                            }
+
                         }
                     });
 

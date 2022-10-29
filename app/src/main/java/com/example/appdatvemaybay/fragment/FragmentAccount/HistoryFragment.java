@@ -100,7 +100,7 @@ public class HistoryFragment extends Fragment {
             rcLSGD.setLayoutManager(linearLayoutManager);
             DividerItemDecoration dividerItemDecoration=new DividerItemDecoration(getActivity(),DividerItemDecoration.VERTICAL);
             rcLSGD.addItemDecoration(dividerItemDecoration);
-            mTicketAdapter = new TicketAdapterGD(mTicketList, getContext(),0);
+            mTicketAdapter = new TicketAdapterGD(mTicketList, getContext(),2);
             rcLSGD.setAdapter(mTicketAdapter);
         }
     }

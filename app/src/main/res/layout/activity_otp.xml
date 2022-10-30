@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".OtpActivity">
+    tools:context=".OtpActivity"
+    android:background="@drawable/whitesky">
 
     <ImageView
         android:id="@+id/imageView2"
@@ -16,7 +17,7 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/common_google_signin_btn_icon_dark" />
+        app:srcCompat="@drawable/astronaut" />
 
     <TextView
         android:id="@+id/textView4"
@@ -71,7 +72,7 @@
         android:id="@+id/otpMobile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="16dp"
         android:text="+84 123456789"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@+id/textView7"
@@ -166,10 +167,13 @@
         android:layout_width="match_parent"
         android:layout_height="55dp"
         android:layout_marginTop="24dp"
-        android:background="@color/purple_500"
-        android:text="Xác nhận mã"
+        android:layout_marginLeft="24dp"
+        android:layout_marginRight="24dp"
+        android:background="@drawable/retangle_button"
+        android:text="Xác nhận"
         android:textAllCaps="false"
         android:textColor="@color/white"
+        android:textSize="20dp"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
         tools:layout_editor_absoluteX="24dp" />
 

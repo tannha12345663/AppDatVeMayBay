@@ -9,21 +9,22 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@drawable/bg_sky_blue"
+        android:gravity="center_horizontal"
         android:orientation="vertical"
-        android:background="@drawable/bg_sky_blue">
+        tools:ignore="MissingConstraints">
 
         <ImageView
             android:id="@+id/imageView"
-            android:layout_width="156dp"
+            android:layout_width="250dp"
             android:layout_height="166dp"
+            android:layout_marginTop="100dp"
             android:layout_gravity="center"
-            android:layout_marginTop="190dp"
             android:layout_marginBottom="20dp"
-
             app:srcCompat="@drawable/astronaut" />
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/textView2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="serif"
@@ -33,6 +34,18 @@
             android:textColor="#E1D82F"
             android:textSize="30dp"
             android:textStyle="bold|italic" />
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="300dp"
+            android:layout_height="190dp"
+            android:layout_gravity="center"
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="10dp"
+            android:rotation="264"
+            android:rotationX="-155"
+            android:rotationY="-360"
+            app:srcCompat="@drawable/astronaut" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

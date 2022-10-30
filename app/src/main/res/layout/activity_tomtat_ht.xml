@@ -4,13 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".TomtatHT">
+    tools:context=".TomtatHT"
+    android:background="@drawable/whitesky">
 
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="@color/Red"
+        android:background="#4A0B0315"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -50,7 +51,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="Vui lòng kiểm tra lại hành trình"
-        android:textSize="20sp"
+        android:fontFamily="serif"
+        android:textColor="#805F3C"
+        android:textSize="17sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
@@ -67,108 +70,114 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView17" />
 
-    <TextView
-        android:id="@+id/textView18"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="112dp"
-        android:layout_marginTop="12dp"
-        android:text="Thông tin về giá vé"
-        android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="@+id/rcTomTat"
-        app:layout_constraintTop_toBottomOf="@+id/rcTomTat" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="6dp"
+        android:layout_marginTop="375dp"
+        android:layout_marginEnd="6dp"
+        android:layout_marginBottom="6dp"
+        android:background="@drawable/retangle_border"
+        android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/textView19"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Chuyến đi"
-        app:layout_constraintStart_toStartOf="@+id/rcTomTat"
-        app:layout_constraintTop_toBottomOf="@+id/textView18" />
+        <TextView
+            android:id="@+id/textView18"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="112dp"
+            android:layout_marginTop="0dp"
+            android:text="Thông tin về giá vé"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textSize="20sp"
+            android:textStyle="italic" />
 
-    <TextView
-        android:id="@+id/tvChuyenDi"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="Hồ Chí Minh - Hà Nội : 1.549.000đ"
-        android:textSize="14sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="@+id/textView19"
-        app:layout_constraintTop_toBottomOf="@+id/textView19" />
+        <TextView
+            android:id="@+id/textView19"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Chuyến đi"
+            app:layout_constraintStart_toStartOf="@+id/rcTomTat"
+            app:layout_constraintTop_toBottomOf="@+id/textView18" />
 
-    <TextView
-        android:id="@+id/tvSoLuong"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:text="Số lượng : x3"
-        android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="@+id/tvChuyenDi"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/tvChuyenDi"
-        app:layout_constraintTop_toTopOf="@+id/tvChuyenDi"
-        app:layout_constraintVertical_bias="0.0" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center_vertical"
+            >
+            <TextView
+                android:id="@+id/tvChuyenDi"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Hồ Chí Minh - Hà Nội:\nGiá: 1.549.000đ"
+                android:textSize="16sp"
+                android:textStyle="bold|italic"
+                android:layout_weight="1"
+                />
 
-    <TextView
-        android:id="@+id/textView22"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="Chuyến về (nếu có)"
-        app:layout_constraintStart_toStartOf="@+id/tvChuyenDi"
-        app:layout_constraintTop_toBottomOf="@+id/tvChuyenDi" />
+            <TextView
+                android:id="@+id/tvSoLuong"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Số lượng : x3"
+                android:textSize="14sp"
+                android:layout_weight="3"
+                android:gravity="center"/>
+        </LinearLayout>
 
-    <TextView
-        android:id="@+id/tvChuyenVe"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="Hà Nội - Hồ Chí Minh : 750.000đ"
-        android:textSize="14sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="@+id/textView22"
-        app:layout_constraintTop_toBottomOf="@+id/textView22" />
 
-    <TextView
-        android:id="@+id/tvSoLuong01"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:text="Số lượng: x3"
-        android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="@+id/tvChuyenVe"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/tvChuyenVe"
-        app:layout_constraintTop_toTopOf="@+id/tvChuyenVe"
-        app:layout_constraintVertical_bias="0.0" />
+        <TextView
+            android:id="@+id/textView22"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Chuyến về (nếu có)"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center_vertical">
+            <TextView
+                android:id="@+id/tvChuyenVe"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Hà Nội - Hồ Chí Minh: \nGiá: 750.000đ"
+                android:textSize="16sp"
+                android:textStyle="bold|italic"
+                android:layout_weight="1" />
 
-    <TextView
-        android:id="@+id/tvGiaTong"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="Giá cuối cùng : 2.299.000đ"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvChuyenVe" />
+            <TextView
+                android:id="@+id/tvSoLuong01"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Số lượng: x3"
+                android:textSize="14sp"
+                android:layout_weight="3"
+                android:gravity="center"/>
+        </LinearLayout>
 
-    <Button
-        android:id="@+id/btnThanhToan"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
-        android:text="Thanh Toán"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvGiaTong"
-        app:layout_constraintVertical_bias="0.36" />
+
+
+        <TextView
+            android:id="@+id/tvGiaTong"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:text="Tổng : 2.299.000đ"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:gravity="center"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnThanhToan"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:background="@drawable/retangle_button"
+            android:layout_gravity="center"
+            android:text="Thanh Toán"
+            android:textColor="@color/white"
+            android:textSize="17dp" />
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

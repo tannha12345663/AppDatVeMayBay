@@ -62,7 +62,7 @@
         android:layout_marginEnd="16dp"
         android:background="@drawable/search_view_bg"
         android:iconifiedByDefault="false"
-        android:queryHint="Vui lòng chọn điểm khởi hành"
+        android:queryHint="Tìm bằng mã vùng"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"

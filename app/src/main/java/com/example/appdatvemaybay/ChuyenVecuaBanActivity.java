@@ -106,7 +106,7 @@ public class ChuyenVecuaBanActivity extends AppCompatActivity implements TicketA
                 String GioDi = (String) snapshot.child("GioBay").getValue();
                 GiaVe = (String) snapshot.child("GiaVe").getValue();
                 String SLtong= String.valueOf(SLTong);
-                Ticket ticket = new Ticket(GiaVe, GioDi, GioDen, Hang, MaVe,NgayDi,SLtong,DiemDen,DiemKH,MaTPve,MaTPdi);
+                Ticket ticket = new Ticket(GiaVe, GioDi, GioDen, Hang, MaVe,NgayVe,SLtong,DiemDen,DiemKH,MaTPve,MaTPdi);
                 if (ticket != null) {
                     progressDialog.dismiss();
                     mTicketList.add(ticket);

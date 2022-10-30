@@ -91,7 +91,6 @@
         style="@style/Widget.Material3.Button.OutlinedButton"
         android:layout_width="114dp"
         android:layout_height="44dp"
-        android:layout_marginEnd="44dp"
         android:checkable="false"
         android:clickable="false"
         android:contextClickable="false"
@@ -107,9 +106,9 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/tvHang"
-        app:layout_constraintTop_toBottomOf="@+id/textView13"
-        app:layout_constraintVertical_bias="0.529" />
+        app:layout_constraintStart_toStartOf="@+id/textView13"
+        app:layout_constraintTop_toBottomOf="@+id/tvTimeVe"
+        app:layout_constraintVertical_bias="1.0" />
 
     <View
         android:id="@+id/view2"
@@ -133,4 +132,42 @@
         app:layout_constraintBottom_toBottomOf="@+id/imgTicket"
         app:layout_constraintStart_toEndOf="@+id/imgTicket"
         app:layout_constraintTop_toTopOf="@+id/imgTicket" />
+
+    <TextView
+        android:id="@+id/tvSLve"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Số lượng"
+        app:layout_constraintBottom_toBottomOf="@+id/tvHang"
+        app:layout_constraintEnd_toStartOf="@+id/btnChon"
+        app:layout_constraintHorizontal_bias="0.403"
+        app:layout_constraintStart_toEndOf="@+id/tvHang"
+        app:layout_constraintTop_toTopOf="@+id/tvHang"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/tvNgayDi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ngày đi"
+        app:layout_constraintBottom_toBottomOf="@+id/tvGiaVe"
+        app:layout_constraintEnd_toStartOf="@+id/btnChon"
+        app:layout_constraintHorizontal_bias="0.135"
+        app:layout_constraintStart_toStartOf="@+id/tvSLve"
+        app:layout_constraintTop_toTopOf="@+id/tvGiaVe"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/tvMaVe"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="4dp"
+        android:text="Mã vé :"
+        app:layout_constraintBottom_toTopOf="@+id/btnChon"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/btnChon"
+        app:layout_constraintTop_toBottomOf="@+id/textView13"
+        app:layout_constraintVertical_bias="0.3" />
 </androidx.constraintlayout.widget.ConstraintLayout>

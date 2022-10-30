@@ -45,6 +45,9 @@ public class TicketAdapter extends RecyclerView.Adapter<TicketAdapter.TicketVH>{
         holder.tvGioDen.setText(ticket.getGioDen());
         holder.tvHang.setText(ticket.getHang());
         holder.tvStartEnd.setText(ticket.getMaTPdi()+" - "+ticket.getMaTPve());
+        holder.tvNgayDi.setText("Ngày đi: "+ticket.getNgayDi());
+        holder.tvSoLuong.setText("Số lượng : x"+ticket.getSoLuong());
+        holder.tvMaVe.setText("Mã vé: "+ticket.getMaVe());
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -53,6 +56,7 @@ public class TicketAdapter extends RecyclerView.Adapter<TicketAdapter.TicketVH>{
         });
         if (Flag == 0){
             holder.btnChon.setVisibility(View.VISIBLE);
+            holder.tvSoLuong.setVisibility(View.INVISIBLE);
         }
         else
             holder.btnChon.setVisibility(View.INVISIBLE);
@@ -67,7 +71,7 @@ public class TicketAdapter extends RecyclerView.Adapter<TicketAdapter.TicketVH>{
     }
 
     class TicketVH extends RecyclerView.ViewHolder{
-        TextView txMaVe,tvGioBay,tvGioDen,tvGiaVe,tvHang,tvStartEnd;
+        TextView txMaVe,tvGioBay,tvGioDen,tvGiaVe,tvHang,tvStartEnd,tvNgayDi,tvSoLuong,tvMaVe;
         Button btnChon;
         public TicketVH(@NonNull View itemView) {
             super(itemView);
@@ -77,6 +81,9 @@ public class TicketAdapter extends RecyclerView.Adapter<TicketAdapter.TicketVH>{
             tvGiaVe = itemView.findViewById(R.id.tvGiaVe);
             tvHang= itemView.findViewById(R.id.tvHang);
             btnChon=itemView.findViewById(R.id.btnChon);
+            tvNgayDi=itemView.findViewById(R.id.tvNgayDi);
+            tvSoLuong = itemView.findViewById(R.id.tvSLve);
+            tvMaVe=itemView.findViewById(R.id.tvMaVe);
         }
     }
     public interface Listener{

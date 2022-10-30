@@ -48,34 +48,32 @@
 
 
     </LinearLayout>
-    <com.google.android.material.textfield.TextInputLayout
 
-        android:id="@+id/textInputLayout"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
+    <SearchView
+        android:id="@+id/searchTP"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/search_view_bg"
+        android:iconifiedByDefault="false"
+        android:queryHint="Vui lòng chọn điểm khởi hành"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/etTenTPDiemDen"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:drawableLeft="@drawable/ic_baseline_search_24"
-            android:focusable="false"
-            android:hint="Vui lòng chọn điểm khởi hành" />
-    </com.google.android.material.textfield.TextInputLayout>
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rcCountryKHDD"
         android:layout_width="0dp"
-        android:layout_height="500dp"
+        android:layout_height="0dp"
         android:layout_marginStart="1dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="1dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/searchTP" />
 </androidx.constraintlayout.widget.ConstraintLayout>

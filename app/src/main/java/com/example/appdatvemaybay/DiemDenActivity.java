@@ -8,6 +8,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.SearchView;
+import android.widget.Toast;
 
 import com.example.appdatvemaybay.Country.CountryVN;
 import com.example.appdatvemaybay.Country.CountryVNAdapter;
@@ -19,7 +21,7 @@ import java.util.List;
 
 public class DiemDenActivity extends AppCompatActivity implements CountryVNAdapter.Listener {
     ImageButton imgBackHome;
-    TextInputEditText etTenTPDiemDen;
+    SearchView searchTPden;
     RecyclerView rcCountryKH;
     List<CountryVN> countryDiemden;
     CountryVNAdapter countryVNAdapter;
@@ -39,11 +41,40 @@ public class DiemDenActivity extends AppCompatActivity implements CountryVNAdapt
                 onBackPressed();
             }
         });
+
+        searchTPden.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                fileList(newText);
+                return false;
+            }
+        });
     }
+
+    private void fileList(String newText) {
+        String charString = newText.toString().trim();
+        List<CountryVN> filterdList = new ArrayList<>();
+        for (CountryVN countryVN : countryDiemden){
+            if (countryVN.getNameTP().toLowerCase().contains(charString.toLowerCase())
+                    || countryVN.getSanBay().contains(charString)){
+                filterdList.add(countryVN);
+            }
+        }
+        if (filterdList.isEmpty()){
+            Toast.makeText(this, "Không tìm thấy dữ liệu", Toast.LENGTH_SHORT).show();
+        }else {
+            countryVNAdapter.setCountryFilter(filterdList);
+        }
+    }
+
     private  void innitUI(){
         imgBackHome=findViewById(R.id.imgBackHome4);
-        etTenTPDiemDen = findViewById(R.id.etTenTPDiemDen);
-        etTenTPDiemDen=findViewById(R.id.etTenTPDiemDen);
+        searchTPden=findViewById(R.id.searchTP);
         rcCountryKH = findViewById(R.id.rcCountryKHDD);
         LinearLayoutManager linearLayoutManager= new LinearLayoutManager(this,RecyclerView.VERTICAL,false);
         rcCountryKH.setLayoutManager(linearLayoutManager);

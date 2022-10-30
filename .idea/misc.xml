@@ -8,6 +8,7 @@
         <entry key="..\:/Users/Lucky/AndroidStudioProjects/AppDatVeMayBay/AppDatVeMayBay/app/src/main/res/layout/layout_header_navigatetion.xml" value="0.35833333333333334" />
         <entry key="..\:/Users/Lucky/AndroidStudioProjects/AppDatVeMayBay/app/src/main/res/drawable/ic_baseline_account_circle_24.xml" value="0.1715" />
         <entry key="..\:/Users/Lucky/AndroidStudioProjects/AppDatVeMayBay/app/src/main/res/drawable/ic_baseline_logout_24.xml" value="0.201" />
+        <entry key="..\:/Users/Lucky/AndroidStudioProjects/AppDatVeMayBay/app/src/main/res/drawable/search_view_bg.xml" value="0.192" />
         <entry key="..\:/Users/Lucky/AndroidStudioProjects/AppDatVeMayBay/app/src/main/res/drawable/vien.xml" value="0.1755" />
         <entry key="..\:/Users/Lucky/AndroidStudioProjects/AppDatVeMayBay/app/src/main/res/layout/activity_bottom_hanh_khach.xml" value="0.26197916666666665" />
         <entry key="..\:/Users/Lucky/AndroidStudioProjects/AppDatVeMayBay/app/src/main/res/layout/activity_chuyen_di_cua_ban.xml" value="0.27685185185185185" />
@@ -20,6 +21,9 @@
         <entry key="..\:/Users/Lucky/AndroidStudioProjects/AppDatVeMayBay/app/src/main/res/layout/activity_otp.xml" value="0.33" />
         <entry key="..\:/Users/Lucky/AndroidStudioProjects/AppDatVeMayBay/app/src/main/res/layout/activity_sign_up.xml" value="0.33" />
         <entry key="..\:/Users/Lucky/AndroidStudioProjects/AppDatVeMayBay/app/src/main/res/layout/activity_signin.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Lucky/AndroidStudioProjects/AppDatVeMayBay/app/src/main/res/layout/activity_thong_tin_kh_thanh_toan.xml" value="0.2548717948717949" />
+        <entry key="..\:/Users/Lucky/AndroidStudioProjects/AppDatVeMayBay/app/src/main/res/layout/activity_thongtin_kh.xml" value="0.33" />
+        <entry key="..\:/Users/Lucky/AndroidStudioProjects/AppDatVeMayBay/app/src/main/res/layout/activity_tomtat_ht.xml" value="0.17083333333333334" />
         <entry key="..\:/Users/Lucky/AndroidStudioProjects/AppDatVeMayBay/app/src/main/res/layout/activity_verify_phone_number.xml" value="0.35833333333333334" />
         <entry key="..\:/Users/Lucky/AndroidStudioProjects/AppDatVeMayBay/app/src/main/res/layout/activity_your_account.xml" value="0.2212962962962963" />
         <entry key="..\:/Users/Lucky/AndroidStudioProjects/AppDatVeMayBay/app/src/main/res/layout/bottom_sheet_hanhkhach.xml" value="0.2609375" />

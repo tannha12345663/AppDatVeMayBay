@@ -80,23 +80,24 @@
         android:id="@+id/textView15"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
         android:text="Giá dưới đây đã bao gồm đầy đủ thuế, phí"
-        app:layout_constraintEnd_toEndOf="@+id/tvLichTrinhdive"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/textView14"
+        app:layout_constraintBottom_toTopOf="@+id/rxChuyenVe"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvLichTrinhdive" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rxChuyenVe"
         android:layout_width="match_parent"
-        android:layout_height="500dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
+        android:layout_height="530dp"
+        android:layout_marginTop="32dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView15" />
+        app:layout_constraintTop_toBottomOf="@+id/textView14"
+        app:layout_constraintVertical_bias="0.621" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

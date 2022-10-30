@@ -3,6 +3,8 @@ package com.example.appdatvemaybay.Country;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -10,17 +12,22 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.appdatvemaybay.R;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class CountryVNAdapter extends RecyclerView.Adapter<CountryVNAdapter.CountryVH>{
-    List<com.example.appdatvemaybay.Country.CountryVN> countryVNList;
+public class CountryVNAdapter extends RecyclerView.Adapter<CountryVNAdapter.CountryVH> {
+    List<CountryVN> countryVNList;
     Listener listener;
-
+    List<CountryVN> countryFilter;
     public CountryVNAdapter(List<CountryVN> countryVNList, Listener listener) {
         this.countryVNList = countryVNList;
         this.listener = listener;
+        this.countryFilter=countryVNList;
     }
-
+    public void setCountryFilter(List<CountryVN> filterCountry){
+        this.countryVNList = filterCountry;
+        notifyDataSetChanged();
+    }
     @NonNull
     @Override
     public CountryVH onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -46,6 +53,7 @@ public class CountryVNAdapter extends RecyclerView.Adapter<CountryVNAdapter.Coun
         return countryVNList.size();
     }
 
+
     class CountryVH extends RecyclerView.ViewHolder{
         TextView txTenTP, txSanBay;
 
@@ -58,4 +66,5 @@ public class CountryVNAdapter extends RecyclerView.Adapter<CountryVNAdapter.Coun
      public interface Listener{
         void onItemListener(CountryVN countryVN);
     }
+
 }

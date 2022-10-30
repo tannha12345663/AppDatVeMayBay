@@ -1,14 +1,26 @@
 package com.example.appdatvemaybay.Country;
 
-public class Ticket {
-    String MaVe,GioBay,GioDen,GiaVe,Hang;
+import java.io.Serializable;
 
-    public Ticket(String giaVe, String gioBay, String gioDen, String hang,String maVe) {
+public class Ticket implements Serializable {
+    String MaVe,GioBay,GioDen,Hang,NgayDi,SoLuong,DiemKH,DiemDen,MaTPdi,MaTPve;
+    String GiaVe;
+
+    public Ticket() {
+    }
+
+    public Ticket(String giaVe, String gioBay, String gioDen, String hang, String maVe, String ngayDi, String soLuong, String diemKH, String diemDen, String maTPdi, String maTPve) {
         MaVe = maVe;
         GioBay = gioBay;
         GioDen = gioDen;
         GiaVe = giaVe;
         Hang=hang;
+        NgayDi=ngayDi;
+        SoLuong=soLuong;
+        DiemKH=diemKH;
+        DiemDen=diemDen;
+        MaTPdi=maTPdi;
+        MaTPve=maTPve;
     }
 
     public String getMaVe() {
@@ -51,4 +63,51 @@ public class Ticket {
         Hang = hang;
     }
 
+    public String getNgayDi() {
+        return NgayDi;
+    }
+
+    public void setNgayDi(String ngayDi) {
+        NgayDi = ngayDi;
+    }
+
+    public String getSoLuong() {
+        return SoLuong;
+    }
+
+    public void setSoLuong(String soLuong) {
+        SoLuong = soLuong;
+    }
+
+    public String getDiemKH() {
+        return DiemKH;
+    }
+
+    public void setDiemKH(String diemKH) {
+        DiemKH = diemKH;
+    }
+
+    public String getDiemDen() {
+        return DiemDen;
+    }
+
+    public void setDiemDen(String diemDen) {
+        DiemDen = diemDen;
+    }
+
+    public String getMaTPdi() {
+        return MaTPdi;
+    }
+
+    public void setMaTPdi(String maTPdi) {
+        MaTPdi = maTPdi;
+    }
+
+    public String getMaTPve() {
+        return MaTPve;
+    }
+
+    public void setMaTPve(String maTPve) {
+        MaTPve = maTPve;
+    }
 }

@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,6 +24,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
+import com.example.appdatvemaybay.Account_User.BienTam;
 import com.example.appdatvemaybay.BottomSheerDialog.DiaglogBottomSheetHK;
 import com.example.appdatvemaybay.ChuyenDiCuaBanActivity;
 import com.example.appdatvemaybay.DiemDenActivity;
@@ -33,6 +35,7 @@ import com.example.appdatvemaybay.PhotoAdapter;
 import com.example.appdatvemaybay.R;
 import com.google.android.material.textfield.TextInputEditText;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -48,16 +51,17 @@ public class HomeFragment extends Fragment {
     private List<Photo> mlistPhoto;
     private Timer mTimer; // auto click chuyển
     //Thanh chức năng đặt vé máy bay
-    Calendar calendar;
+    Calendar calendar,calendar1;
     DatePickerDialog datePickerDialog;
     int mYear, mMonth, mDay, mYear1, mMonth1, mDay1;
     TextInputEditText etChonNgayDi, etChonNgayVe,etChonDiemKH,etChonDiemDen;
     String SanbayDi,SanBayVe;
     Button btnTimChuyenBay;
     RadioGroup khuhoi_motchieu;
+    Intent intent;
     public TextInputEditText etNhapSoLuongHK;
     //Khai báo Interface để truyền dữ liệu sang Fragment Bottom Sheet HK
-    int SLNL, SLTE, SLEB;
+    int SLNL, SLTE, SLEB, SLTong;
     private static final int REQUEST_CODE_EXAMPLE = 0x9345;
     ActivityResultLauncher<Intent> mlauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
             new ActivityResultCallback<ActivityResult>() {
@@ -100,6 +104,7 @@ public class HomeFragment extends Fragment {
         mYear = calendar.get ( Calendar.YEAR );
         mMonth = calendar.get ( Calendar.MONTH );
         mDay = calendar.get ( Calendar.DAY_OF_MONTH );
+        calendar1=Calendar.getInstance();
 
         khuhoi_motchieu.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
@@ -108,7 +113,6 @@ public class HomeFragment extends Fragment {
                     etChonNgayDi.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-
                             //show dialog
                             datePickerDialog = new DatePickerDialog ( getActivity(), new DatePickerDialog.OnDateSetListener () {
                                 @Override
@@ -118,9 +122,9 @@ public class HomeFragment extends Fragment {
                                     mYear1 = year;
                                     mMonth1 = month;
                                     mDay1 = dayOfMonth;
-                                    calendar.set(mYear1,mMonth1,mDay1);
+                                    calendar1.set(mYear1,mMonth1,mDay1);
                                 }
-                            }, mYear, mMonth, mDay );
+                            }, mYear1, mMonth1, mDay1 );
                             datePickerDialog.getDatePicker().setMinDate(calendar.getTimeInMillis());
                             datePickerDialog.show ();
                         }
@@ -138,13 +142,38 @@ public class HomeFragment extends Fragment {
                                     etChonNgayVe.setText ( dayOfMonth + "-" + String.format("%02d",month+1) + "-" + year );
                                 }
                             }, mYear1, mMonth1, mDay1 );
-                            datePickerDialog.getDatePicker().setMinDate(calendar.getTimeInMillis());
+                            datePickerDialog.getDatePicker().setMinDate(calendar1.getTimeInMillis());
                             datePickerDialog.show ();
+
+                        }
+                    });
+                    btnTimChuyenBay.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            if (etChonDiemKH.getText().toString().isEmpty() || etChonDiemDen.getText().toString().isEmpty() || etChonNgayDi.getText().toString().isEmpty()||etChonNgayVe.getText().toString().isEmpty()|| etNhapSoLuongHK.getText().toString().isEmpty()){
+                                etChonDiemKH.setError("Vui lòng chọn điểm khởi hành");
+                                etChonDiemDen.setError("Vui lòng chọn điểm đến");
+                                etNhapSoLuongHK.setError("Vui lòng nhập số lượng người");
+                                etChonNgayDi.setError("Vui lòng nhập ngày về");
+                                etChonNgayVe.setError("Vui lòng chọn ngày về");
+                            }
+                            else {
+                                String Soluongnguoi = etNhapSoLuongHK.getText().toString().trim();
+                                String DiemKH = etChonDiemKH.getText().toString().trim();
+                                String DiemDen = etChonDiemDen.getText().toString().trim();
+                                intent = new Intent(getActivity(), ChuyenDiCuaBanActivity.class);
+                                BienTam bienTam = new BienTam(DiemKH,DiemDen,SanbayDi,SanBayVe,etChonNgayDi.getText().toString().trim(),Soluongnguoi,etChonNgayVe.getText().toString().trim());
+                                intent.putExtra("BienTam", bienTam);
+                                intent.putExtra("TongSL",SLTong);
+                                //onPause();
+                                startActivity(intent);
+                            }
 
                         }
                     });
 
                 } else if (checkedId == R.id.rbMotChieu){
+                    etChonNgayVe.setText(null);
                     etChonNgayVe.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
@@ -154,7 +183,9 @@ public class HomeFragment extends Fragment {
                     etChonNgayDi.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-
+                            mYear = calendar.get ( Calendar.YEAR );
+                            mMonth = calendar.get ( Calendar.MONTH );
+                            mDay = calendar.get ( Calendar.DAY_OF_MONTH );
                             //show dialog
                             datePickerDialog = new DatePickerDialog ( getActivity(), new DatePickerDialog.OnDateSetListener () {
                                 @Override
@@ -162,15 +193,39 @@ public class HomeFragment extends Fragment {
 
                                     etChonNgayDi.setText ( dayOfMonth + "-" + String.format("%02d",month+1) + "-" + year );
                                     mYear1 = year;
-                                    mMonth1 = month ;
+                                    mMonth1 = month;
                                     mDay1 = dayOfMonth;
-                                    calendar.set(mYear1,mMonth1-1,mDay1);
                                 }
-                            }, mYear, mMonth, mDay );
+                            }, mYear1, mMonth1, mDay1 );
                             datePickerDialog.getDatePicker().setMinDate(calendar.getTimeInMillis());
                             datePickerDialog.show ();
                         }
                     });
+                    btnTimChuyenBay.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            if (etChonDiemKH.getText().toString().isEmpty() || etChonDiemDen.getText().toString().isEmpty() || etChonNgayDi.getText().toString().isEmpty()|| etNhapSoLuongHK.getText().toString().isEmpty()){
+                                etChonDiemKH.setError("Vui lòng chọn điểm khởi hành");
+                                etChonDiemDen.setError("Vui lòng chọn điểm đến");
+                                etNhapSoLuongHK.setError("Vui lòng nhập số lượng người");
+                                etChonNgayDi.setError("Vui lòng nhập ngày về");
+                            }
+                            else {
+                                String Soluongnguoi = etNhapSoLuongHK.getText().toString().trim();
+                                String DiemKH = etChonDiemKH.getText().toString().trim();
+                                String DiemDen = etChonDiemDen.getText().toString().trim();
+                                String NgayVe = null;
+                                intent = new Intent(getActivity(), ChuyenDiCuaBanActivity.class);
+                                BienTam bienTam = new BienTam(DiemKH,DiemDen,SanbayDi,SanBayVe,etChonNgayDi.getText().toString().trim(),Soluongnguoi,NgayVe);
+                                intent.putExtra("BienTam", bienTam);
+                                intent.putExtra("TongSL",SLTong);
+                                //onPause();
+                                startActivity(intent);
+                            }
+
+                        }
+                    });
+
                 }
             }
         });
@@ -197,24 +252,7 @@ public class HomeFragment extends Fragment {
                 mlauncher.launch(intent);
             }
         });
-        btnTimChuyenBay.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String Soluongnguoi = etNhapSoLuongHK.getText().toString().trim();
-                String DiemKH = etChonDiemKH.getText().toString().trim();
-                String DiemDen = etChonDiemDen.getText().toString().trim();
-                Intent intent = new Intent(getActivity(), ChuyenDiCuaBanActivity.class);
-                intent.putExtra("SoLuongNguoi",Soluongnguoi);
-                intent.putExtra("DiemKH",DiemKH);
-                intent.putExtra("DiemVe",DiemDen);
-                intent.putExtra("NgayDi",etChonNgayDi.getText().toString().trim());
-                intent.putExtra("NgayVe",etChonNgayVe.getText().toString().trim());
-                intent.putExtra("MaTPdi",SanbayDi);
-                intent.putExtra("MaTPve",SanBayVe);
-                //onPause();
-                startActivity(intent);
-            }
-        });
+
     }
 
 
@@ -224,6 +262,7 @@ public class HomeFragment extends Fragment {
         SLNL = Integer.parseInt(SLNL1);
         SLTE = Integer.parseInt(SLTE1);
         SLEB =Integer.parseInt(SLEB1);
+        SLTong = SLNL+SLTE;
     }
 
     private void clickOpenBottomSheetFragment() {

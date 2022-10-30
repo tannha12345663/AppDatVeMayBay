@@ -61,12 +61,13 @@ public class DiemDenActivity extends AppCompatActivity implements CountryVNAdapt
         List<CountryVN> filterdList = new ArrayList<>();
         for (CountryVN countryVN : countryDiemden){
             if (countryVN.getNameTP().toLowerCase().contains(charString.toLowerCase())
-                    || countryVN.getSanBay().contains(charString)){
+                    || countryVN.getSanBay().toLowerCase().contains(charString.toLowerCase())){
                 filterdList.add(countryVN);
             }
         }
         if (filterdList.isEmpty()){
             Toast.makeText(this, "Không tìm thấy dữ liệu", Toast.LENGTH_SHORT).show();
+            countryVNAdapter.setCountryFilter(filterdList);
         }else {
             countryVNAdapter.setCountryFilter(filterdList);
         }

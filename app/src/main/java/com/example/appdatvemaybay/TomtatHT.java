@@ -67,6 +67,11 @@ public class TomtatHT extends AppCompatActivity implements TicketAdapter.Listene
         imgBackHome7.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.putExtra("Ticketve",ticketve.getMaVe());
+                intent.putExtra("Ticketdi",ticketdi.getMaVe());
+                intent.putExtra("flag",1);
+                setResult(RESULT_OK,intent);
                 onBackPressed();
             }
         });
@@ -150,7 +155,6 @@ public class TomtatHT extends AppCompatActivity implements TicketAdapter.Listene
 //
 //            }
 //        });
-
         myRef.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
@@ -188,8 +192,6 @@ public class TomtatHT extends AppCompatActivity implements TicketAdapter.Listene
                     if (ticketve==null){
                         ticketve=snapshot1.getValue(Ticket.class);
                     }
-
-
                 }
                 intent=getIntent();
                 Locale localeVN = new Locale("vi", "VN");

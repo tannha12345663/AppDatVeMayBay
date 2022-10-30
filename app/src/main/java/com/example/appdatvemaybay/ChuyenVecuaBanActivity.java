@@ -8,6 +8,10 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -25,6 +29,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.text.NumberFormat;
 import java.util.ArrayList;
@@ -45,6 +50,19 @@ public class ChuyenVecuaBanActivity extends AppCompatActivity implements TicketA
     DatabaseReference myRef;
     FirebaseUser user;
     int SLTong;
+    String Ticketdi;
+    ActivityResultLauncher<Intent> mlauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
+            new ActivityResultCallback<ActivityResult>() {
+                @Override
+                public void onActivityResult(ActivityResult result) {
+                    if (result.getResultCode() == DiemKhoiHanhActivity.RESULT_OK) {
+                        if (result.getData().getIntExtra("flag", 0) == 1) {
+                            Ticketdi=result.getData().getStringExtra("Ticketdi");
+
+                        }
+                    }
+                }
+            });
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,6 +76,8 @@ public class ChuyenVecuaBanActivity extends AppCompatActivity implements TicketA
         imgBack04.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                myRef=database.getReference("DSorder");
+                myRef.child(Ticketdi).removeValue();
                 onBackPressed();
             }
         });
@@ -157,7 +177,7 @@ public class ChuyenVecuaBanActivity extends AppCompatActivity implements TicketA
         myRef.child(ticket.getMaVe()).setValue(ticket);
         Intent intent = new Intent(ChuyenVecuaBanActivity.this,ThongtinKH.class);
         intent.putExtra("MaveKH",MaVe);
-        startActivity(intent);
+        mlauncher.launch(intent);
 
     }
 }

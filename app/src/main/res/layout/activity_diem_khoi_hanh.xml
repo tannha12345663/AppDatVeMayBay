@@ -4,48 +4,51 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".DiemKhoiHanhActivity">
+    tools:context=".DiemKhoiHanhActivity"
+    android:background="@drawable/whitesky">
 
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="@color/Red"
+        android:background="#270E0000"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        android:weightSum="10">
 
 
         <ImageButton
             android:id="@+id/imgBackHome"
+            android:layout_weight="1"
             android:layout_width="?attr/actionBarSize"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/selectableItemBackgroundBorderless"
-            android:src="@drawable/ic_baseline_close_24" />
+            android:src="@drawable/ic_baseline_close_24"
+            app:tint="@color/black" />
 
         <TextView
             android:id="@+id/nameToolbar"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:layout_marginStart="15dp"
-            android:layout_weight="1"
-            android:gravity="center"
+            android:layout_weight="9"
+            android:fontFamily="monospace"
+            android:gravity="left"
             android:text="CHỌN ĐIỂM KHỞI HÀNH"
+            android:textSize="20dp"
             android:textAppearance="@style/TextAppearance.AppCompat.Title"
-            android:textColor="@android:color/white"
-            android:textStyle="bold" />
-
+            android:textColor="@color/black"
+            android:textStyle="bold"/>
 
         <ImageView
             android:id="@+id/closeBtn"
             android:layout_width="?attr/actionBarSize"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/selectableItemBackgroundBorderless"
-
+            android:layout_weight="1"
             />
-
 
     </LinearLayout>
 
@@ -59,7 +62,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/searchTP" />
+        app:layout_constraintTop_toBottomOf="@+id/searchTP"
+        />
 
     <SearchView
         android:id="@+id/searchTP"
@@ -68,8 +72,9 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
-        android:iconifiedByDefault="false"
         android:background="@drawable/search_view_bg"
+        android:contextClickable="false"
+        android:iconifiedByDefault="false"
         android:queryHint="Vui lòng chọn điểm khởi hành"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"

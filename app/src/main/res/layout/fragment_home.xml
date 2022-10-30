@@ -193,12 +193,14 @@
                 android:id="@+id/etNhapSoLuongHK"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
                 android:background="#A9F1A2A2"
                 android:drawableLeft="@drawable/ic_baseline_person_24"
                 android:focusable="false"
+                android:gravity="center"
                 android:hint="Số lượng hành khách"
-                />
+                android:rotation="0"
+                android:rotationX="0"
+                android:rotationY="0" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button
@@ -213,9 +215,10 @@
             android:backgroundTintMode="src_in"
             android:fontFamily="monospace"
             android:gravity="center"
-            android:rotation="-4"
-            android:rotationX="29"
-            android:text="Tìm chuyến bay"/>
+            android:rotation="1"
+            android:rotationX="-24"
+            android:rotationY="14"
+            android:text="Tìm chuyến bay" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

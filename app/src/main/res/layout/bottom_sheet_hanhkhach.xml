@@ -4,13 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@drawable/chonhanhkhach">
 
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/purple_500"
+        android:background="#520B0315"
         android:orientation="horizontal"
         >
 
@@ -41,14 +42,14 @@
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:src="@drawable/ic_baseline_close_24"
-           />
+            />
 
 
     </LinearLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="252dp"
+        android:layout_height="310dp"
 
         >
 
@@ -56,14 +57,15 @@
             android:id="@+id/igGiamNL"
             android:layout_width="36dp"
             android:layout_height="34dp"
-            android:layout_marginStart="80dp"
-            android:layout_marginEnd="8dp"
+            android:layout_marginStart="62dp"
             app:layout_constraintBottom_toBottomOf="@+id/igThemNL"
-            app:layout_constraintEnd_toStartOf="@+id/SLNL"
+            app:layout_constraintEnd_toStartOf="@+id/igThemNL"
+            app:layout_constraintHorizontal_bias="0.082"
             app:layout_constraintStart_toEndOf="@+id/textView8"
             app:layout_constraintTop_toTopOf="@+id/igThemNL"
-            app:layout_constraintVertical_bias="1.0"
-            app:srcCompat="@drawable/ic_baseline_remove_circle_outline_24" />
+            app:layout_constraintVertical_bias="0.0"
+            app:srcCompat="@drawable/ic_baseline_remove_circle_outline_24"
+            app:tint="#B3CF4E" />
 
         <TextView
             android:id="@+id/SLTE"
@@ -72,6 +74,7 @@
             android:layout_marginStart="15dp"
             android:layout_marginEnd="16dp"
             android:text="0"
+            android:textColor="#FFAB40"
             android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@+id/igThemTE"
@@ -86,6 +89,7 @@
             android:layout_marginTop="2dp"
             android:layout_marginEnd="2dp"
             android:text="0"
+            android:textColor="#FFAB40"
             android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@+id/igThemEB"
@@ -103,7 +107,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/textView10"
             app:layout_constraintVertical_bias="0.0"
-            app:srcCompat="@drawable/ic_baseline_add_circle_outline_24" />
+            app:srcCompat="@drawable/ic_baseline_add_circle_outline_24"
+            app:tint="#B3CF4E" />
 
         <ImageView
             android:id="@+id/igThemEB"
@@ -112,17 +117,20 @@
             app:layout_constraintBottom_toBottomOf="@+id/textView11"
             app:layout_constraintEnd_toEndOf="@+id/igThemTE"
             app:layout_constraintTop_toTopOf="@+id/textView11"
-            app:srcCompat="@drawable/ic_baseline_add_circle_outline_24" />
+            app:srcCompat="@drawable/ic_baseline_add_circle_outline_24"
+            app:tint="#B3CF4E" />
 
         <ImageView
             android:id="@+id/imageView3"
-            android:layout_width="38dp"
-            android:layout_height="56dp"
+            android:layout_width="48dp"
+            android:layout_height="66dp"
+            app:tint="#B54C4545"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_baseline_man_24" />
+            app:srcCompat="@drawable/ic_baseline_man_24"
+             />
 
         <TextView
             android:id="@+id/textView8"
@@ -130,7 +138,8 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:text="Người Lớn"
-            android:textSize="30sp"
+            android:textColor="@color/black"
+            android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@+id/imageView3"
             app:layout_constraintStart_toEndOf="@+id/imageView3"
@@ -142,7 +151,8 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:text="Trẻ em"
-            android:textSize="30sp"
+            android:textColor="@color/black"
+            android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@+id/imageView6"
             app:layout_constraintStart_toEndOf="@+id/imageView6"
@@ -154,7 +164,8 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:text="Em bé"
-            android:textSize="30sp"
+            android:textColor="@color/black"
+            android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@+id/imageView7"
             app:layout_constraintStart_toEndOf="@+id/imageView7"
@@ -165,14 +176,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="2dp"
-            android:layout_marginEnd="16dp"
             android:text="1"
+            android:textColor="#FFAB40"
             android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@+id/igThemNL"
             app:layout_constraintEnd_toStartOf="@+id/igThemNL"
+            app:layout_constraintHorizontal_bias="0.52"
+            app:layout_constraintStart_toEndOf="@+id/igGiamNL"
             app:layout_constraintTop_toTopOf="@+id/igThemNL"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintVertical_bias="0.2" />
 
         <ImageView
             android:id="@+id/igThemNL"
@@ -182,7 +195,8 @@
             app:layout_constraintBottom_toBottomOf="@+id/textView8"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/textView8"
-            app:srcCompat="@drawable/ic_baseline_add_circle_outline_24" />
+            app:srcCompat="@drawable/ic_baseline_add_circle_outline_24"
+            app:tint="#B3CF4E" />
 
         <ImageView
             android:id="@+id/igGiamTE"
@@ -193,7 +207,8 @@
             app:layout_constraintStart_toStartOf="@+id/igGiamNL"
             app:layout_constraintTop_toTopOf="@+id/igThemTE"
             app:layout_constraintVertical_bias="0.0"
-            app:srcCompat="@drawable/ic_baseline_remove_circle_outline_24" />
+            app:srcCompat="@drawable/ic_baseline_remove_circle_outline_24"
+            app:tint="#B3CF4E" />
 
         <ImageView
             android:id="@+id/igGiamEB"
@@ -204,12 +219,14 @@
             app:layout_constraintStart_toStartOf="@+id/igGiamNL"
             app:layout_constraintTop_toTopOf="@+id/igThemEB"
             app:layout_constraintVertical_bias="1.0"
-            app:srcCompat="@drawable/ic_baseline_remove_circle_outline_24" />
+            app:srcCompat="@drawable/ic_baseline_remove_circle_outline_24"
+            app:tint="#B3CF4E" />
 
         <ImageView
             android:id="@+id/imageView6"
-            android:layout_width="38dp"
-            android:layout_height="56dp"
+            android:layout_width="48dp"
+            android:layout_height="66dp"
+            app:tint="#B54C4545"
             android:layout_marginTop="8dp"
             app:layout_constraintEnd_toEndOf="@+id/imageView3"
             app:layout_constraintHorizontal_bias="1.0"
@@ -219,8 +236,9 @@
 
         <ImageView
             android:id="@+id/imageView7"
-            android:layout_width="38dp"
-            android:layout_height="56dp"
+            android:layout_width="48dp"
+            android:layout_height="66dp"
+            app:tint="#B54C4545"
             android:layout_marginTop="8dp"
             app:layout_constraintEnd_toEndOf="@+id/imageView6"
             app:layout_constraintHorizontal_bias="1.0"
@@ -241,6 +259,34 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/textView23"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=">= 12 tuổi"
+            android:textSize="17dp"
+            app:layout_constraintStart_toStartOf="@+id/textView8"
+            app:layout_constraintTop_toBottomOf="@+id/textView8"
+            tools:ignore="MissingConstraints" />
+
+        <TextView
+            android:id="@+id/textView24"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2 - 11 tuổi"
+            android:textSize="17dp"
+            app:layout_constraintStart_toStartOf="@+id/textView10"
+            app:layout_constraintTop_toBottomOf="@+id/textView10" />
+
+        <TextView
+            android:id="@+id/textView25"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Dưới 2 tuổi (free)"
+            android:textSize="17dp"
+            app:layout_constraintStart_toStartOf="@+id/textView11"
+            app:layout_constraintTop_toBottomOf="@+id/textView11" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </LinearLayout>

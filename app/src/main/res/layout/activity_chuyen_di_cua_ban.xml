@@ -4,14 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ChuyenDiCuaBanActivity">
+    tools:context=".ChuyenDiCuaBanActivity"
+    android:background="@drawable/whitesky">
 
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="@color/Red"
         android:orientation="horizontal"
+        android:background="#520B0315"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -54,11 +55,11 @@
         android:id="@+id/textView14"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="12dp"
-        android:text="Lịch trình :"
-        android:textSize="20sp"
+        android:layout_marginTop="6dp"
+        android:text="Lịch trình"
+        android:textSize="18sp"
         android:textStyle="italic"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
@@ -66,32 +67,31 @@
         android:id="@+id/tvLichTrinhdi"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
+        android:layout_marginTop="6dp"
         android:text="Hồ Chí Minh đến Hà Nội"
-        android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="@+id/textView14"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.024"
-        app:layout_constraintStart_toEndOf="@+id/textView14"
-        app:layout_constraintTop_toTopOf="@+id/textView14"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView14" />
 
     <TextView
         android:id="@+id/textView15"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:text="Giá dưới đây đã bao gồm đầy đủ thuế, phí"
+        android:layout_marginTop="6dp"
+        android:text="Giá dưới đây đã bao gồm đầy đủ thuế và phí"
+        android:textSize="10dp"
         app:layout_constraintBottom_toTopOf="@+id/rcChuyenDi"
-        app:layout_constraintStart_toStartOf="@+id/textView14"
         app:layout_constraintTop_toBottomOf="@+id/tvLichTrinhdi"
-        app:layout_constraintVertical_bias="0.05" />
+        app:layout_constraintVertical_bias="0.0"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="109dp" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rcChuyenDi"
         android:layout_width="match_parent"
         android:layout_height="500dp"
-        android:layout_marginTop="84dp"
+        android:layout_marginTop="89dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"

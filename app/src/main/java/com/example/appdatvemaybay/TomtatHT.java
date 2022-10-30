@@ -84,13 +84,20 @@ public class TomtatHT extends AppCompatActivity implements TicketAdapter.Listene
         btnThanhToan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FirebaseDatabase database = FirebaseDatabase.getInstance();
-                DatabaseReference myRef = database.getReference("DSorder");
-                myRef.removeValue();
-                luugiaodich();
-                Toast.makeText(TomtatHT.this, "Chúc mừng bạn đã thanh toán thành công", Toast.LENGTH_SHORT).show();
-                intent = new Intent(TomtatHT.this,MainActivity.class);
-                startActivity(intent);
+                if (user!=null){
+                    FirebaseDatabase database = FirebaseDatabase.getInstance();
+                    DatabaseReference myRef = database.getReference("DSorder");
+                    myRef.removeValue();
+                    luugiaodich();
+                    Toast.makeText(TomtatHT.this, "Chúc mừng bạn đã thanh toán thành công", Toast.LENGTH_SHORT).show();
+                    intent = new Intent(TomtatHT.this,MainActivity.class);
+                    startActivity(intent);
+                }
+                else {
+                    Toast.makeText(TomtatHT.this, "Chúc mừng bạn đã thanh toán thành công \n Vui lòng kiểm tra lại email của bạn", Toast.LENGTH_SHORT).show();
+                    intent = new Intent(TomtatHT.this,MainActivity.class);
+                    startActivity(intent);
+                }
 
             }
         });

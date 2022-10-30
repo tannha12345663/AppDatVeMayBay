@@ -1,9 +1,16 @@
 package com.example.appdatvemaybay.fragment.FragmentAccount;
 
+import static com.example.appdatvemaybay.MainActivity.MY_REQUEST_CODE;
+
+import android.Manifest;
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.ContentResolver;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 
 import androidx.activity.result.ActivityResult;
@@ -14,6 +21,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,6 +49,7 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -64,7 +73,7 @@ public class InfoAccFragment extends Fragment {
     Uri mUri;
     //Khai báo màn hình thông báo người dùng
     ProgressDialog progressDialog;
-    //Mở Lấy dữ liệu ảnh cho phép back khum bị lỗi (Đã fix Decorated)
+    //Mở Lấy dữ liệu ảnh cho phép back khum bị lỗi
     public  ActivityResultLauncher<Intent> mActivityResultLauncher = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(),
             new ActivityResultCallback<ActivityResult>() {
@@ -74,16 +83,13 @@ public class InfoAccFragment extends Fragment {
                         Intent data = result.getData();
                         if (data.getData() != null) {
                             mUri = data.getData();
-                            img_avatar.setImageURI(mUri);
-
-                            final StorageReference reference = storage.getReference().child("profile_picture")
-                                    .child(FirebaseAuth.getInstance().getUid());
-                            reference.putFile(mUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                                @Override
-                                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                                    Toast.makeText(getContext(), "Uploaded", Toast.LENGTH_SHORT).show();
-                                }
-                            });
+                            Bitmap bitmap = null;
+                            try {
+                                bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(),mUri);
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                            img_avatar.setImageBitmap(bitmap);
                         }
                     }
                 }
@@ -117,7 +123,8 @@ public class InfoAccFragment extends Fragment {
             return;
         }
         edtEmail.setText(user.getEmail());
-        Glide.with(this).load(user.getPhotoUrl()).error(R.drawable.ic_baseline_account_circle_24).into(img_avatar);
+        Uri photoUrl = user.getPhotoUrl();
+        Glide.with(getActivity()).load(photoUrl).error(R.drawable.ic_baseline_account_circle_24).into(img_avatar);
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myData = database.getReference("ListUser");
         myData.child(user.getUid()).child("phone").addValueEventListener(new ValueEventListener() {
@@ -164,10 +171,7 @@ public class InfoAccFragment extends Fragment {
         img_avatar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent();
-                intent.setAction(Intent.ACTION_GET_CONTENT);
-                intent.setType("image/*");
-                mActivityResultLauncher.launch(intent);
+                onClickRequestPermission();
 
             }
         });
@@ -183,6 +187,23 @@ public class InfoAccFragment extends Fragment {
             }
         });
     }
+
+    private void onClickRequestPermission() {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M){
+            openGallery();
+            return;
+        }else if (getActivity().checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE)== PackageManager.PERMISSION_GRANTED){
+            //Nếu như người dùng cho phép
+            openGallery();
+        }
+        else {
+            String [] permissions = {Manifest.permission.READ_EXTERNAL_STORAGE};
+            getActivity().requestPermissions(permissions,MY_REQUEST_CODE);
+        }
+    }
+
+
+
 
     private void onClickUpdateProfile(User user_local,String strUID) {
 
@@ -225,7 +246,25 @@ public class InfoAccFragment extends Fragment {
             }
         });
     };
-
+    // Phần xử lý cấp quyền truy cập file
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == MY_REQUEST_CODE){
+            if (grantResults.length >0 && grantResults[0]==PackageManager.PERMISSION_GRANTED){
+                //Cho phép mở nơi chứa ảnh
+                openGallery();
+            } else {
+                Toast.makeText(getActivity(), "Không thể mở ảnh . Vui lòng cấp quyền !", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+    private void openGallery() {
+                Intent intent = new Intent();
+                intent.setAction(Intent.ACTION_GET_CONTENT);
+                intent.setType("image/*");
+                mActivityResultLauncher.launch(intent);
+    }
 
 }
 

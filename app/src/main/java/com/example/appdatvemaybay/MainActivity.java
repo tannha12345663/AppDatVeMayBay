@@ -16,6 +16,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager.widget.ViewPager;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -37,6 +38,7 @@ import com.example.appdatvemaybay.fragment.HomeFragment;
 import com.example.appdatvemaybay.fragment.NotifyFragment;
 import com.example.appdatvemaybay.fragment.QuestFragment;
 import com.example.appdatvemaybay.fragment.SettingFragment;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -45,6 +47,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
 import java.io.IOException;
 import java.util.List;
@@ -82,8 +86,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public static final int FRAGMENT_QUEST=3;
     public static final int FRAGMENT_SETTING=4;
     public static final int FRAGMENT_YOURACCOUNT=5;
+    //Request persmission ReadStorage
     private int mCurrentFrament = FRAGMENT_HOME;
     NavigationView navigationView;
+    //Intent loại 3 gọi đến màn hình lưu ảnh rồi trả về
+    //Mở Lấy dữ liệu ảnh cho phép back khum bị lỗi
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -284,20 +292,5 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         homeFragment.RecieveFromFragmentBottmSheet(SLNL,SLTE,SLEB);
     }
 
-
-
-    //Phần xử lý cấp quyền truy cập file
-//    @Override
-//    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-//        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-//        if (requestCode == MY_REQUEST_CODE){
-//            if (grantResults.length >0 && grantResults[0]==PackageManager.PERMISSION_GRANTED){
-//                //Cho phép mở nơi chứa ảnh
-//                openGallery();
-//            } else {
-//                Toast.makeText(this, "Không thể mở ảnh . Vui lòng cấp quyền !", Toast.LENGTH_SHORT).show();
-//            }
-//        }
-//    }
 
 }

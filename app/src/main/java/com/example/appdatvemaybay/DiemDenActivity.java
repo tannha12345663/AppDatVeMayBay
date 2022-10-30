@@ -45,33 +45,22 @@ public class DiemDenActivity extends AppCompatActivity implements CountryVNAdapt
         searchTPden.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
+                countryVNAdapter.getFilter().filter(query);
                 return false;
             }
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                fileList(newText);
+                countryVNAdapter.getFilter().filter(newText);
+                if (newText.isEmpty()){
+                    Toast.makeText(DiemDenActivity.this, "Không tìm thấy dữ liệu", Toast.LENGTH_SHORT).show();
+                }
                 return false;
             }
         });
     }
 
-    private void fileList(String newText) {
-        String charString = newText.toString().trim();
-        List<CountryVN> filterdList = new ArrayList<>();
-        for (CountryVN countryVN : countryDiemden){
-            if (countryVN.getNameTP().toLowerCase().contains(charString.toLowerCase())
-                    || countryVN.getSanBay().toLowerCase().contains(charString.toLowerCase())){
-                filterdList.add(countryVN);
-            }
-        }
-        if (filterdList.isEmpty()){
-            Toast.makeText(this, "Không tìm thấy dữ liệu", Toast.LENGTH_SHORT).show();
-            countryVNAdapter.setCountryFilter(filterdList);
-        }else {
-            countryVNAdapter.setCountryFilter(filterdList);
-        }
-    }
+
 
     private  void innitUI(){
         imgBackHome=findViewById(R.id.imgBackHome4);

@@ -15,7 +15,7 @@ import com.example.appdatvemaybay.R;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CountryVNAdapter extends RecyclerView.Adapter<CountryVNAdapter.CountryVH> {
+public class CountryVNAdapter extends RecyclerView.Adapter<CountryVNAdapter.CountryVH> implements Filterable {
     List<CountryVN> countryVNList;
     Listener listener;
     List<CountryVN> countryFilter;
@@ -23,10 +23,6 @@ public class CountryVNAdapter extends RecyclerView.Adapter<CountryVNAdapter.Coun
         this.countryVNList = countryVNList;
         this.listener = listener;
         this.countryFilter=countryVNList;
-    }
-    public void setCountryFilter(List<CountryVN> filterCountry){
-        this.countryVNList = filterCountry;
-        notifyDataSetChanged();
     }
     @NonNull
     @Override
@@ -37,7 +33,7 @@ public class CountryVNAdapter extends RecyclerView.Adapter<CountryVNAdapter.Coun
 
     @Override
     public void onBindViewHolder(@NonNull CountryVH holder, int position) {
-        CountryVN countryVN = countryVNList.get(position);
+        CountryVN countryVN = countryFilter.get(position);
         holder.txTenTP.setText(countryVN.getNameTP());
         holder.txSanBay.setText(countryVN.getSanBay());
         holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -50,9 +46,42 @@ public class CountryVNAdapter extends RecyclerView.Adapter<CountryVNAdapter.Coun
 
     @Override
     public int getItemCount() {
-        return countryVNList.size();
+        return countryFilter.size();
     }
 
+    @Override
+    public Filter getFilter() {
+        return new CountryFilter();
+    }
+    private class CountryFilter extends Filter{
+
+        @Override
+        protected FilterResults performFiltering(CharSequence constraint) {
+            String charString = constraint.toString();
+            if (charString.isEmpty()){
+                countryFilter=countryVNList;
+            }
+            else {
+                List<CountryVN> filterList = new ArrayList<>();
+                for (CountryVN row : countryVNList){
+                    if (row.getNameTP().toLowerCase().contains(charString.toLowerCase())
+                            || row.getSanBay().toLowerCase().contains(charString.toLowerCase())){
+                        filterList.add(row);
+                    }
+                }
+                countryFilter = filterList;
+            }
+            FilterResults filterResults = new FilterResults();
+            filterResults.values=countryFilter;
+            return filterResults;
+        }
+
+        @Override
+        protected void publishResults(CharSequence constraint, FilterResults results) {
+            countryFilter = (List<CountryVN>) results.values;
+            notifyDataSetChanged();
+        }
+    }
 
     class CountryVH extends RecyclerView.ViewHolder{
         TextView txTenTP, txSanBay;

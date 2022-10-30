@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class InnitDataCountry extends Application {
-    public static List<CountryVN> data;
+    public static List<CountryVN> data = new ArrayList<>();
 
     @Override
     public void onCreate() {
@@ -16,6 +16,9 @@ public class InnitDataCountry extends Application {
         }
     }
     public static List<CountryVN> ininitCountry(){
+        if (data.size()>0){
+            data.removeAll(data);
+        }
         data.add(new CountryVN("Hồ Chí Minh","SGN"));
         data.add(new CountryVN("Hà Nội","HAN"));
         data.add(new CountryVN("Buôn Ma Thuột - Đăk Lăk","BMV"));

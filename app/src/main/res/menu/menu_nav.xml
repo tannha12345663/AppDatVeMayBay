@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
+<menu xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <group android:checkableBehavior="single">
@@ -30,8 +31,8 @@
             <item android:id="@+id/nav_acc_profile"
                 android:title="Thông tin tài khoản"
                 android:icon="@drawable/ic_baseline_person_24"
-                ></item>
-            <item></item>
+                tools:ignore="DuplicateIds"></item>
+
         </menu>
     </item>
 

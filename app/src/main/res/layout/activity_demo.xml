@@ -6,26 +6,33 @@
     android:layout_height="match_parent"
     tools:context=".DemoActivity">
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="135dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="162dp"
-        android:layout_marginBottom="24dp"
-        app:layout_constraintBottom_toTopOf="@+id/textView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/avatar" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@drawable/bg_sky_blue">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginBottom="320dp"
-        android:text="Bay cùng Nhã Trương"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/imageView"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="156dp"
+            android:layout_height="166dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="190dp"
+            android:layout_marginBottom="20dp"
+
+            app:srcCompat="@drawable/astronaut" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="serif"
+            android:gravity="center"
+            android:text="Bay cùng Nhã Trương"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textColor="#E1D82F"
+            android:textSize="30dp"
+            android:textStyle="bold|italic" />
+    </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

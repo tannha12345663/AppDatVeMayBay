@@ -4,13 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ThongtinKH">
+    tools:context=".ThongtinKH"
+    android:background="@drawable/whitesky">
 
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="@color/Red"
+        android:background="#4A0B0315"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -32,7 +33,7 @@
             android:layout_marginStart="15dp"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="Trang thông tin hành khách"
+            android:text="Xác nhận thông tin"
             android:textAppearance="@style/TextAppearance.AppCompat.Title"
             android:textColor="@android:color/white"
             android:textStyle="bold" />
@@ -51,7 +52,10 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
         android:text="Thông tin liên hệ"
-        android:textSize="20sp"
+        android:textStyle="bold"
+        android:fontFamily="serif"
+        android:textColor="#83633F"
+        android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
@@ -64,6 +68,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
+        android:justificationMode="inter_word"
         android:text="Thông tin vé và chuyến bay của bạn sẽ được gửi đến số điện thoại và email dưới đây"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -86,6 +91,7 @@
             android:layout_height="wrap_content"
             android:drawableEnd="@drawable/ic_baseline_phone_24"
             android:hint="Số điện thoại"
+            android:drawableTint="#856742"
             android:inputType="phone" />
 </com.google.android.material.textfield.TextInputLayout>
 
@@ -104,7 +110,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:drawableEnd="@drawable/ic_baseline_person_24"
-            android:hint="Họ tên hành khách" />
+            android:hint="Họ tên hành khách"
+            android:drawableTint="#856742"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -123,7 +130,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:drawableEnd="@drawable/ic_baseline_email_24"
-            android:hint="Địa chỉ email" />
+            android:hint="Địa chỉ email"
+            android:drawableTint="#856742"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -142,7 +150,8 @@
             android:layout_height="wrap_content"
             android:drawableEnd="@drawable/ic_baseline_featured_video_24"
             android:hint="CMND/CCCD/ Hộ chiếu"
-            android:inputType="number" />
+            android:inputType="number"
+            android:drawableTint="#856742"/>
     </com.google.android.material.textfield.TextInputLayout>
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayout8"
@@ -160,14 +169,18 @@
             android:layout_height="wrap_content"
             android:drawableEnd="@drawable/ic_baseline_calendar_month_24"
             android:hint="Ví dụ: 26/10/2015"
-            android:inputType="datetime" />
+            android:inputType="datetime"
+            android:focusable="false"
+            android:drawableTint="#856742"/>
     </com.google.android.material.textfield.TextInputLayout>
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnConfirm"
-        android:layout_width="wrap_content"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="44dp"
+        android:background="@drawable/retangle_button"
+        android:textColor="@color/white"
         android:text="Xác nhận thông tin"
         app:layout_constraintEnd_toEndOf="@+id/textInputLayout7"
         app:layout_constraintHorizontal_bias="0.494"

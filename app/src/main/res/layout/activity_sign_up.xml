@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SignUpActivity">
+    tools:context=".SignUpActivity"
+    android:background="@drawable/whitesky">
 
     <TextView
         android:id="@+id/textView2"
@@ -12,7 +13,10 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="64dp"
         android:text="ĐĂNG KÝ AIR PLAN"
-        android:textSize="20sp"
+        android:fontFamily="serif"
+        android:textStyle="bold"
+        android:textColor="#856742"
+        android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
@@ -80,12 +84,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etPhone_dk" />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnDangKy"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:text="Đăng ký tài khoản"
+        android:background="@drawable/retangle_button"
+        android:textColor="@color/white"
+        android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="@+id/etPass_dk"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/etPass_dk"
@@ -95,10 +102,16 @@
         android:id="@+id/tvBackLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="14dp"
+        android:layout_marginTop="32dp"
         android:text="Quay lại đăng nhập"
+        android:textSize="20dp"
+        android:textStyle="italic"
+        android:textColor="#83633F"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnDangKy" />
+        app:layout_constraintTop_toBottomOf="@+id/btnDangKy"
+        app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

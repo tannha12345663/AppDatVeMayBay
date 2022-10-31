@@ -4,17 +4,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".DiemDenActivity">
+    tools:context=".DiemDenActivity"
+    android:background="@drawable/whitesky">
 
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="@color/Red"
+        android:background="#27220404"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        android:weightSum="10">
 
 
         <ImageButton
@@ -22,19 +24,21 @@
             android:layout_width="?attr/actionBarSize"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/selectableItemBackgroundBorderless"
-            android:src="@drawable/ic_baseline_close_24" />
+            android:src="@drawable/ic_baseline_close_24"
+            app:tint="@color/black"
+            android:layout_weight="1"/>
 
         <TextView
             android:id="@+id/nameToolbar"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:layout_marginStart="15dp"
-            android:layout_weight="1"
-            android:gravity="center"
+            android:layout_weight="8"
+            android:fontFamily="monospace"
             android:text="CHỌN ĐIỂM ĐẾN"
+            android:textSize="20dp"
             android:textAppearance="@style/TextAppearance.AppCompat.Title"
-            android:textColor="@android:color/white"
+            android:textColor="@color/black"
             android:textStyle="bold" />
 
 
@@ -43,7 +47,7 @@
             android:layout_width="?attr/actionBarSize"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/selectableItemBackgroundBorderless"
-
+            android:layout_weight="1"
             />
 
 
@@ -58,7 +62,7 @@
         android:layout_marginEnd="16dp"
         android:background="@drawable/search_view_bg"
         android:iconifiedByDefault="false"
-        android:queryHint="Vui lòng chọn điểm khởi hành"
+        android:queryHint="Tìm bằng mã vùng"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"

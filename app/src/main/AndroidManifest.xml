@@ -4,7 +4,7 @@
     package="com.example.appdatvemaybay">
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:name=".Country.InnitDataCountry"
@@ -17,6 +17,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppDatVeMayBay"
         tools:targetApi="31">
+        <activity
+            android:name=".ForgotPasswordActivity"
+            android:exported="false" />
         <activity
             android:name=".TomtatHT"
             android:exported="false" />

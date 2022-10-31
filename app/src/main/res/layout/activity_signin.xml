@@ -74,8 +74,8 @@
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="44dp"
         android:text="Bạn chưa có tài khoản?"
         app:layout_constraintStart_toStartOf="@+id/btnDangNhap"
         app:layout_constraintTop_toBottomOf="@+id/btnDangNhap" />
@@ -99,16 +99,16 @@
         android:id="@+id/tvSkip"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Bỏ qua đăng nhập"
-        android:textColor="#6E6E6C"
         android:drawableLeft="@drawable/ic_baseline_arrow_back_ios_24"
         android:drawableTint="#737473"
+        android:text="Bỏ qua đăng nhập"
+        android:textColor="#6E6E6C"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.134"
+        app:layout_constraintHorizontal_bias="0.145"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvLoginSDT"
-        app:layout_constraintVertical_bias="0.221"
+        app:layout_constraintVertical_bias="0.071"
         tools:ignore="MissingConstraints" />
 
     <TextView
@@ -116,24 +116,55 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="hoặc"
-        tools:layout_editor_absoluteX="166dp"
-        tools:layout_editor_absoluteY="387dp"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/tvLoginSDT"
+        app:layout_constraintEnd_toEndOf="@+id/tvSignup"
+        app:layout_constraintHorizontal_bias="0.629"
+        app:layout_constraintStart_toStartOf="@+id/textView3"
+        app:layout_constraintTop_toBottomOf="@+id/textView3"
+        app:layout_constraintVertical_bias="1.0"
         tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/tvLoginSDT"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="44dp"
+        android:layout_marginBottom="128dp"
         android:padding="5dp"
         android:text="Đăng nhập bằng số điện thoại"
         android:textColor="#866843"
         android:textSize="16sp"
         android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+        app:layout_constraintTop_toBottomOf="@+id/btnDangNhap"
+        app:layout_constraintVertical_bias="0.787" />
+
+    <TextView
+        android:id="@+id/tvForgotPass"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Quên mật khẩu"
+        app:layout_constraintBottom_toTopOf="@+id/tvSignup"
+        app:layout_constraintEnd_toEndOf="@+id/btnDangNhap"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/btnDangNhap"
+        app:layout_constraintTop_toBottomOf="@+id/btnDangNhap"
+        app:layout_constraintVertical_bias="0.473" />
+
+    <View
+        android:id="@+id/view3"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:background="@color/purple_700"
+        app:layout_constraintBottom_toTopOf="@+id/tvSignup"
+        app:layout_constraintEnd_toEndOf="@+id/tvForgotPass"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/tvForgotPass"
+        app:layout_constraintTop_toBottomOf="@+id/tvForgotPass"
+        app:layout_constraintVertical_bias="0.0" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -21,7 +21,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class SigninActivity extends AppCompatActivity {
-    TextView tvDangKy,tv_skip,tvLoginPhone;
+    TextView tvDangKy,tv_skip,tvLoginPhone,tvForgotPass;
     Button btnDangNhap;
     Intent intent;
     EditText etEmail,etPass;
@@ -36,6 +36,7 @@ public class SigninActivity extends AppCompatActivity {
         etEmail=findViewById(R.id.etEmail);
         etPass=findViewById(R.id.etPass);
         tv_skip=findViewById(R.id.tvSkip);
+        tvForgotPass=findViewById(R.id.tvForgotPass);
         tvDangKy = findViewById(R.id.tvSignup);
         tvDangKy.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,6 +71,13 @@ public class SigninActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(SigninActivity.this,SignPhone.class);
+                startActivity(intent);
+            }
+        });
+        tvForgotPass.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(SigninActivity.this,ForgotPasswordActivity.class);
                 startActivity(intent);
             }
         });

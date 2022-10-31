@@ -234,10 +234,8 @@ public class InfoAccFragment extends Fragment {
                     }
                 });
         //Đẩy thông tin người dùng lên ReadlTimeDB
-
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myData = database.getReference("ListUser");
-
         //Định danh user
         myData.child(strUID).setValue(user_local, new DatabaseReference.CompletionListener() {
             @Override
@@ -245,6 +243,7 @@ public class InfoAccFragment extends Fragment {
                 Toast.makeText(mainActivity, "Cập nhật USER thành công ", Toast.LENGTH_SHORT).show();
             }
         });
+
     };
     // Phần xử lý cấp quyền truy cập file
     @Override

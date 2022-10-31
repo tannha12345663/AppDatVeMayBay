@@ -50,7 +50,7 @@ public class ChuyenVecuaBanActivity extends AppCompatActivity implements TicketA
     DatabaseReference myRef;
     FirebaseUser user;
     int SLTong;
-    String Ticketdi;
+    String Ticketdi="";
     ActivityResultLauncher<Intent> mlauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
             new ActivityResultCallback<ActivityResult>() {
                 @Override
@@ -76,8 +76,14 @@ public class ChuyenVecuaBanActivity extends AppCompatActivity implements TicketA
         imgBack04.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                database = FirebaseDatabase.getInstance();
                 myRef=database.getReference("DSorder");
-                myRef.child(Ticketdi).removeValue();
+                if (Ticketdi.isEmpty()){
+                    myRef.removeValue();
+                }
+                else {
+                    myRef.child(Ticketdi).removeValue();
+                }
                 onBackPressed();
             }
         });

@@ -1,5 +1,7 @@
 package com.example.appdatvemaybay.Account_User;
 
+import android.net.Uri;
+
 public class User {
     String UID,Name,Email,Phone;
 
@@ -7,7 +9,7 @@ public class User {
         this.UID = UID;
         this.Name=name;
         this.Email = email;
-        this.Phone = phone;
+        this.Phone=phone;
     }
 
     public String getUID() {

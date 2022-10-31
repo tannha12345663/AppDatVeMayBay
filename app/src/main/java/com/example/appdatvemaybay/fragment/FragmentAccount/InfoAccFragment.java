@@ -124,7 +124,7 @@ public class InfoAccFragment extends Fragment {
         }
         edtEmail.setText(user.getEmail());
         Uri photoUrl = user.getPhotoUrl();
-        Glide.with(getActivity()).load(photoUrl).error(R.drawable.ic_baseline_account_circle_24).into(img_avatar);
+        Glide.with(getActivity()).load(user.getPhotoUrl()).error(R.drawable.ic_baseline_account_circle_24).into(img_avatar);
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myData = database.getReference("ListUser");
         myData.child(user.getUid()).child("phone").addValueEventListener(new ValueEventListener() {

@@ -62,6 +62,7 @@ public class TomtatHT extends AppCompatActivity implements TicketAdapter.Listene
         tvGiaTong=findViewById(R.id.tvGiaTong);
         btnThanhToan=findViewById(R.id.btnThanhToan);
         rcTomTat=findViewById(R.id.rcTomTat);
+        user= FirebaseAuth.getInstance().getCurrentUser();
     }
     private void innitListener() {
         imgBackHome7.setOnClickListener(new View.OnClickListener() {
@@ -95,6 +96,9 @@ public class TomtatHT extends AppCompatActivity implements TicketAdapter.Listene
                 }
                 else {
                     Toast.makeText(TomtatHT.this, "Chúc mừng bạn đã thanh toán thành công \n Vui lòng kiểm tra lại email của bạn", Toast.LENGTH_SHORT).show();
+                    FirebaseDatabase database = FirebaseDatabase.getInstance();
+                    DatabaseReference myRef = database.getReference("DSorder");
+                    myRef.removeValue();
                     intent = new Intent(TomtatHT.this,MainActivity.class);
                     startActivity(intent);
                 }

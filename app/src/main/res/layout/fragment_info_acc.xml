@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragment.FragmentAccount.InfoAccFragment">
+    tools:context=".fragment.FragmentAccount.InfoAccFragment"
+    android:background="@drawable/whitesky">
 
     <!-- TODO: Update blank fragment layout -->
 
@@ -22,6 +23,8 @@
     <EditText
         android:id="@+id/editName"
         android:drawableLeft="@drawable/ic_baseline_person_24"
+        android:drawablePadding="15dp"
+        android:drawableTint="#7F5E3B"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -35,6 +38,8 @@
     <EditText
         android:id="@+id/edit_phone"
         android:drawableLeft="@drawable/ic_baseline_phone_24"
+        android:drawablePadding="15dp"
+        android:drawableTint="#7F5E3B"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -52,6 +57,8 @@
     <EditText
         android:id="@+id/edit_email"
         android:drawableLeft="@drawable/ic_baseline_email_24"
+        android:drawablePadding="15dp"
+        android:drawableTint="#856742"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -65,12 +72,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edit_phone" />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_update_profile"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
         android:text="CẬP NHẬT TÀI KHOẢN"
+        android:background="@drawable/retangle_button"
         app:layout_constraintEnd_toEndOf="@+id/edit_email"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/edit_email"

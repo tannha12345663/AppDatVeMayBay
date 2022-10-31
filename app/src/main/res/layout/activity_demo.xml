@@ -16,10 +16,10 @@
 
         <ImageView
             android:id="@+id/imageView"
-            android:layout_width="250dp"
-            android:layout_height="166dp"
-            android:layout_marginTop="100dp"
+            android:layout_width="300dp"
+            android:layout_height="190dp"
             android:layout_gravity="center"
+            android:layout_marginTop="100dp"
             android:layout_marginBottom="20dp"
             app:srcCompat="@drawable/astronaut" />
 
@@ -40,11 +40,11 @@
             android:layout_width="300dp"
             android:layout_height="190dp"
             android:layout_gravity="center"
-            android:layout_marginBottom="20dp"
             android:layout_marginTop="10dp"
-            android:rotation="264"
-            android:rotationX="-155"
-            android:rotationY="-360"
+            android:layout_marginBottom="20dp"
+            android:rotation="-75"
+            android:rotationX="360"
+            android:rotationY="360"
             app:srcCompat="@drawable/astronaut" />
     </LinearLayout>
 

@@ -2,13 +2,19 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/Red"
+    android:background="@drawable/bg_quest"
     android:padding="20dp">
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Notify Fragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:drawableTop="@drawable/ic_baseline_notifications_active_24"
+        android:drawablePadding="1dp"
+        android:drawableTint="#7CE6DDDD"
+        android:text="Quý khách không có thông báo nào"
         android:textSize="20dp"
-        android:textColor="@color/white"></TextView>
+        android:textColor="#C4FFFFFF"
+        android:gravity="center_horizontal">
+
+    </TextView>
 </LinearLayout>

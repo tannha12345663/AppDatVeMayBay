@@ -34,14 +34,17 @@
             android:id="@+id/datchomuave"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:layout_margin="5dp"
-            android:gravity="center"
-            android:layout_gravity="center"
             android:layout_below="@+id/tv_topic"
+            android:layout_gravity="center"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="5dp"
+            android:fontFamily="sans-serif-medium"
+            android:gravity="center"
             android:text="Đặt chỗ mua vé"
             android:textSize="20dp"
-            android:textStyle="bold"
-            android:fontFamily="sans-serif-medium"/>
+            android:textStyle="bold" />
 
         <View
             android:layout_width="25dp"

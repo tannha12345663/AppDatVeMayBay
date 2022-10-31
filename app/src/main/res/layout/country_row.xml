@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@drawable/bg_country"
     >
 
 
@@ -11,10 +12,13 @@
         android:layout_height="wrap_content"
         android:text="Hồ Chí Minh, Việt Nam"
         android:textSize="20dp"
+        android:textColor="#FFE5E5"
         android:textStyle="bold"
         android:layout_alignParentTop="true"
         android:layout_marginTop="8dp"
-        android:layout_marginStart="16dp"></TextView>
+        android:layout_marginStart="16dp">
+
+    </TextView>
 
     <TextView
         android:id="@+id/txSanBay"
@@ -24,6 +28,7 @@
         android:layout_alignStart="@+id/txTenTP"
         android:layout_marginStart="0dp"
         android:layout_marginTop="6dp"
+        android:textColor="#F4F1F1"
         android:text="SGN - Sân bay Tân Sơn Nhất "
         android:layout_marginBottom="8dp"
         />

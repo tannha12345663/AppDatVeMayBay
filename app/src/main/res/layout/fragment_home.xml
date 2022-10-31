@@ -197,10 +197,7 @@
                 android:drawableLeft="@drawable/ic_baseline_person_24"
                 android:focusable="false"
                 android:gravity="center"
-                android:hint="Số lượng hành khách"
-                android:rotation="0"
-                android:rotationX="0"
-                android:rotationY="0" />
+                android:hint="Số lượng hành khách" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button

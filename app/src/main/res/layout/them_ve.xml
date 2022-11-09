@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:background="@drawable/whitesky">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="-3dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginBottom="0dp"
+        android:background="#A9000000" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:background="#520B0315"
+        android:orientation="horizontal">
+
+
+        <ImageButton
+            android:layout_width="?attr/actionBarSize"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            />
+
+        <TextView
+            android:id="@+id/nameToolbar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="15dp"
+            android:layout_weight="1"
+            android:text="THÊM VÉ"
+            android:textSize="35dp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Title"
+            android:textColor="@android:color/white" />
+
+
+        <ImageButton
+            android:id="@+id/closeBtn"
+            android:layout_width="100dp"
+            android:layout_height="115dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:src="@drawable/ic_baseline_close_24" />
+
+
+    </LinearLayout>
+
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="165dp"
+        android:layout_height="87dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="85dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="113dp"
+        android:text="THÊM VÉ"
+        android:textSize="20dp" />
+
+    <EditText
+        android:id="@+id/edtngayve"
+        android:layout_width="450dp"
+        android:layout_height="100dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="52dp"
+        android:layout_marginBottom="724dp"
+        android:drawableRight="@drawable/ic_baseline_calendar_month_24"
+        android:ems="10"
+        android:hint="Ví dụ:8/11/2022"
+        android:inputType="date" />
+
+    <EditText
+        android:id="@+id/edtngaydi"
+        android:layout_width="442dp"
+        android:layout_height="120dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="618dp"
+        android:layout_marginEnd="60dp"
+        android:drawableRight="@drawable/ic_baseline_calendar_month_24"
+        android:ems="10"
+        android:hint="Ví dụ:7/11/2022"
+        android:inputType="date" />
+
+    <EditText
+        android:id="@+id/edtnoive"
+        android:layout_width="450dp"
+        android:layout_height="100dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="481dp"
+        android:layout_marginEnd="52dp"
+        android:drawableRight="@drawable/ic_baseline_expand_more_24"
+        android:ems="10"
+        android:hint="Nơi về"
+        android:inputType="textPersonName" />
+
+    <TextView
+        android:id="@+id/txtmave"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="82dp"
+        android:layout_marginTop="183dp"
+        android:gravity="left"
+        android:text="Mã vé:"
+        android:textColor="@color/black"
+        android:textSize="50dp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/edtmave"
+        android:layout_width="450dp"
+        android:layout_height="100dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="177dp"
+        android:layout_marginEnd="52dp"
+        android:ems="10"
+        android:hint="Nhập mã vé"
+        android:inputType="text" />
+
+    <TextView
+        android:id="@+id/txtnoiden"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="39dp"
+        android:layout_marginTop="341dp"
+        android:gravity="left"
+        android:text="Chọn nơi đến:"
+        android:textColor="@color/black"
+        android:textSize="50dp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/edtnoiden"
+        android:layout_width="450dp"
+        android:layout_height="100dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="304dp"
+        android:layout_marginEnd="52dp"
+        android:drawableRight="@drawable/ic_baseline_expand_more_24"
+        android:ems="10"
+        android:hint="Nơi đến"
+        android:inputType="textPersonName" />
+
+    <TextView
+        android:id="@+id/txtnoive"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="39dp"
+        android:layout_marginTop="502dp"
+        android:gravity="left"
+        android:text="Chọn nơi về:"
+        android:textColor="@color/black"
+        android:textSize="50dp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/txtngaydi"
+        android:layout_width="wrap_content"
+        android:layout_height="79dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="641dp"
+        android:gravity="left"
+        android:text="Chọn ngày đi:"
+        android:textColor="@color/black"
+        android:textSize="50dp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/txtngayve"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="30dp"
+        android:layout_marginBottom="738dp"
+        android:gravity="left"
+        android:text="Chọn ngày về:"
+        android:textColor="@color/black"
+        android:textSize="50dp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/txtgiodi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="32dp"
+        android:layout_marginBottom="550dp"
+        android:gravity="left"
+        android:text="Chọn giờ đi:"
+        android:textColor="@color/black"
+        android:textSize="50dp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/edtgiove"
+        android:layout_width="450dp"
+        android:layout_height="100dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="52dp"
+        android:layout_marginBottom="362dp"
+        android:drawableRight="@drawable/ic_baseline_access_time_filled_24"
+        android:ems="10"
+        android:inputType="time" />
+
+    <TextView
+        android:id="@+id/txtgiove"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="32dp"
+        android:layout_marginBottom="377dp"
+        android:gravity="left"
+        android:text="Chọn giờ về:"
+        android:textColor="@color/black"
+        android:textSize="50dp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="450dp"
+        android:layout_height="100dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="200dp"
+        android:layout_marginEnd="61dp"
+        android:layout_marginBottom="113dp"
+        android:text="DANH SÁCH VÉ"
+        android:textSize="20dp" />
+
+    <EditText
+        android:id="@+id/edtgiodi"
+        android:layout_width="442dp"
+        android:layout_height="108dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="60dp"
+        android:layout_marginBottom="540dp"
+        android:drawableRight="@drawable/ic_baseline_access_time_filled_24"
+        android:ems="10"
+        android:inputType="textPersonName" />
+
+</RelativeLayout>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:background="@drawable/bautroi">
+
+<View
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#54000000"/>
+<LinearLayout
+    android:id="@+id/linearLayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#520B0315"
+    android:orientation="horizontal">
+
+
+    <ImageButton
+        android:layout_width="?attr/actionBarSize"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        />
+
+    <TextView
+        android:id="@+id/nameToolbar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginStart="15dp"
+        android:layout_weight="1"
+        android:text="DANH SÁCH VÉ"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Title"
+        android:textColor="@android:color/white" />
+
+
+    <ImageButton
+        android:id="@+id/closeBtn"
+        android:layout_width="?attr/actionBarSize"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:src="@drawable/ic_baseline_close_24" />
+
+
+</LinearLayout>
+
+<androidx.recyclerview.widget.RecyclerView
+
+    android:layout_width="60dp"
+    android:layout_height="wrap_content"
+    android:layout_alignParentStart="true"
+    android:layout_alignParentTop="true"
+    android:layout_alignParentBottom="true"
+    android:layout_marginStart="4dp"
+    android:layout_marginTop="55dp"
+    android:layout_marginEnd="1dp"
+    android:layout_marginBottom="1dp"
+    android:layout_below="@+id/linearLayout"/>
+
+
+</RelativeLayout>
+

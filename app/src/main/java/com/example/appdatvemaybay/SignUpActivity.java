@@ -115,7 +115,7 @@ public class SignUpActivity extends AppCompatActivity {
                             user = FirebaseAuth.getInstance().getCurrentUser();
                             String strUID = user.getUid();
 
-                            User userLocal = new User(strUID,getEmail,Fullname,getMobile);
+                            User userLocal = new User(strUID,getEmail,Fullname,getMobile,"null");
                             FirebaseDatabase database = FirebaseDatabase.getInstance();
                             DatabaseReference myData = database.getReference("ListUser");
 

@@ -3,13 +3,14 @@ package com.example.appdatvemaybay.Account_User;
 import android.net.Uri;
 
 public class User {
-    String UID,Name,Email,Phone;
+    String UID,Name,Email,Phone, imgUrl;
 
-    public User(String UID, String email,String name, String phone) {
+    public User(String UID, String email,String name, String phone, String imgUrl) {
         this.UID = UID;
         this.Name=name;
         this.Email = email;
         this.Phone=phone;
+        this.imgUrl=imgUrl;
     }
 
     public String getUID() {
@@ -44,5 +45,11 @@ public class User {
         Phone = phone;
     }
 
+    public String getImgUrl() {
+        return imgUrl;
+    }
 
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
+    }
 }

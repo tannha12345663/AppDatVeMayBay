@@ -3,6 +3,7 @@ package com.example.appdatvemaybay;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -76,13 +77,21 @@ public class ChuyenVecuaBanActivity extends AppCompatActivity implements TicketA
         imgBack04.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                user= FirebaseAuth.getInstance().getCurrentUser();
                 database = FirebaseDatabase.getInstance();
                 myRef=database.getReference("DSorder");
                 if (Ticketdi.isEmpty()){
                     myRef.removeValue();
                 }
                 else {
-                    myRef.child(Ticketdi).removeValue();
+                    if (user!=null){
+                        myRef.child(user.getUid()).child(Ticketdi).removeValue();
+                    }
+                    else {
+                        String m_androidId = Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID);
+                        myRef.child(m_androidId).child(Ticketdi).removeValue();
+                    }
+
                 }
                 onBackPressed();
             }
@@ -167,20 +176,16 @@ public class ChuyenVecuaBanActivity extends AppCompatActivity implements TicketA
     @Override
     public void onItemListener(Ticket ticket) {
         Toast.makeText(this, ""+ticket.getMaVe(), Toast.LENGTH_SHORT).show();
-        if (user !=null){
-            //Push vé
-            database = FirebaseDatabase.getInstance();
-            myRef = database.getReference("MaVe");
-            myRef.child(ticket.getMaVe()).child(user.getUid()).setValue(SLTong);
-
+        user= FirebaseAuth.getInstance().getCurrentUser();
+        database = FirebaseDatabase.getInstance();
+        myRef=database.getReference("DSorder");
+        if (user!=null){
+            myRef.child(user.getUid()).child(ticket.getMaVe()).setValue(ticket);
         }
         else {
-            database = FirebaseDatabase.getInstance();
-            myRef = database.getReference("MaVe");
-            myRef.child(ticket.getMaVe()).setValue(ticket);
+            String m_androidId = Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID);
+            myRef.child(m_androidId).child(ticket.getMaVe()).setValue(ticket);
         }
-        myRef=database.getReference("DSorder");
-        myRef.child(ticket.getMaVe()).setValue(ticket);
         Intent intent = new Intent(ChuyenVecuaBanActivity.this,ThongtinKH.class);
         intent.putExtra("MaveKH",MaVe);
         mlauncher.launch(intent);

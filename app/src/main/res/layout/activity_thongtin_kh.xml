@@ -90,8 +90,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:drawableEnd="@drawable/ic_baseline_phone_24"
-            android:hint="Số điện thoại"
             android:drawableTint="#856742"
+            android:hint="Số điện thoại *:"
             android:inputType="phone" />
 </com.google.android.material.textfield.TextInputLayout>
 
@@ -110,8 +110,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:drawableEnd="@drawable/ic_baseline_person_24"
-            android:hint="Họ tên hành khách"
-            android:drawableTint="#856742"/>
+            android:drawableTint="#856742"
+            android:hint="Họ tên hành khách *:" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -126,12 +126,12 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/edtEmail"
-            android:inputType="textEmailAddress"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:drawableEnd="@drawable/ic_baseline_email_24"
-            android:hint="Địa chỉ email"
-            android:drawableTint="#856742"/>
+            android:drawableTint="#856742"
+            android:hint="Địa chỉ email *:"
+            android:inputType="textEmailAddress" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -149,9 +149,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:drawableEnd="@drawable/ic_baseline_featured_video_24"
-            android:hint="CMND/CCCD/ Hộ chiếu"
-            android:inputType="number"
-            android:drawableTint="#856742"/>
+            android:drawableTint="#856742"
+            android:hint="CMND/CCCD/ Hộ chiếu *:"
+            android:inputType="number" />
     </com.google.android.material.textfield.TextInputLayout>
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayout8"
@@ -168,10 +168,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:drawableEnd="@drawable/ic_baseline_calendar_month_24"
-            android:hint="Ví dụ: 26/10/2015"
-            android:inputType="datetime"
+            android:drawableTint="#856742"
             android:focusable="false"
-            android:drawableTint="#856742"/>
+            android:hint="Ngày sinh *:"
+            android:inputType="datetime" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <androidx.appcompat.widget.AppCompatButton
@@ -185,6 +185,19 @@
         app:layout_constraintEnd_toEndOf="@+id/textInputLayout7"
         app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="@+id/textInputLayout7"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout8" />
+
+    <TextView
+        android:id="@+id/txNotnull"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Các nội dung có * không được để trống !"
+        android:textColor="@color/Red"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/textInputLayout8"
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout8" />
 
 

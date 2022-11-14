@@ -11,10 +11,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.appdatvemaybay.Account_User.Dsorder;
@@ -40,10 +42,10 @@ public class ThongtinKH extends AppCompatActivity {
     Button btnConfirm;
     int mYear,mMonth,mDay;
     FirebaseDatabase database;
-    DatabaseReference myData;
+    DatabaseReference myRef;
     FirebaseUser user;
     Ticket ticketdi,ticketve;
-
+    TextView txNotnull;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,6 +56,8 @@ public class ThongtinKH extends AppCompatActivity {
     }
 
     private void innitUI() {
+        txNotnull=findViewById(R.id.txNotnull);
+        txNotnull.setVisibility(View.INVISIBLE);
         btnConfirm=findViewById(R.id.btnConfirm);
         edtName = findViewById(R.id.edtName);
         edtBirthday=findViewById(R.id.edtBirthday);
@@ -65,8 +69,8 @@ public class ThongtinKH extends AppCompatActivity {
         if (user!=null){
             edtEmail.setText(user.getEmail());
              database = FirebaseDatabase.getInstance();
-             myData = database.getReference("ListUser");
-             myData.child(user.getUid()).child("name").addValueEventListener(new ValueEventListener() {
+             myRef = database.getReference("ListUser");
+             myRef.child(user.getUid()).child("name").addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     String name = (String) snapshot.getValue();
@@ -78,7 +82,7 @@ public class ThongtinKH extends AppCompatActivity {
 
                 }
             });
-            myData.child(user.getUid()).child("phone").addValueEventListener(new ValueEventListener() {
+            myRef.child(user.getUid()).child("phone").addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     String phone = (String) snapshot.getValue();
@@ -114,11 +118,60 @@ public class ThongtinKH extends AppCompatActivity {
     }
 
     private void innitListener() {
+        user= FirebaseAuth.getInstance().getCurrentUser();
+        database = FirebaseDatabase.getInstance();
+        myRef = database.getReference("DSorder");
+        if (user!=null){
+            myRef.child(user.getUid()).addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    for (DataSnapshot snapshot1 : snapshot.getChildren()){
+                        ticketdi = snapshot1.getValue(Ticket.class);
+                        if (ticketve==null){
+                            ticketve=snapshot1.getValue(Ticket.class);
+                        }
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+        }else {
+            String m_androidId = Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID);
+            myRef.child(m_androidId).addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    for (DataSnapshot snapshot1 : snapshot.getChildren()){
+                        ticketdi = snapshot1.getValue(Ticket.class);
+                        if (ticketve==null){
+                            ticketve=snapshot1.getValue(Ticket.class);
+                        }
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+        }
+
+
         imgBackHome6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                myData=database.getReference("DSorder");
-                myData.child(ticketve.getMaVe()).removeValue();
+                user= FirebaseAuth.getInstance().getCurrentUser();
+                database = FirebaseDatabase.getInstance();
+                myRef=database.getReference("DSorder");
+                if (user!=null){
+                    myRef.child(user.getUid()).child(ticketve.getMaVe()).removeValue();
+                }
+                else {
+                    String m_androidId = Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID);
+                    myRef.child(m_androidId).child(ticketve.getMaVe()).removeValue();
+                }
                 Intent intent = new Intent();
                 intent.putExtra("Ticketdi",ticketdi.getMaVe());
                 intent.putExtra("flag",1);
@@ -129,41 +182,31 @@ public class ThongtinKH extends AppCompatActivity {
         btnConfirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int flag;
-                Intent intent=getIntent();
-                flag=intent.getIntExtra("flag",0);
-                if (flag==1){
-                    Intent intent1 = new Intent();
-                    intent1=new Intent(ThongtinKH.this,TomtatHT.class);
-                    intent1.putExtra("flag",1);
-                    startActivity(intent1);
-                }
-                else {
-                    Intent intent2 = new Intent();
-                    intent2=new Intent(ThongtinKH.this,TomtatHT.class);
-                    startActivity(intent2);
-                }
-
-
-            }
-        });
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("DSorder");
-        myRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot snapshot1 : snapshot.getChildren()){
-                    ticketdi = snapshot1.getValue(Ticket.class);
-                    if (ticketve==null){
-                        ticketve=snapshot1.getValue(Ticket.class);
+                if (edtPhone.getText().toString().isEmpty()
+                        || edtName.getText().toString().isEmpty()
+                        || edtEmail.getText().toString().isEmpty()
+                        || edtCMND.getText().toString().isEmpty()
+                        || edtBirthday.getText().toString().isEmpty()){
+                    txNotnull.setVisibility(View.VISIBLE);
+                }else {
+                    int flag;
+                    Intent intent=getIntent();
+                    flag=intent.getIntExtra("flag",0);
+                    if (flag==1){
+                        Intent intent1 = new Intent();
+                        intent1=new Intent(ThongtinKH.this,TomtatHT.class);
+                        intent1.putExtra("flag",1);
+                        startActivity(intent1);
+                    }
+                    else {
+                        Intent intent2 = new Intent();
+                        intent2=new Intent(ThongtinKH.this,TomtatHT.class);
+                        startActivity(intent2);
                     }
                 }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
 
             }
         });
+
     }
 }

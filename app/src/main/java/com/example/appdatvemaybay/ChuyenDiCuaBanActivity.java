@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -151,11 +152,16 @@ public class ChuyenDiCuaBanActivity extends AppCompatActivity implements TicketA
     @Override
     public void onItemListener(Ticket ticket) {
 
-
+        user= FirebaseAuth.getInstance().getCurrentUser();
         database = FirebaseDatabase.getInstance();
         myRef=database.getReference("DSorder");
-
-        myRef.child(ticket.getMaVe()).setValue(ticket);
+        if (user!=null){
+            myRef.child(user.getUid()).child(ticket.getMaVe()).setValue(ticket);
+        }
+        else {
+            String m_androidId = Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID);
+            myRef.child(m_androidId).child(ticket.getMaVe()).setValue(ticket);
+        }
         Toast.makeText(this, ""+ticket.getMaVe(), Toast.LENGTH_SHORT).show();
         if (bienTam.getNgayVe()==null){
             Toast.makeText(this, "Bạn không có đi ngày về", Toast.LENGTH_SHORT).show();

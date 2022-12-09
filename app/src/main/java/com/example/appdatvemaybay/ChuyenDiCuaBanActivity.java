@@ -114,6 +114,10 @@ public class ChuyenDiCuaBanActivity extends AppCompatActivity implements TicketA
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
                 MaVe = (String) snapshot.child("MaVe").getValue();
+                if (MaVe == null){
+                    progressDialog.dismiss();
+                    Toast.makeText(ChuyenDiCuaBanActivity.this, "Không tìm thấy thông tin chuyến bay này", Toast.LENGTH_SHORT).show();
+                }
                 String Hang = (String) snapshot.child("Hang").getValue();
                 String GioDen = (String) snapshot.child("GioDen").getValue();
                 String GioDi = (String) snapshot.child("GioBay").getValue();
@@ -147,6 +151,10 @@ public class ChuyenDiCuaBanActivity extends AppCompatActivity implements TicketA
 
             }
         });
+        if (ticket == null){
+            progressDialog.dismiss();
+            Toast.makeText(ChuyenDiCuaBanActivity.this, "Không tìm thấy thông tin chuyến bay này", Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override

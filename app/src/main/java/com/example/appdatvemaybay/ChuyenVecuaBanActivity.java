@@ -50,6 +50,7 @@ public class ChuyenVecuaBanActivity extends AppCompatActivity implements TicketA
     FirebaseDatabase database;
     DatabaseReference myRef;
     FirebaseUser user;
+    Ticket ticket;
     int SLTong;
     String Ticketdi="";
     ActivityResultLauncher<Intent> mlauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
@@ -141,7 +142,7 @@ public class ChuyenVecuaBanActivity extends AppCompatActivity implements TicketA
                 String GioDi = (String) snapshot.child("GioBay").getValue();
                 GiaVe = (String) snapshot.child("GiaVe").getValue();
                 String SLtong= String.valueOf(SLTong);
-                Ticket ticket = new Ticket(GiaVe, GioDi, GioDen, Hang, MaVe,NgayVe,SLtong,DiemDen,DiemKH,MaTPve,MaTPdi);
+                ticket = new Ticket(GiaVe, GioDi, GioDen, Hang, MaVe,NgayVe,SLtong,DiemDen,DiemKH,MaTPve,MaTPdi);
                 if (ticket != null) {
                     progressDialog.dismiss();
                     mTicketList.add(ticket);
@@ -170,6 +171,10 @@ public class ChuyenVecuaBanActivity extends AppCompatActivity implements TicketA
 
             }
         });
+        if (ticket == null){
+            progressDialog.dismiss();
+            Toast.makeText(ChuyenDiCuaBanActivity.this, "Không tìm thấy thông tin chuyến bay này", Toast.LENGTH_SHORT).show();
+        }
     }
 
 

@@ -137,7 +137,7 @@ public class ChuyenVecuaBanActivity extends AppCompatActivity implements TicketA
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
                 MaVe = (String) snapshot.child("MaVe").getValue();
                 String Hang = (String) snapshot.child("Hang").getValue();
-                String GioDen = (String) snapshot.child("GioVe").getValue();
+                String GioDen = (String) snapshot.child("GioDen").getValue();
                 String GioDi = (String) snapshot.child("GioBay").getValue();
                 GiaVe = (String) snapshot.child("GiaVe").getValue();
                 String SLtong= String.valueOf(SLTong);

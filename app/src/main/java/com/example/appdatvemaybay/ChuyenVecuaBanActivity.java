@@ -173,7 +173,7 @@ public class ChuyenVecuaBanActivity extends AppCompatActivity implements TicketA
         });
         if (ticket == null){
             progressDialog.dismiss();
-            Toast.makeText(ChuyenDiCuaBanActivity.this, "Không tìm thấy thông tin chuyến bay này", Toast.LENGTH_SHORT).show();
+            Toast.makeText(ChuyenVecuaBanActivity.this, "Không tìm thấy thông tin chuyến bay này", Toast.LENGTH_SHORT).show();
         }
     }
 

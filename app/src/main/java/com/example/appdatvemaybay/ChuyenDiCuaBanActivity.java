@@ -51,7 +51,6 @@ public class ChuyenDiCuaBanActivity extends AppCompatActivity implements TicketA
     FirebaseDatabase database;
     DatabaseReference myRef;
     int SLTong;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -104,7 +103,7 @@ public class ChuyenDiCuaBanActivity extends AppCompatActivity implements TicketA
 
     private void getListTicket(){
         progressDialog = new ProgressDialog(ChuyenDiCuaBanActivity.this);
-        progressDialog.setMessage("Đang tải danh sách vé \n Vui lòng đợi giây lát");
+        progressDialog.setMessage("Đang tải danh sách vé \n Vui lòng đợi giây lát ! \n Nếu quá 5s vui lòng thử lại !!");
         progressDialog.show();
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -114,10 +113,6 @@ public class ChuyenDiCuaBanActivity extends AppCompatActivity implements TicketA
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
                 MaVe = (String) snapshot.child("MaVe").getValue();
-                if (MaVe == null){
-                    progressDialog.dismiss();
-                    Toast.makeText(ChuyenDiCuaBanActivity.this, "Không tìm thấy thông tin chuyến bay này", Toast.LENGTH_SHORT).show();
-                }
                 String Hang = (String) snapshot.child("Hang").getValue();
                 String GioDen = (String) snapshot.child("GioDen").getValue();
                 String GioDi = (String) snapshot.child("GioBay").getValue();
@@ -128,7 +123,6 @@ public class ChuyenDiCuaBanActivity extends AppCompatActivity implements TicketA
                     mTicketList.add(ticket);
                     mTicketAdapter.notifyDataSetChanged();
                 }
-
             }
 
             @Override
@@ -151,10 +145,7 @@ public class ChuyenDiCuaBanActivity extends AppCompatActivity implements TicketA
 
             }
         });
-        if (ticket == null){
-            progressDialog.dismiss();
-            Toast.makeText(ChuyenDiCuaBanActivity.this, "Không tìm thấy thông tin chuyến bay này", Toast.LENGTH_SHORT).show();
-        }
+
     }
 
     @Override
@@ -163,11 +154,13 @@ public class ChuyenDiCuaBanActivity extends AppCompatActivity implements TicketA
         user= FirebaseAuth.getInstance().getCurrentUser();
         database = FirebaseDatabase.getInstance();
         myRef=database.getReference("DSorder");
+        myRef.removeValue();
         if (user!=null){
             myRef.child(user.getUid()).child(ticket.getMaVe()).setValue(ticket);
         }
         else {
             String m_androidId = Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID);
+
             myRef.child(m_androidId).child(ticket.getMaVe()).setValue(ticket);
         }
         Toast.makeText(this, ""+ticket.getMaVe(), Toast.LENGTH_SHORT).show();

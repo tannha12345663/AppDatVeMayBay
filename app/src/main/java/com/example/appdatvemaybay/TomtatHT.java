@@ -33,6 +33,7 @@ import java.util.ArrayList;
 import java.util.Formattable;
 import java.util.List;
 import java.util.Locale;
+import java.util.Random;
 
 public class TomtatHT extends AppCompatActivity implements TicketAdapter.Listener{
     ImageButton imgBackHome7;
@@ -113,8 +114,10 @@ public class TomtatHT extends AppCompatActivity implements TicketAdapter.Listene
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("GiaoDich");
         mTicketList.size();
+        Random rd = new Random();
+        Integer verd = rd.nextInt(100);
         for (Ticket ticket : mTicketList) {
-            myRef.child(user.getUid()).child(ticket.getMaVe()).setValue(ticket);
+            myRef.child(user.getUid()).child(ticket.getMaVe()+verd).setValue(ticket);
         }
 
     }

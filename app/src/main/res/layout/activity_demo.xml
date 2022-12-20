@@ -29,7 +29,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="serif"
             android:gravity="center"
-            android:text="Bay cùng Nhã Trương"
+            android:text="Bay cùng Air Plane"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             android:textColor="#E1D82F"
             android:textSize="30dp"
